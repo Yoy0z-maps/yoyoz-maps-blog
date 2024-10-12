@@ -1,7 +1,7 @@
 "use client";
 import LeftSideBar from "@/container/main/LeftSideBar";
 import { useAppearanceThemeStore } from "@/store/useAppearanceThemeStore";
-import Appearance from "./test/page";
+import ThemeToggleButton from "@/container/layout/ThemeToggleButton";
 
 export default function Home() {
   const theme = useAppearanceThemeStore((state) => state.theme);
@@ -17,7 +17,7 @@ export default function Home() {
         <p className="text-white text-2xl font-bold">Main Content</p>
       </section>
       <div className="absolute top-0 left-0 w-full h-full">
-        <Appearance />
+        <ThemeToggleButton />
       </div>
     </div>
   );

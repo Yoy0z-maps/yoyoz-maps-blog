@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useAppearanceThemeStore } from "@/store/useAppearanceThemeStore";
 
-export default function Appearance() {
+export default function ThemeToggleButton() {
   const { toggleTheme } = useAppearanceThemeStore();
   const [isChecked, setIsChecked] = useState(false);
 
