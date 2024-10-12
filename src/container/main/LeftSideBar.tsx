@@ -1,6 +1,6 @@
 // constant
 import Link from "next/link";
-import { info } from "../../../constant/informations";
+import { info } from "@/constant/informations";
 // component
 import InfoItem from "./InfoItem";
 // icon
