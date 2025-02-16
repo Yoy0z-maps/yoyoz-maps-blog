@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 
 const productSansBold = localFont({
-  src: "./productsans-bold.ttf",
+  src: "./product-sans-bold.ttf",
   display: "swap",
   weight: "700",
   style: "normal",
