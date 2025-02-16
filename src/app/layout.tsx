@@ -9,7 +9,7 @@ import {
   productSansMedium,
   productSansRegular,
   productSansThin,
-} from "../../public/fonts/fonts";
+} from "../../public/assets/fonts/fonts";
 
 export const metadata: Metadata = {
   title: "John Han's Blog",
