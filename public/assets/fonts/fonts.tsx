@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 
 const productSansBold = localFont({
-  src: "./ProductSans-Bold.ttf",
+  src: "./productsans-bold.ttf",
   display: "swap",
   weight: "700",
   style: "normal",
@@ -9,7 +9,7 @@ const productSansBold = localFont({
 });
 
 const productSansLight = localFont({
-  src: "./ProductSans-Light.ttf",
+  src: "./product-sans-light.ttf",
   display: "swap",
   weight: "300",
   style: "normal",
@@ -17,7 +17,7 @@ const productSansLight = localFont({
 });
 
 const productSansMedium = localFont({
-  src: "./ProductSans-Medium.ttf",
+  src: "./product-sans-medium.ttf",
   display: "swap",
   weight: "500",
   style: "normal",
@@ -25,7 +25,7 @@ const productSansMedium = localFont({
 });
 
 const productSansRegular = localFont({
-  src: "./ProductSans-Regular.ttf",
+  src: "./product-sans-regular.ttf",
   display: "swap",
   weight: "400",
   style: "normal",
@@ -33,7 +33,7 @@ const productSansRegular = localFont({
 });
 
 const productSansThin = localFont({
-  src: "./ProductSans-Thin.ttf",
+  src: "./product-sans-thin.ttf",
   display: "swap",
   weight: "100",
   style: "normal",
@@ -41,7 +41,7 @@ const productSansThin = localFont({
 });
 
 const pretendard = localFont({
-  src: "./PretendardVariable.woff2",
+  src: "./pretendard-variable.woff2",
   display: "swap",
   weight: "45 920",
   variable: "--font-pretendard",
