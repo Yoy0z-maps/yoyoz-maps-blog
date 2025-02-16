@@ -1,4 +1,3 @@
-import Link from "next/link";
 import ThemeToggleButton from "./ThemeToggleButton";
 import MainHeaderNavigationItem from "./MainHeaderNavigationItem";
 

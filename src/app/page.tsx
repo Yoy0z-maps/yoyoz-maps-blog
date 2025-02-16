@@ -1,6 +1,6 @@
 "use client";
+
 import NavHighlighter from "@/components/NavHighlighter";
-import ThemeToggleButton from "@/components/ThemeToggleButton";
 import { useAppearanceThemeStore } from "@/store/useAppearanceThemeStore";
 
 export default function Home() {

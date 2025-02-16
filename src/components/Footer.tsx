@@ -1,5 +1,5 @@
 import { FaInstagram, FaYoutube, FaGithub } from "react-icons/fa";
-import Link from "next/link";
+
 import FooterSocialLink from "./FooterSocialLink";
 
 export default function Footer() {
