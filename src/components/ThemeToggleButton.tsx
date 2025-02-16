@@ -7,7 +7,7 @@ export default function ThemeToggleButton() {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
-    <div className="m-0 p-0 box-borde overflow-hidden">
+    <div className="box-border overflow-hidden">
       <input
         type="checkbox"
         id="toggle"
@@ -24,7 +24,7 @@ export default function ThemeToggleButton() {
       >
         <label
           htmlFor="toggle"
-          className={`relative rounded-full w-[400px] h-[200px] cursor-pointer transition-all duration-500 ${
+          className={`relative rounded-full w-[100px] h-[50px] cursor-pointer transition-all duration-500 ${
             isChecked
               ? "bg-appearancelightlabel shadow-appearancelightlabel"
               : "bg-appearancedarklabel shadow-appearancedarklabel"
@@ -32,7 +32,7 @@ export default function ThemeToggleButton() {
         >
           <div
             id="circle"
-            className={`rounded-full hover:w-[200px] w-[160px] h-[160px] absolute top-[50%] overflow-hidden ${
+            className={`rounded-full hover:w-[50px] w-[40px] h-[40px] absolute top-[50%] overflow-hidden ${
               isChecked
                 ? "left-[100%] translate-x-[-110%] translate-y-[-50%] bg-white shadow-appearancelightcircle"
                 : "left-[0%] translate-x-[10%] translate-y-[-50%] bg-darkbg shadow-appearancedarkcircle"
@@ -42,7 +42,7 @@ export default function ThemeToggleButton() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="white"
-              className={`w-[80px] absolute transition-all duration-500 ${isChecked ? "mt-[150%] opacity-0" : "mt-[0%] opacity-100"}`}
+              className={`w-[20px] absolute transition-all duration-500 ${isChecked ? "mt-[150%] opacity-0" : "mt-[0%] opacity-100"}`}
               id="moon"
             >
               <path
@@ -55,7 +55,7 @@ export default function ThemeToggleButton() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="#FFD580"
-              className={`w-[80px] h-[80px]absolute transition-all duration-500 ${isChecked ? "mt-[0%] opacity-100" : "mt-[-150%] opacity-0"}`}
+              className={`w-[20px] absolute transition-all duration-500 ${isChecked ? "mt-[0%] opacity-100" : "mt-[-150%] opacity-0"}`}
               id="sun"
             >
               <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />

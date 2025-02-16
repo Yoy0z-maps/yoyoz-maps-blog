@@ -1,9 +1,9 @@
 "use client";
+
 import NavHighlighter from "@/components/NavHighlighter";
-import ThemeToggleButton from "@/components/ThemeToggleButton";
 import { useAppearanceThemeStore } from "@/store/useAppearanceThemeStore";
 
-export default function Home() {
+export default function Page() {
   const theme = useAppearanceThemeStore((state) => state.theme);
   const bgColor =
     theme === "dark"
@@ -12,10 +12,10 @@ export default function Home() {
 
   return (
     <div
-      className={`flex w-full h-[100vh] ${bgColor} relative transition-all duration-500 pt-28`}
+      className={`flex w-full h-[100vh] ${bgColor} transition-all duration-500 pt-28`}
     >
-      <NavHighlighter path="/" />
-      <p className="text-white text-2xl font-productSansMedium">HOME</p>
+      <NavHighlighter path="/blog" />
+      <p className="text-white text-2xl font-productSansMedium">blog</p>
     </div>
   );
 }

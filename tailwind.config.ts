@@ -9,6 +9,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        pretendard: ["var(--font-pretendard)"],
+        productSansBold: ["var(--font-product-sans-bold)"],
+        productSansLight: ["var(--font-product-sans-light)"],
+        productSansMedium: ["var(--font-product-sans-medium)"],
+        productSansRegular: ["var(--font-product-sans-regular)"],
+        productSansThin: ["var(--font-product-sans-thin)"],
+      },
       colors: {
         darkbg: "#2C2C2F",
         lightbg: "#F3F3F3",
@@ -25,12 +33,12 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       boxShadow: {
-        appearancelightlabel: "10px 10px 30px rgba(0, 0, 0, 0.05) inset",
-        appearancedarklabel: "10px 10px 30px rgba(0, 0, 0, 0.5) inset",
+        appearancelightlabel: "5px 5px 15px rgba(0, 0, 0, 0.05) inset",
+        appearancedarklabel: "5px 5px 15px rgba(0, 0, 0, 0.5) inset",
         appearancelightcircle:
-          "-10px 10px 20px rgba(0,0,0,0.2), 10px -10px 30px rgba(0,0,0,0.2) inset",
+          "-5px 5px 10px rgba(0,0,0,0.2), 5px -5px 15px rgba(0,0,0,0.2) inset",
         appearancedarkcircle:
-          "10px 10px 20px rgba(0,0,0,0.5), -10px -10px 30px rgba(0,0,0,0.5) inset",
+          "5px 5px 10px rgba(0,0,0,0.5), -5px -5px 15px rgba(0,0,0,0.5) inset",
         "eyes-shadow": "25px 25px 0 rgba(0,0,0,0.05)",
         "eye-shadow": "0 0 0 3px #3d5d89",
         eyebrush: "0 -3px 0 #111",
