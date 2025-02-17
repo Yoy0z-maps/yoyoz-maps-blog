@@ -11,11 +11,6 @@ const config: Config = {
     extend: {
       fontFamily: {
         pretendard: ["var(--font-pretendard)"],
-        productSansBold: ["var(--font-product-sans-bold)"],
-        productSansLight: ["var(--font-product-sans-light)"],
-        productSansMedium: ["var(--font-product-sans-medium)"],
-        productSansRegular: ["var(--font-product-sans-regular)"],
-        productSansThin: ["var(--font-product-sans-thin)"],
       },
       colors: {
         darkbg: "#2C2C2F",

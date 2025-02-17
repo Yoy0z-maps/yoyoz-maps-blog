@@ -15,7 +15,7 @@ export default function Page() {
       className={`flex w-full h-[100vh] ${bgColor} relative transition-all duration-500 pt-28`}
     >
       <NavHighlighter path="/guest" />
-      <p className="text-white text-2xl font-productSansMedium">guest</p>
+      <p className="text-white text-2xl font-pretendard font-medium">guest</p>
     </div>
   );
 }

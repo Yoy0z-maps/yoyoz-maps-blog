@@ -15,7 +15,7 @@ export default function Home() {
       className={`flex w-full h-[100vh] ${bgColor} relative transition-all duration-500 pt-28`}
     >
       <NavHighlighter path="/" />
-      <p className="text-white text-2xl font-productSansMedium">HOME</p>
+      <p className="text-white text-2xl font-pretendard font-medium">HOME</p>
     </div>
   );
 }

@@ -15,7 +15,7 @@ export default function Page() {
       className={`flex w-full h-[100vh] ${bgColor} transition-all duration-500 pt-28`}
     >
       <NavHighlighter path="/blog" />
-      <p className="text-white text-2xl font-productSansMedium">blog</p>
+      <p className="text-white text-2xl font-pretendard font-medium">BLOG</p>
     </div>
   );
 }
