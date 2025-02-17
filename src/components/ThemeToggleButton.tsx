@@ -1,10 +1,28 @@
 "use client";
-import { useState } from "react";
-import { useAppearanceThemeStore } from "@/store/useAppearanceThemeStore";
+import { useEffect, useState } from "react";
 
 export default function ThemeToggleButton() {
-  const { toggleTheme } = useAppearanceThemeStore();
   const [isChecked, setIsChecked] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+    if (savedTheme) {
+      document.documentElement.classList.add(savedTheme);
+      setTheme(savedTheme);
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.classList.add("dark");
+      setTheme("dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "dark" ? "light" : "dark";
+    document.documentElement.classList.remove(theme);
+    document.documentElement.classList.add(newTheme);
+    localStorage.setItem("theme", newTheme);
+    setTheme(newTheme);
+  };
 
   return (
     <div className="box-border overflow-hidden">

@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -13,8 +14,7 @@ const config: Config = {
         pretendard: ["var(--font-pretendard)"],
       },
       colors: {
-        darkbg: "#2C2C2F",
-        lightbg: "#F3F3F3",
+        "logo-light": "#222222",
         appearancelightlabel: "#F3F3F3",
         appearancedarklabel: "#1F1F21",
         container: "#20232a",
