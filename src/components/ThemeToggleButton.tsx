@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 export default function ThemeToggleButton() {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
   const [theme, setTheme] = useState<"light" | "dark">("dark");
 
   useEffect(() => {
