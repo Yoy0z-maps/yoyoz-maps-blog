@@ -10,8 +10,11 @@ const navigationItems = [
 
 export default function MainHeader() {
   return (
-    <div className="fixed top-0 w-full flex items-center justify-between py-4 px-9 z-50">
-      <div id="logo" className="flex flex-shrink-0 items-center">
+    <div className="fixed w-full flex items-center justify-center py-5 px-9 z-50">
+      <div
+        id="logo"
+        className="absolute left-5 flex flex-shrink-0 items-center"
+      >
         <p className="font-pretendard text-logo-light dark:text-white text-xl">
           Yoy0z-maps.
         </p>

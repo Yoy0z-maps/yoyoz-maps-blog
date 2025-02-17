@@ -28,7 +28,7 @@ export default function ThemeToggleButton() {
   };
 
   return (
-    <div className="box-border overflow-hidden">
+    <div className="absolute right-5 box-border overflow-hidden">
       <input
         type="checkbox"
         id="toggle"
