@@ -12,9 +12,7 @@ export default function MainHeader() {
   return (
     <div className="fixed top-0 w-full flex items-center justify-between py-6 px-9 z-50">
       <div id="logo" className="flex flex-shrink-0 items-center">
-        <p className="font-productSansMedium text-white text-2xl">
-          Yoy0z-maps.
-        </p>
+        <p className="font-pretendard text-white text-2xl">Yoy0z-maps.</p>
       </div>
       <nav className="flex items-center justify-center gap-x-7">
         {navigationItems.map((item) => (
