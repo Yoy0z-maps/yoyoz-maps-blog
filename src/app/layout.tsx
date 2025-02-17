@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${pretendard.variable} antialiased`}>
-      <body>
+      <body className={`${pretendard.variable} antialiased`}>
         <MainHeader />
         {children}
         <Footer />
