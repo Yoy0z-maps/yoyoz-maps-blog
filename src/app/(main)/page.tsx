@@ -1,5 +1,3 @@
-"use client";
-
 import NavHighlighter from "@/components/NavHighlighter";
 
 export default function Home() {
