@@ -14,6 +14,7 @@ const config: Config = {
         pretendard: ["var(--font-pretendard)"],
       },
       colors: {
+        "dark-bg": "#111111",
         "logo-light": "#222222",
         appearancelightlabel: "#F3F3F3",
         appearancedarklabel: "#1F1F21",
@@ -28,10 +29,10 @@ const config: Config = {
         foreground: "var(--foreground)",
       },
       boxShadow: {
-        appearancelightlabel: "5px 5px 15px rgba(0, 0, 0, 0.05) inset",
+        appearancelightlabel: "1px 1px 3px rgba(0, 0, 0, 0.05) inset",
         appearancedarklabel: "5px 5px 15px rgba(0, 0, 0, 0.5) inset",
         appearancelightcircle:
-          "-5px 5px 10px rgba(0,0,0,0.2), 5px -5px 15px rgba(0,0,0,0.2) inset",
+          "-1px 1px 2px rgba(0,0,0,0.2), 1px -1px 3px rgba(0,0,0,0.2) inset",
         appearancedarkcircle:
           "5px 5px 10px rgba(0,0,0,0.5), -5px -5px 15px rgba(0,0,0,0.5) inset",
         "eyes-shadow": "25px 25px 0 rgba(0,0,0,0.05)",
