@@ -14,6 +14,8 @@ const config: Config = {
         pretendard: ["var(--font-pretendard)"],
       },
       colors: {
+        "admin-bg": "#EEEEEE",
+        "sidebar-bg": "#F2F3F6",
         "dark-bg": "#111111",
         "logo-light": "#222222",
         appearancelightlabel: "#F3F3F3",
@@ -39,6 +41,7 @@ const config: Config = {
         "eye-shadow": "0 0 0 3px #3d5d89",
         eyebrush: "0 -3px 0 #111",
         "mouth-shadow": "inset 0 10px 0 rgba(0,0,0,0.2)",
+        "sidebar-shadow": "10px 10px 10px 10pxs rgba(0, 0, 0, 1)",
       },
     },
   },
