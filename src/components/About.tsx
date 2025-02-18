@@ -15,12 +15,13 @@ export default function About() {
           transition={{ duration: 0.5 }}
           className="w-full lg:w-1/2 lg:p-8"
         >
-          <div className="flex justify-center items-center">
+          <div className="relative flex justify-center items-center aspect-square max-w-xl">
             <img
-              className="rounded-2xl"
+              className="rounded-2xl object-cover w-full h-full"
               src="/assets/images/about.jpg"
               alt="John Han"
             />
+            <div className="dark:absolute inset-0 bg-black/20 rounded-2xl flex items-center justify-center"></div>
           </div>
         </motion.div>
         <motion.div

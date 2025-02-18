@@ -41,11 +41,9 @@ const config: Config = {
           "-1px 1px 2px rgba(0,0,0,0.2), 1px -1px 3px rgba(0,0,0,0.2) inset",
         appearancedarkcircle:
           "5px 5px 10px rgba(0,0,0,0.5), -5px -5px 15px rgba(0,0,0,0.5) inset",
-        "eyes-shadow": "25px 25px 0 rgba(0,0,0,0.05)",
-        "eye-shadow": "0 0 0 3px #3d5d89",
-        eyebrush: "0 -3px 0 #111",
-        "mouth-shadow": "inset 0 10px 0 rgba(0,0,0,0.2)",
         "sidebar-shadow": "10px 10px 10px 10pxs rgba(0, 0, 0, 1)",
+        "mobile-nav-button":
+          "inset -8px 0 8px rgba(0,0,0,0.15), inset 0 -8px 8px rgba(0,0,0,0.25)",
       },
     },
   },
