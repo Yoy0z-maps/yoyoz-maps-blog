@@ -10,7 +10,7 @@ const navigationItems = [
 
 export default function MainHeader() {
   return (
-    <div className="fixed w-full flex items-center justify-center py-5 px-9 z-50">
+    <div className="fixed w-full flex items-center justify-center px-10 py-7  sm:py-5 sm:px-9 z-50">
       <div
         id="logo"
         className="absolute left-5 flex flex-shrink-0 items-center"
@@ -19,7 +19,7 @@ export default function MainHeader() {
           Yoy0z-maps.
         </p>
       </div>
-      <nav className="flex items-center justify-center gap-x-7">
+      <nav className="hidden sm:flex items-center justify-center gap-x-7">
         {navigationItems.map((item) => (
           <MainHeaderNavigationItem
             key={item.href}

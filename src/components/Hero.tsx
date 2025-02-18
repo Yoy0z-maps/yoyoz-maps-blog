@@ -48,15 +48,22 @@ export default function Hero() {
             </motion.p>
           </div>
         </div>
-        <div className="w-full lg:w-1/2 lg:p-8">
-          <div className="flex justify-center">
+        <div className="w-full lg:w-1/2 lg:p-8 max-w-xl">
+          <div className="flex justify-center aspect-square relative">
             <motion.img
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 1, delay: 1.2 }}
-              src="/assets/images/KevinRushProfile.png"
+              src="/assets/images/johnhan.jpg"
               alt="John Han"
+              className="rounded-md overflow-hidden object-cover w-full h-full"
             />
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1.2 }}
+              className="dark:absolute inset-0 bg-black/20 rounded-md flex items-center justify-center"
+            ></motion.div>
           </div>
         </div>
       </div>

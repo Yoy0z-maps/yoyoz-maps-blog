@@ -9,7 +9,7 @@ import Technologies from "@/components/Technologies";
 export default function Home() {
   return (
     <div
-      className={`bg-light-bg dark:bg-dark-bg flex flex-col w-full h-full relative transition-all duration-500 pt-28 items-center`}
+      className={`bg-light-bg sm:px-0 px-6 dark:bg-dark-bg flex flex-col w-full h-full relative transition-all duration-500 pt-28 items-center overflow-x-hidden`}
     >
       <NavHighlighter path="/" />
       <Hero />
