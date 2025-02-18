@@ -1,12 +1,23 @@
+import About from "@/components/About";
+import Contact from "@/components/Contact";
+import Designs from "@/components/Designs";
+import Experience from "@/components/Experience";
+import Hero from "@/components/Hero";
 import NavHighlighter from "@/components/NavHighlighter";
+import Technologies from "@/components/Technologies";
 
 export default function Home() {
   return (
     <div
-      className={`bg-white dark:bg-neutral-950 dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))] flex w-full h-[100vh] relative transition-all duration-500 pt-28`}
+      className={`bg-light-bg dark:bg-dark-bg flex flex-col w-full h-full relative transition-all duration-500 pt-28 items-center`}
     >
       <NavHighlighter path="/" />
-      <p className="text-white text-2xl font-pretendard font-medium">HOME</p>
+      <Hero />
+      <About />
+      <Technologies />
+      <Designs />
+      <Experience />
+      <Contact />
     </div>
   );
 }

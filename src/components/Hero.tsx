@@ -21,7 +21,7 @@ export default function Hero() {
               variants={container(0)}
               initial="hidden"
               animate="visible"
-              className="text-white pb-16 text-6xl font-thin font-pretendard tracking-tight lg:mt-16 lg:text-8xl"
+              className="text-text-light dark:text-white pb-16 text-6xl font-thin font-pretendard tracking-tight lg:mt-16 lg:text-8xl"
             >
               John Han
             </motion.h1>
@@ -29,20 +29,22 @@ export default function Hero() {
               variants={container(0.5)}
               initial="hidden"
               animate="visible"
-              className="font-pretendard text-transparent bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 bg-clip-text text-3xl tracking-tight"
+              className="font-pretendard text-red-500 text-3xl tracking-tight"
+              /* className="font-pretendard text-transparent bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 bg-clip-text text-3xl tracking-tight" */
             >
-              Full Stack Developer
+              Interactive Developer
             </motion.span>
             <motion.p
               variants={container(1)}
               initial="hidden"
               animate="visible"
-              className="font-pretendard text-white font-light py-6 my-2 max-w-xl tracking-tighter"
+              className="font-pretendard text-text-light dark:text-white font-light py-6 my-2 max-w-xl tracking-tighter"
             >
-              Eu tempor aute elit. Elit labore sunt consequat nostrud. Laboris
-              nisi dolore nulla nostrud. Ut id fugiat nulla commodo cillum ut
-              aliquip nostrud pariatur eiusmod ullamco est velit velit irure.
-              Eiusmod amet ipsum eiusmod minim culpa.
+              Welcome to the blog of a maker who strives for beauty and
+              innovation! I believe that things with ‘beauty’ have the power to
+              make us pause, even in the midst of a busy life. This site,
+              created with the thought of how to express who I am, is hoped to
+              add a small pause of inspiration to your busy routine.
             </motion.p>
           </div>
         </div>

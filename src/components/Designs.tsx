@@ -1,9 +1,12 @@
 "use client";
 
 import { motion } from "motion/react";
-import { BiLogoDjango, BiLogoTypescript } from "react-icons/bi";
-import { RiReactjsLine, RiTailwindCssFill } from "react-icons/ri";
-import { TbBrandNextjs } from "react-icons/tb";
+
+import { SiAdobeaftereffects, SiAdobeillustrator } from "react-icons/si";
+import { SiAdobephotoshop } from "react-icons/si";
+import { IoLogoFigma } from "react-icons/io5";
+
+import React from "react";
 
 const iconVariants = (duration: number) => ({
   initial: { y: -10 },
@@ -18,7 +21,7 @@ const iconVariants = (duration: number) => ({
   },
 });
 
-export default function Technologies() {
+export default function Designs() {
   return (
     <div className="border-b border-neutral-800 pb-24">
       <motion.h1
@@ -36,28 +39,20 @@ export default function Technologies() {
         className="flex flex-wrap items-center justify-center gap-4"
       >
         <motion.div
-          variants={iconVariants(2.5)}
+          variants={iconVariants(6)}
           initial="initial"
           animate="animate"
           className="rounded-2xl border-4 dark:border-neutral-800 border-gray-200 p-4"
         >
-          <RiReactjsLine className="text-7xl text-cyan-400" />
+          <IoLogoFigma className="text-7xl text-red-400" />
         </motion.div>
         <motion.div
-          variants={iconVariants(3)}
+          variants={iconVariants(4)}
           initial="initial"
           animate="animate"
           className="rounded-2xl border-4 dark:border-neutral-800 border-gray-200 p-4"
         >
-          <TbBrandNextjs className="text-7xl text-text-light dark:text-white" />
-        </motion.div>
-        <motion.div
-          variants={iconVariants(5)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 dark:border-neutral-800 border-gray-200 p-4"
-        >
-          <BiLogoDjango className="text-7xl text-green-600" />
+          <SiAdobeaftereffects className="text-7xl text-purple-700" />
         </motion.div>
         <motion.div
           variants={iconVariants(2)}
@@ -65,16 +60,15 @@ export default function Technologies() {
           animate="animate"
           className="rounded-2xl border-4 dark:border-neutral-800 border-gray-200 p-4"
         >
-          <BiLogoTypescript className="text-7xl text-blue-500" />
+          <SiAdobephotoshop className="text-7xl text-blue-700" />
         </motion.div>
-
         <motion.div
-          variants={iconVariants(4)}
+          variants={iconVariants(6)}
           initial="initial"
           animate="animate"
           className="rounded-2xl border-4 dark:border-neutral-800 border-gray-200 p-4"
         >
-          <RiTailwindCssFill className="text-7xl text-cyan-400" />
+          <SiAdobeillustrator className="text-7xl text-orange-500" />
         </motion.div>
       </motion.div>
     </div>

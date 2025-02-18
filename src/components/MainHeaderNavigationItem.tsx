@@ -17,7 +17,7 @@ export default function MainHeaderNavigationItem({
   return (
     <Link
       className={`font-pretendard font-regular cursor-pointer transition-all duration-300 dark:hover:text-white hover:text-red-500 text-md ${
-        path === href ? "dark:text-white text-red-500" : "text-gray-400"
+        path === href ? "dark:text-white text-red-500" : "text-gray-600"
       }`}
       href={href}
     >

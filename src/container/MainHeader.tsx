@@ -1,5 +1,5 @@
-import ThemeToggleButton from "./ThemeToggleButton";
-import MainHeaderNavigationItem from "./MainHeaderNavigationItem";
+import ThemeToggleButton from "../components/ThemeToggleButton";
+import MainHeaderNavigationItem from "../components/MainHeaderNavigationItem";
 
 const navigationItems = [
   { href: "/", text: "HOME" },
