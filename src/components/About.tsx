@@ -5,7 +5,7 @@ import { motion } from "motion/react";
 export default function About() {
   return (
     <div className="border-b border-neutral-900 pb-4">
-      <h1 className="font-pretendard my-20 text-center text-4xl text-text-light dark:text-white">
+      <h1 className="font-pretendard my-20 text-center text-4xl text-theme-light dark:text-theme-dark">
         About Me
       </h1>
       <div className="flex flex-wrap">
@@ -31,7 +31,7 @@ export default function About() {
           className="w-full lg:w-1/2"
         >
           <div className="flex justify-center lg:justify-start">
-            <p className="font-pretendard dark:text-white text-text-light my-2 max-w-xl py-6">
+            <p className="font-pretendard dark:text-theme-dark text-theme-light my-2 max-w-xl py-6">
               Although I majored in literature at university, which may seem
               unrelated to being a designer, developer, or maker, I find common
               ground in my pursuit of ‘beauty.’ Beyond the beauty of literature,

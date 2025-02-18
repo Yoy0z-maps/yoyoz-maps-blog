@@ -14,7 +14,8 @@ const config: Config = {
         pretendard: ["var(--font-pretendard)"],
       },
       colors: {
-        "text-light": "#222222",
+        "theme-light": "#222222",
+        "theme-dark": "#FEFEFE",
         "admin-bg": "#EEEEEE",
         "sidebar-bg": "#F2F3F6",
         "light-bg": "#FEFEFE",
@@ -22,24 +23,17 @@ const config: Config = {
         "logo-light": "#222222",
         "project-dark": "#323234",
         "project-tag-dark": "#8E9197",
-        appearancelightlabel: "#F3F3F3",
-        appearancedarklabel: "#1F1F21",
-        container: "#20232a",
-        eyebackground: "#edf8ff",
-        eyered: "#fb6971",
-        eyeblue: "#6192a1",
-        skin: "#fdece2",
-        eyeblack: "#111",
-        mouth: "#ff4e57",
+        "appearance-light-theme": "#F3F3F3",
+        "appearance-dark-theme": "#1F1F21",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
       boxShadow: {
-        appearancelightlabel: "1px 1px 3px rgba(0, 0, 0, 0.05) inset",
-        appearancedarklabel: "5px 5px 15px rgba(0, 0, 0, 0.5) inset",
-        appearancelightcircle:
+        "appearance-light-theme": "1px 1px 3px rgba(0, 0, 0, 0.05) inset",
+        "appearance-dark-theme": "5px 5px 15px rgba(0, 0, 0, 0.5) inset",
+        "appearance-light-theme-circle":
           "-1px 1px 2px rgba(0,0,0,0.2), 1px -1px 3px rgba(0,0,0,0.2) inset",
-        appearancedarkcircle:
+        "appearance-dark-theme-circle":
           "5px 5px 10px rgba(0,0,0,0.5), -5px -5px 15px rgba(0,0,0,0.5) inset",
         "sidebar-shadow": "10px 10px 10px 10pxs rgba(0, 0, 0, 1)",
         "mobile-nav-button":

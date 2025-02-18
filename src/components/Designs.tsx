@@ -28,7 +28,7 @@ export default function Designs() {
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 1.5 }}
-        className="font-pretendard my-20 text-center text-4xl text-text-light dark:text-white"
+        className="font-pretendard my-20 text-center text-4xl text-theme-light dark:text-theme-dark"
       >
         Design Tools
       </motion.h1>

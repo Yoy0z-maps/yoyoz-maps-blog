@@ -25,7 +25,7 @@ export default function Technologies() {
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 1.5 }}
-        className="font-pretendard my-20 text-center text-4xl text-text-light dark:text-white"
+        className="font-pretendard my-20 text-center text-4xl text-theme-light dark:text-theme-dark"
       >
         Technologies
       </motion.h1>
@@ -49,7 +49,7 @@ export default function Technologies() {
           animate="animate"
           className="rounded-2xl border-4 dark:border-neutral-800 border-gray-200 p-4"
         >
-          <TbBrandNextjs className="text-7xl text-text-light dark:text-white" />
+          <TbBrandNextjs className="text-7xl text-theme-light dark:text-theme-dark" />
         </motion.div>
         <motion.div
           variants={iconVariants(5)}

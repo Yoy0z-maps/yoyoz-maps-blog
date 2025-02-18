@@ -21,7 +21,7 @@ export default function Hero() {
               variants={container(0)}
               initial="hidden"
               animate="visible"
-              className="text-text-light dark:text-white pb-16 text-6xl font-thin font-pretendard tracking-tight lg:mt-16 lg:text-8xl"
+              className="text-theme-light dark:text-theme-dark pb-16 text-6xl font-thin font-pretendard tracking-tight lg:mt-16 lg:text-8xl"
             >
               John Han
             </motion.h1>
@@ -38,7 +38,7 @@ export default function Hero() {
               variants={container(1)}
               initial="hidden"
               animate="visible"
-              className="font-pretendard text-text-light dark:text-white font-light py-6 my-2 max-w-xl tracking-tighter"
+              className="font-pretendard text- dark:text-white font-light py-6 my-2 max-w-xl tracking-tighter"
             >
               Welcome to the blog of a maker who strives for beauty and
               innovation! I believe that things with ‘beauty’ have the power to

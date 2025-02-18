@@ -7,5 +7,9 @@ export default function MobileNavLink({
   href: string;
   icon: React.ReactNode;
 }) {
-  return <Link href={href}>{icon}</Link>;
+  return (
+    <Link href={href} className="text-theme-dark">
+      {icon}
+    </Link>
+  );
 }

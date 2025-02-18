@@ -27,7 +27,7 @@ export default function MobileNav() {
 
   return (
     <>
-      <MobileNavButton key={key} handleClick={handleClick} isOpen={isOpen} />
+      <MobileNavButton index={key} handleClick={handleClick} isOpen={isOpen} />
       <MobileNavModal isOpen={isOpen} items={MOBILENAV} />
     </>
   );

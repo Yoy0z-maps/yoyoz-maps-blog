@@ -10,7 +10,7 @@ export default function Experience() {
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 0.5 }}
-        className="font-pretendard text-text-light dark:text-white my-20 text-center text-4xl"
+        className="font-pretendard text-theme-light dark:text-theme-dark my-20 text-center text-4xl"
       >
         Experience
       </motion.h1>
@@ -42,7 +42,7 @@ export default function Experience() {
               <p className="mb-4 text-neutral-400 font-pretendard">
                 {experience.description}
               </p>
-              <div className="hidden dark:block">
+              <div className="hidden flex-wrap dark:block">
                 {experience.technologies.map((tech, index) => (
                   <span
                     className="font-pretendard mr-2 mt-4 rounded dark:bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-800"

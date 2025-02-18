@@ -35,19 +35,19 @@ export default function ProjectItem({
       key={index}
     >
       <div className="w-[280px] h-[560px] dark:bg-project-dark border-2 border-gray-300 dark:border-0 absolute left-0 px-4 pt-12 shadow-xl">
-        <span className="font-regular font-pretendard text-4xl text-text-light dark:text-white border-b-[2px] border-b-yellow-500">
+        <span className="font-regular font-pretendard text-4xl text-theme-light dark:text-theme-dark border-b-[2px] border-b-yellow-500">
           {project.id}
         </span>
-        <h1 className="font-regular font-pretendard text-text-light dark:text-white pr-5 mt-16 text-base font-medium line-clamp-1">
+        <h1 className="font-regular font-pretendard text-theme-light dark:text-theme-dark pr-5 mt-16 text-base font-medium line-clamp-1">
           {project.title}
         </h1>
-        <p className="font-regular font-pretendard text-text-light dark:text-white pr-5 mt-2 text-sm line-clamp-3">
+        <p className="font-regular font-pretendard text-theme-light dark:text-theme-dark pr-5 mt-2 text-sm line-clamp-3">
           {project.description}
         </p>
         <div className="flex flex-wrap gap-2 mt-4 pr-5">
           {project.skills.map((skill: string, index: number) => (
             <p
-              className="dark:bg-project-tag-dark bg-gray-100 px-2 py-1 text-xs rounded-sm font-regular font-pretendard text-text-light dark:text-white"
+              className="dark:bg-project-tag-dark bg-gray-100 px-2 py-1 text-xs rounded-sm font-regular font-pretendard text-theme-light dark:text-theme-dark"
               key={index}
             >
               {skill}

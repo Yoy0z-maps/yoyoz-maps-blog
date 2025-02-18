@@ -44,16 +44,16 @@ export default function ThemeToggleButton() {
           htmlFor="toggle"
           className={`relative rounded-full w-[50px] h-[25px] cursor-pointer transition-all duration-500 ${
             isChecked
-              ? "bg-appearancedarklabel shadow-appearancedarklabel"
-              : "bg-appearancelightlabel shadow-appearancelightlabel"
+              ? "bg-appearance-dark-theme shadow-appearance-dark-theme"
+              : "bg-appearance-light-theme shadow-appearance-light-theme"
           }`}
         >
           <div
             id="circle"
             className={`rounded-full hover:w-[25px] w-[20px] h-[20px] absolute top-[50%] overflow-hidden ${
               isChecked
-                ? "left-[0%] translate-x-[10%] translate-y-[-50%] bg-dark-bg shadow-appearancedarkcircle"
-                : "left-[100%] translate-x-[-110%] translate-y-[-50%] bg-white shadow-appearancelightcircle"
+                ? "left-[0%] translate-x-[10%] translate-y-[-50%] bg-dark-bg shadow-appearance-dark-theme-circle"
+                : "left-[100%] translate-x-[-110%] translate-y-[-50%] bg-white shadow-appearance-light-theme-circle"
             } flex items-center justify-center transition-all duration-500`}
           >
             <svg
