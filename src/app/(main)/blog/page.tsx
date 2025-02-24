@@ -7,7 +7,7 @@ import BlogMainPanel from "@/container/blog/BlogMainPanel";
 export default function Page() {
   return (
     <div
-      className={`bg-light-bg dark:bg-dark-bg flex flex-col w-full h-full relative transition-all duration-500 pt-28`}
+      className={`bg-light-bg dark:bg-dark-bg flex flex-col w-full h-full relative transition-all duration-500 py-28`}
     >
       <NavHighlighter path="/blog" />
       <BlogMainPanel />

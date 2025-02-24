@@ -43,18 +43,20 @@ export default function BlogMainPanel() {
           <div className="flex flex-col items-center lg:items-start">
             <div className="relative">
               <div className="absolute h-[10px] bg-yellow-500 w-full bottom-0 z-[0]"></div>
-              <p className="font-pretendard font-black text-5xl text-theme-light z-[1] relative">{`${CONTENTS[0].tags[0]}`}</p>
+              <p className="font-pretendard font-black text-5xl text-gray-700 z-[1] relative dark:text-theme-dark">{`${CONTENTS[0].tags[0]}`}</p>
             </div>
             <div className="flex items-center justify-center gap-x-2 mt-20">
-              <p className="font-pretendard font-light text-theme-light">{`${CONTENTS[0].author}`}</p>
-              <div className="w-4 h-[0.5px] bg-theme-light"></div>
-              <p className="font-pretendard font-light text-theme-light">{`${CONTENTS[0].date}`}</p>
+              <p className="font-pretendard font-light text-theme-light dark:text-theme-dark">{`${CONTENTS[0].author}`}</p>
+              <div className="w-4 h-[0.5px] bg-theme-light dark:bg-theme-dark"></div>
+              <p className="font-pretendard font-light text-theme-light dark:text-theme-dark">{`${CONTENTS[0].date}`}</p>
             </div>
-            <h1 className="font-pretendard text-theme-light text-5xl font-semibold line-clamp-3 mt-4">
+            <h1 className="font-pretendard text-theme-light text-5xl font-semibold line-clamp-3 mt-4 dark:text-theme-dark">
               {`${CONTENTS[0].title}`}
             </h1>
             <div className="flex items-center justify-center gap-x-8 mt-8">
-              <p className="font-pretendard text-theme-light text-lg line-clamp-2">{`${CONTENTS[0].content}`}</p>
+              <p className="font-pretendard text-theme-light text-lg line-clamp-2 dark:text-theme-dark font-light">
+                {`${CONTENTS[0].content}`}
+              </p>
               <div className="p-2 bg-red-500 rounded-sm">
                 <LuArrowDownRight size={28} color="white" />
               </div>
@@ -74,7 +76,7 @@ export default function BlogMainPanel() {
       </div>
       <div className="hidden sm:flex items-center justify-between gap-x-10 px-36 w-full">
         <div className="flex-1 h-[1px] bg-neutral-300 dark:bg-neutral-600"></div>
-        <p className="font-pretendard text-theme-light text-4xl">
+        <p className="font-pretendard text-theme-light text-4xl dark:text-theme-dark">
           {`${CONTENTS[0].id + 1}`}
           <span className="text-neutral-500 text-lg">
             {` / ${CONTENTS.length}`}
