@@ -1,5 +1,6 @@
-import ThemeToggleButton from "../components/ThemeToggleButton";
-import MainHeaderNavigationItem from "../components/MainHeaderNavigationItem";
+import ThemeToggleButton from "../components/header/ThemeToggleButton";
+import MainHeaderNavigationItem from "../components/header/MainHeaderNavigationItem";
+import LanguageSelector from "@/components/header/LanguageSelector";
 
 const navigationItems = [
   { href: "/", text: "HOME" },
@@ -28,6 +29,7 @@ export default function MainHeader() {
           />
         ))}
       </nav>
+      <LanguageSelector />
       <ThemeToggleButton />
     </div>
   );
