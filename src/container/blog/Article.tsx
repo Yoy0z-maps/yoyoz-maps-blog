@@ -1,8 +1,9 @@
-import { AiFillHeart, AiOutlineEye } from "react-icons/ai";
-import { FaCommentDots } from "react-icons/fa";
 import Image from "next/image";
 import { TfiLayoutLineSolid } from "react-icons/tfi";
-import { LuArrowDownRight } from "react-icons/lu";
+import BlogRedButton from "@/components/blog/BlogRedButton";
+import ArticleCouter from "./ArticleCouter";
+import ArticleAuthor from "@/components/blog/ArticleAuthor";
+
 const article = {
   thumbnail: "/assets/images/project/project-2.jpg",
   author: "John Han",
@@ -28,18 +29,10 @@ export default function Article() {
         className="w-full h-56 object-cover"
       />
       <div className="p-4">
-        <div className="flex items-center gap-4">
-          <Image
-            className="rounded-full w-8 h-8 object-cover"
-            src={article.profileImage}
-            alt="profile"
-            width={30}
-            height={30}
-          />
-          <p className="font-pretendard text-theme-light dark:text-theme-dark font-light">
-            {article.author}
-          </p>
-        </div>
+        <ArticleAuthor
+          profileImage={article.profileImage}
+          author={article.author}
+        />
         <h1 className="font-pretendard text-xl line-clamp-2 my-2 text-theme-light dark:text-theme-dark font-semibold">
           {article.title}
         </h1>
@@ -55,23 +48,8 @@ export default function Article() {
           {article.contents}
         </p>
         <div className="flex text-gray-500 font-pretendard items-end justify-between mt-3">
-          <div className="flex gap-x-4">
-            <div className="flex items-center gap-x-2">
-              <AiFillHeart />
-              <p>48</p>
-            </div>
-            <div className="flex items-center gap-x-2">
-              <FaCommentDots />
-              <p>13</p>
-            </div>
-            <div className="flex items-center gap-x-2">
-              <AiOutlineEye />
-              <p>3,821</p>
-            </div>
-          </div>
-          <div className="p-2 bg-red-500 rounded-sm">
-            <LuArrowDownRight size={28} color="white" />
-          </div>
+          <ArticleCouter />
+          <BlogRedButton id={1} />
         </div>
       </div>
     </div>
