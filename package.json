@@ -9,6 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tiptap/extension-code-block-lowlight": "^2.11.5",
+    "@tiptap/extension-image": "^2.11.5",
+    "@tiptap/extension-table": "^2.11.5",
+    "@tiptap/extension-table-cell": "^2.11.5",
+    "@tiptap/extension-table-row": "^2.11.5",
+    "@tiptap/react": "^2.11.5",
+    "@tiptap/starter-kit": "^2.11.5",
+    "lowlight": "^3.3.0",
     "motion": "^12.4.3",
     "next": "14.2.13",
     "react": "^18",
