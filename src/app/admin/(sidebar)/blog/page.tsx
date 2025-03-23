@@ -4,6 +4,8 @@ import NavHighlighter from "@/components/NavHighlighter";
 import TipTapEditor from "./TipTapEditor";
 import { useRouter } from "next/navigation";
 import { JSONContent } from "@tiptap/react";
+import { useEffect } from "react";
+
 export default function Page() {
   const router = useRouter();
 
@@ -34,9 +36,8 @@ export default function Page() {
   };
 
   return (
-    <div className="w-full bg-admin-bg">
+    <div className="w-full bg-admin-bg h-full">
       <NavHighlighter path="/admin/blog" />
-      <div>BlogPage</div>
       <TipTapEditor onSave={handleSave} />
     </div>
   );
