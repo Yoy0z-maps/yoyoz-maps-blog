@@ -1,16 +1,15 @@
 interface AdminLoginButtonProps {
   text: string;
-  handleSubmit: () => void;
+  onClick: (event: React.FormEvent) => void;
 }
 
 export default function AdminLoginButton({
   text,
-  handleSubmit,
+  onClick,
 }: AdminLoginButtonProps) {
   return (
     <button
-      onClick={handleSubmit}
-      type="submit"
+      onClick={onClick}
       className="bg-blue-600 text-white rounded-xs p-2 w-full font-pretendard"
     >
       {text}
