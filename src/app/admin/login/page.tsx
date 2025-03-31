@@ -1,4 +1,4 @@
-import AdminLoginPanel from "@/container/AdminLoginPanel";
+import AdminLoginPanel from "@/container/admin/AdminLoginPanel";
 import AdminLoginFooter from "@/components/admin/login/AdminLoginFooter";
 
 export default function Page() {

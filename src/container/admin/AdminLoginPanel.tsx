@@ -1,4 +1,4 @@
-import AdminLoginForm from "@/container/AdminLoginForm";
+import AdminLoginForm from "@/container/admin/AdminLoginForm";
 import AdminLoginLogo from "@/components/admin/login/AdminLoginLogo";
 
 export default function AdminLoginPanel() {
