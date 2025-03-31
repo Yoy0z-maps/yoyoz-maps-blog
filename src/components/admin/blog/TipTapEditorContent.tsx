@@ -39,7 +39,7 @@ export default function TipTapEditorContent({
     formData.append("category", category);
     formData.append("body", JSON.stringify(content));
 
-    const response = await fetch("http://3.106.169.8/posts/", {
+    const response = await fetch("https://3.106.169.8/posts/", {
       method: "POST",
       headers: {
         Authorization: `Token b5db0ce2d2d5018b5bfbbb5bf9638872a0f876b1`, // ✅ 인증 필요

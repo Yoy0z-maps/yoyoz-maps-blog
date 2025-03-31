@@ -33,7 +33,7 @@ export default function TipTapViewer() {
   // 에디터 디자인 변경
 
   useEffect(() => {
-    fetch(`http://3.106.169.8/posts/${params.id}/`)
+    fetch(`https://3.106.169.8/posts/${params.id}/`)
       .then((res) => res.json())
       .then((data) => {
         setData({
