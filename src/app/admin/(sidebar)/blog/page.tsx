@@ -4,16 +4,20 @@ import NavHighlighter from "@/components/NavHighlighter";
 import TipTapEditor from "./TipTapEditor";
 import { useRouter } from "next/navigation";
 import { JSONContent } from "@tiptap/react";
-import { useEffect } from "react";
 
 export default function Page() {
   const router = useRouter();
 
-  const handleSave = async (title: string, content: JSONContent) => {
+  const handleSave = async (
+    title: string,
+    content: JSONContent,
+    category: string,
+    tags: string
+  ) => {
     const formData = new FormData();
     formData.append("title", title);
-    formData.append("tags", "태그랍니다~");
-    formData.append("category", "카테고리랍니다~");
+    formData.append("tags", tags);
+    formData.append("category", category);
     formData.append("body", JSON.stringify(content));
     console.log(formData);
 

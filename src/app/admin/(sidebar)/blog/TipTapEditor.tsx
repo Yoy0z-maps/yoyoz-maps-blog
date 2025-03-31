@@ -12,6 +12,9 @@ import CodeBlock from "@tiptap/extension-code-block";
 import BulletList from "@tiptap/extension-bullet-list";
 import Blockquote from "@tiptap/extension-blockquote";
 import { Color } from "@tiptap/extension-color";
+import CategorySelector from "./CategorySelector";
+import TagSelector from "./TagSelector";
+import TitleInput from "./TitleInput";
 
 const MenuBar = () => {
   const { editor } = useCurrentEditor();
@@ -159,9 +162,16 @@ const MenuBar = () => {
 export default function TipTapEditor({
   onSave,
 }: {
-  onSave: (title: string, content: JSONContent) => void;
+  onSave: (
+    title: string,
+    content: JSONContent,
+    category: string,
+    tags: string
+  ) => void;
 }) {
-  const [title, setTitle] = useState(""); // 제목 상태
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [tags, setTags] = useState("");
   const { editor } = useCurrentEditor();
   const content = "";
 
@@ -177,7 +187,7 @@ export default function TipTapEditor({
     if (!editor) return;
 
     const content = editor.getJSON(); // ✅ JSON 형식으로 저장
-    await onSave(title, content); // 부모 컴포넌트에 데이터 전달
+    await onSave(title, content, category, tags); // 부모 컴포넌트에 데이터 전달
   };
 
   const [sidebarWidth, setSidebarWidth] = useState(0);
@@ -194,13 +204,8 @@ export default function TipTapEditor({
       style={{ paddingLeft: `${sidebarWidth}px` }}
       className={`flex flex-col gap-4 pr-9 h-screen py-6 bg-admin-bg`}
     >
-      <input
-        className="bg-white rounded-md p-3 w-full font-pretendard"
-        type="text"
-        placeholder="제목을 입력하세요"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+      <TitleInput title={title} setTitle={setTitle} />
+      <CategorySelector category={category} setCategory={setCategory} />
       <div className="w-full bg-white rounded-md py-4 px-6 flex flex-col h-screen">
         <EditorProvider
           immediatelyRender={false}
@@ -208,6 +213,7 @@ export default function TipTapEditor({
           extensions={extensions}
           content={content}
         ></EditorProvider>
+        <TagSelector setTags={setTags} />
         <div className="flex justify-end gap-3 mt-4">
           <button
             className="text-base font-pretendard text-center bg-white hover:border-blue-500 border-solid border-[1px] rounded-md cursor-pointer border-blue-600 hover:bg-blue-500 hover:text-white text-blue-600 py-2 px-5"
@@ -233,7 +239,7 @@ const extensions = [
   BulletList,
   Blockquote,
   Color.configure({ types: [TextStyle.name, ListItem.name] }),
-  TextStyle.configure({ types: [ListItem.name] }),
+  TextStyle,
   StarterKit.configure({
     bulletList: {
       keepMarks: true,
