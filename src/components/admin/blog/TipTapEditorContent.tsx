@@ -8,9 +8,11 @@ import { useRouter } from "next/navigation";
 export default function TipTapEditorContent({
   title,
   category,
+  thumbnail,
 }: {
   title: string;
   category: string;
+  thumbnail: File | null;
 }) {
   const { editor } = useCurrentEditor();
   const [tags, setTags] = useState<string[]>([]);
@@ -30,6 +32,10 @@ export default function TipTapEditorContent({
   const router = useRouter();
 
   const handleSave = async () => {
+    if (!thumbnail) {
+      alert("썸네일을 업로드해주세요.");
+      return;
+    }
     if (!editor) return;
     const content = editor.getJSON();
 
@@ -38,11 +44,12 @@ export default function TipTapEditorContent({
     formData.append("tags", JSON.stringify(tags));
     formData.append("category", category);
     formData.append("body", JSON.stringify(content));
+    formData.append("image", thumbnail);
 
-    const response = await fetch("https://3.106.169.8/posts/", {
+    const response = await fetch("https://yoy0z-maps.com/posts/", {
       method: "POST",
       headers: {
-        Authorization: `Token b5db0ce2d2d5018b5bfbbb5bf9638872a0f876b1`, // ✅ 인증 필요
+        Authorization: `Token b5db0ce2d2d5018b5bfbbb5bf9638872a0f876b1`, // ✅ 인증 필요: johnhan0923 계정 Token
       },
       body: formData,
     });
