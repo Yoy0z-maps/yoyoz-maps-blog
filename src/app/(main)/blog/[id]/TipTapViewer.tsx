@@ -33,7 +33,7 @@ export default function TipTapViewer() {
   // 에디터 디자인 변경
 
   useEffect(() => {
-    fetch(`https://yoy0z-maps.com/posts/${params.id}/`)
+    fetch(`https://api.yoy0z-maps.com/posts/${params.id}/`)
       .then((res) => res.json())
       .then((data) => {
         setData({

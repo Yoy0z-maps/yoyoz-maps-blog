@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { RxCross2 } from "react-icons/rx";
 
 export default function ThumbnailSelector({
   thumbnail,
@@ -24,21 +25,21 @@ export default function ThumbnailSelector({
   };
 
   return (
-    <div className="p-4 border rounded max-w-md">
+    <div className="p-4 bg-white rounded max-w-md">
       {thumbnail ? (
         <div className="flex items-center justify-between">
-          <span>{thumbnail.name}</span>
+          <span className="font-pretendard">{thumbnail.name}</span>
           <button
             onClick={handleRemoveImage}
             className="text-red-500 font-bold ml-4"
           >
-            x
+            <RxCross2 />
           </button>
         </div>
       ) : (
         <button
           onClick={() => fileInputRef.current && fileInputRef.current.click()}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="bg-blue-500 font-pretendard text-white px-4 py-2 rounded hover:bg-blue-600"
         >
           사진 업로드하기
         </button>

@@ -36,6 +36,7 @@ export default function TipTapEditorContent({
       alert("썸네일을 업로드해주세요.");
       return;
     }
+    console.log(thumbnail);
     if (!editor) return;
     const content = editor.getJSON();
 
@@ -46,7 +47,7 @@ export default function TipTapEditorContent({
     formData.append("body", JSON.stringify(content));
     formData.append("image", thumbnail);
 
-    const response = await fetch("https://yoy0z-maps.com/posts/", {
+    const response = await fetch("https://api.yoy0z-maps.com/posts/", {
       method: "POST",
       headers: {
         Authorization: `Token b5db0ce2d2d5018b5bfbbb5bf9638872a0f876b1`, // ✅ 인증 필요: johnhan0923 계정 Token

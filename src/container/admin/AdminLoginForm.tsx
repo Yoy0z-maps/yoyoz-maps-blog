@@ -12,7 +12,7 @@ export default function AdminLoginForm() {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const response = await fetch(`https://yoy0z-maps.com/users/login/`, {
+    const response = await fetch(`https://api.yoy0z-maps.com/users/login/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
