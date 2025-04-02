@@ -16,6 +16,7 @@ export default function TipTapEditorContent({
   thumbnail: File | null;
 }) {
   const { editor } = useCurrentEditor();
+  const [isSaving, setIsSaving] = useState(false);
   const [tags, setTags] = useState<string[]>([]);
 
   // 저장 버튼 클릭 시 실행
@@ -33,38 +34,50 @@ export default function TipTapEditorContent({
       alert("썸네일을 업로드해주세요.");
       return;
     }
-    console.log(thumbnail);
+
     if (!editor) return;
-    const content = editor.getJSON();
 
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("tags", JSON.stringify(tags));
-    formData.append("category", category);
-    formData.append("body", JSON.stringify(content));
-    formData.append("image", thumbnail);
+    setIsSaving(true); // 저장 중 시작
+    try {
+      const content = editor.getJSON();
 
-    const response = await fetch(`${API_SERVER_ADDRESS}/posts/`, {
-      method: "POST",
-      headers: {
-        Authorization: `Token ${API_TOKEN}`,
-      },
-      body: formData,
-    });
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("tags", JSON.stringify(tags));
+      formData.append("category", category);
+      formData.append("body", JSON.stringify(content));
+      formData.append("image", thumbnail);
 
-    // 성공 로직 개선
-    // 에디터 디자인 변경 및 사진 같은거 다 활성화
+      const response = await fetch(`${API_SERVER_ADDRESS}/posts/`, {
+        method: "POST",
+        headers: {
+          Authorization: `Token ${API_TOKEN}`,
+        },
+        body: formData,
+      });
 
-    if (response.ok) {
-      alert("저장 완료");
-      router.push("/admin/blog"); // 저장 후 목록으로 이동
-    } else {
-      alert("저장 실패");
+      if (response.ok) {
+        alert("저장 완료");
+        router.push("/admin/blog");
+      } else {
+        alert("저장 실패");
+      }
+    } catch (err) {
+      console.error("저장 중 에러", err);
+      alert("에러 발생");
+    } finally {
+      setIsSaving(false); // 저장 끝
     }
   };
 
   return (
     <>
+      {isSaving && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black/40 z-50 flex items-center justify-center">
+          <div className="w-16 h-16 border-4 border-white border-t-blue-500 rounded-full animate-spin"></div>
+        </div>
+      )}
+
       <TagSelector tags={tags} setTags={setTags} />
       <div className="flex justify-end gap-3 mt-3">
         <button
