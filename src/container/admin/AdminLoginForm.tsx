@@ -2,9 +2,8 @@
 
 import AdminLoginInputField from "@/components/admin/login/AdminLoginInputField";
 import AdminLoginButton from "@/components/admin/login/AdminLoginButton";
-
+import { API_SERVER_ADDRESS } from "@/constant/api_address";
 import { useState } from "react";
-// import { API_SERVER_ADDRESS } from "@/constant/api_address";
 
 export default function AdminLoginForm() {
   const [username, setUsername] = useState<string>("");
@@ -12,7 +11,7 @@ export default function AdminLoginForm() {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const response = await fetch(`https://api.yoy0z-maps.com/users/login/`, {
+    const response = await fetch(`${API_SERVER_ADDRESS}/users/login/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

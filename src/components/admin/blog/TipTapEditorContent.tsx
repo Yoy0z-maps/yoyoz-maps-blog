@@ -2,8 +2,9 @@
 
 import { useCurrentEditor } from "@tiptap/react";
 import TagSelector from "./TagSelector";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { API_SERVER_ADDRESS, API_TOKEN } from "@/constant/api_address";
 
 export default function TipTapEditorContent({
   title,
@@ -16,10 +17,6 @@ export default function TipTapEditorContent({
 }) {
   const { editor } = useCurrentEditor();
   const [tags, setTags] = useState<string[]>([]);
-
-  useEffect(() => {
-    console.log(tags);
-  }, [tags]);
 
   // 저장 버튼 클릭 시 실행
   const handleSaveDraft = async () => {
@@ -47,10 +44,10 @@ export default function TipTapEditorContent({
     formData.append("body", JSON.stringify(content));
     formData.append("image", thumbnail);
 
-    const response = await fetch("https://api.yoy0z-maps.com/posts/", {
+    const response = await fetch(`${API_SERVER_ADDRESS}/posts/`, {
       method: "POST",
       headers: {
-        Authorization: `Token b5db0ce2d2d5018b5bfbbb5bf9638872a0f876b1`, // ✅ 인증 필요: johnhan0923 계정 Token
+        Authorization: `Token ${API_TOKEN}`,
       },
       body: formData,
     });

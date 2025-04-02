@@ -14,6 +14,7 @@ import { useParams } from "next/navigation";
 
 import ArticleTitleView from "./ArticleTitleView";
 import ArticleInfoView from "./ArticleInfoView";
+import { API_SERVER_ADDRESS } from "@/constant/api_address";
 
 interface Data {
   tags: string[];
@@ -54,7 +55,7 @@ export default function TipTapViewer() {
   // 에디터 디자인 변경
 
   useEffect(() => {
-    fetch(`https://api.yoy0z-maps.com/posts/${params.id}/`)
+    fetch(`${API_SERVER_ADDRESS}/posts/${params.id}/`)
       .then((res) => res.json())
       .then((data) => {
         setData({
