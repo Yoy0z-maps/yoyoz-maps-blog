@@ -14,7 +14,7 @@ export default function ArticleInfoView({
   };
 }) {
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center mt-4">
       <div className="flex gap-2 font-pretendard">
         {tags.map((tag, index) => (
           <p
@@ -25,7 +25,7 @@ export default function ArticleInfoView({
           </p>
         ))}
       </div>
-      <div className="flex items-center gap-4 justify-start mt-4">
+      <div className="flex items-center gap-4 justify-start">
         <Image
           src={profile.image}
           alt={profile.nickname}

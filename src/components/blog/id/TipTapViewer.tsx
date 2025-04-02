@@ -15,6 +15,10 @@ import { useParams } from "next/navigation";
 import ArticleTitleView from "./ArticleTitleView";
 import ArticleInfoView from "./ArticleInfoView";
 import { API_SERVER_ADDRESS } from "@/constant/api_address";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import Divider from "@/components/Divider";
+import LoveShareButtonContainer from "./LoveShareButtonContainer";
+import CommentContainer from "@/container/blog/id/CommentContainer";
 
 interface Data {
   tags: string[];
@@ -87,7 +91,7 @@ export default function TipTapViewer() {
       {isLoading ? (
         <div className="w-full flex flex-col items-center justify-center h-screen">
           <div className="w-full h-full flex items-center justify-center">
-            <div className="w-10 h-10 border-t-2 border-b-2 border-blue-600 rounded-full animate-spin"></div>
+            <LoadingSpinner />
           </div>
         </div>
       ) : (
@@ -107,6 +111,9 @@ export default function TipTapViewer() {
             date={data.publishedAt}
             profile={data.profile}
           />
+          <Divider />
+          <LoveShareButtonContainer />
+          <CommentContainer />
         </div>
       )}
     </div>

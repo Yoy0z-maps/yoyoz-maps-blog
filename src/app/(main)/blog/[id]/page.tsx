@@ -1,5 +1,11 @@
 import TipTapViewer from "@/components/blog/id/TipTapViewer";
+import NavHighlighter from "@/components/NavHighlighter";
 
 export default function Page() {
-  return <TipTapViewer />;
+  return (
+    <>
+      <NavHighlighter path="/blog" />
+      <TipTapViewer />
+    </>
+  );
 }

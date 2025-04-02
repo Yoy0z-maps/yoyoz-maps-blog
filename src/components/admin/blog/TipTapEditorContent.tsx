@@ -5,6 +5,7 @@ import TagSelector from "./TagSelector";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { API_SERVER_ADDRESS, API_TOKEN } from "@/constant/api_address";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 export default function TipTapEditorContent({
   title,
@@ -74,7 +75,7 @@ export default function TipTapEditorContent({
     <>
       {isSaving && (
         <div className="fixed top-0 left-0 w-full h-full bg-black/40 z-50 flex items-center justify-center">
-          <div className="w-16 h-16 border-4 border-white border-t-blue-500 rounded-full animate-spin"></div>
+          <LoadingSpinner />
         </div>
       )}
 
