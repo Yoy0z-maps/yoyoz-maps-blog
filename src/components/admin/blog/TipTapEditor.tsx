@@ -15,10 +15,12 @@ import CategorySelector from "./CategorySelector";
 import TitleInput from "./TitleInput";
 import TipTapEditorMenuBar from "./TipTapEditorMenuBar";
 import TipTapEditorContent from "./TipTapEditorContent";
+import ThumbnailSelector from "./ThumbnailSelector";
 
 export default function TipTapEditor() {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
+  const [thumbnail, setThumbnail] = useState<File | null>(null);
 
   const content = "";
 
@@ -37,6 +39,7 @@ export default function TipTapEditor() {
       className={`flex flex-col gap-4 pr-9 my-6 py-6 bg-admin-bg overflow-y-auto`}
     >
       <TitleInput title={title} setTitle={setTitle} />
+      <ThumbnailSelector thumbnail={thumbnail} setThumbnail={setThumbnail} />
       <CategorySelector category={category} setCategory={setCategory} />
       <div className="w-full bg-white rounded-md py-4 px-6 flex flex-col h-screen overflow-y-auto">
         <EditorProvider
@@ -45,7 +48,11 @@ export default function TipTapEditor() {
           extensions={extensions}
           content={content}
         >
-          <TipTapEditorContent title={title} category={category} />
+          <TipTapEditorContent
+            title={title}
+            category={category}
+            thumbnail={thumbnail}
+          />
         </EditorProvider>
       </div>
     </div>

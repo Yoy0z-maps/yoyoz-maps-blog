@@ -2,17 +2,36 @@ import { useCurrentEditor } from "@tiptap/react";
 import { useCallback } from "react";
 import EditorTextStyleButton from "./EditorTextStyleButton";
 import EditorTextColorButton from "./EditorTextColorButton";
+import { API_SERVER_ADDRESS } from "@/constant/api_address";
 
 export default function TipTapEditorMenuBar() {
   const { editor } = useCurrentEditor();
 
-  const addImage = useCallback(() => {
-    const url = window.prompt("URL");
+  const handleImageUpload = useCallback(
+    async (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      if (!file || !editor) return;
 
-    if (url && editor) {
-      editor.chain().focus().setImage({ src: url }).run();
-    }
-  }, [editor]);
+      const formData = new FormData();
+      formData.append("image", file);
+
+      try {
+        console.log(API_SERVER_ADDRESS);
+        const res = await fetch(`${API_SERVER_ADDRESS}/upload-image/`, {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await res.json();
+        const imageUrl = data.url;
+
+        editor.chain().focus().setImage({ src: imageUrl }).run();
+      } catch (error) {
+        console.error("이미지 업로드 실패", error);
+      }
+    },
+    [editor]
+  );
 
   if (!editor) {
     return null;
@@ -129,11 +148,6 @@ export default function TipTapEditorMenuBar() {
         disabled={!editor.can().chain().focus().setHorizontalRule().run()}
         label="horizontalRule"
       />
-      <EditorTextStyleButton
-        onClick={addImage}
-        disabled={false}
-        label="image"
-      />
       {colorPalette.map((color) => (
         <EditorTextColorButton
           key={color.label}
@@ -142,6 +156,12 @@ export default function TipTapEditorMenuBar() {
           label={color.label}
         />
       ))}
+      <input
+        type="file"
+        accept="image/*"
+        className={`bg-gray-100 rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-blue-500 hover:text-white font-pretendard }`}
+        onChange={handleImageUpload}
+      />
     </div>
   );
 }
