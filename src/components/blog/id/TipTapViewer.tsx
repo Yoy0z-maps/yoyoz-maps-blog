@@ -12,15 +12,36 @@ import Blockquote from "@tiptap/extension-blockquote";
 import StarterKit from "@tiptap/starter-kit";
 import { useParams } from "next/navigation";
 
+import ArticleTitleView from "./ArticleTitleView";
+import ArticleInfoView from "./ArticleInfoView";
+
 interface Data {
   tags: string[];
   title: string;
   category: string;
+  profile: {
+    nickname: string;
+    position: string;
+    image: string;
+  };
+  publishedAt: string;
+  image: string;
 }
 
 export default function TipTapViewer() {
   const params = useParams();
-  const [data, setData] = useState<Data>({ tags: [], title: "", category: "" });
+  const [data, setData] = useState<Data>({
+    tags: [],
+    title: "",
+    category: "",
+    profile: {
+      nickname: "",
+      position: "",
+      image: "",
+    },
+    publishedAt: "",
+    image: "",
+  });
   const [isLoading, setIsLoading] = useState(true);
 
   const editor = useEditor({
@@ -40,6 +61,9 @@ export default function TipTapViewer() {
           tags: JSON.parse(data.tags),
           title: data.title,
           category: data.category,
+          profile: data.profile,
+          publishedAt: new Date(data.published_date).toLocaleDateString(),
+          image: data.image,
         });
         try {
           const parsedContent = JSON.parse(data.body); // ✅ 문자열 → JSON 변환
@@ -58,24 +82,31 @@ export default function TipTapViewer() {
   }, [editor, params.id]);
 
   return (
-    <div>
+    <div className="w-screen flex items-center justify-center overflow-y-auto pt-24">
       {isLoading ? (
-        <div>Loading...</div>
+        <div className="w-full flex flex-col items-center justify-center h-screen">
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="w-10 h-10 border-t-2 border-b-2 border-blue-600 rounded-full animate-spin"></div>
+          </div>
+        </div>
       ) : (
-        <>
+        <div className="w-full max-w-4xl">
           <EditorContent
             editor={editor}
-            className="font-pretendard overflow-y-auto"
+            className="font-pretendard overflow-y-auto mb-9"
           >
-            <h1>{data.title}</h1>
-            <p>{data.category}</p>
-            <div className="flex flex-wrap gap-2 text-black">
-              {data.tags.map((tag, index) => (
-                <p key={index}>|{tag}|</p>
-              ))}
-            </div>
+            <ArticleTitleView
+              image={data.image}
+              title={data.title}
+              category={data.category}
+            />
           </EditorContent>
-        </>
+          <ArticleInfoView
+            tags={data.tags}
+            date={data.publishedAt}
+            profile={data.profile}
+          />
+        </div>
       )}
     </div>
   );
