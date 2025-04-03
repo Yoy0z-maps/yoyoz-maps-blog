@@ -17,7 +17,7 @@ export default function AdminSideBarNav() {
         className="absolute shadow-lg bg-blue-600 rounded-md transition-all duration-500 w-full h-[48px]"
         style={{
           transform: `translateY(${
-            path === "/admin/dashboard"
+            path === "/admin"
               ? "0"
               : path === "/admin/blog"
                 ? "64px"
@@ -30,7 +30,7 @@ export default function AdminSideBarNav() {
         }}
       />
       <AdminSideBarLink
-        targetPath="/admin/dashboard"
+        targetPath="/admin"
         currentPath={path}
         icon={<MdSpaceDashboard size={20} />}
         text="DASHBOARD"

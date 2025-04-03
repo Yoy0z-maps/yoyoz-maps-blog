@@ -3,6 +3,7 @@ import { TfiLayoutLineSolid } from "react-icons/tfi";
 import BlogRedButton from "@/components/blog/BlogRedButton";
 import ArticleCouter from "./ArticleCouter";
 import ArticleAuthor from "@/components/blog/ArticleAuthor";
+import Link from "next/link";
 
 const article = {
   thumbnail: "/assets/images/project/project-2.jpg",
@@ -20,7 +21,10 @@ const article = {
 
 export default function Article() {
   return (
-    <div className="flex flex-col flex-shrink-0 w-full max-w-96">
+    <Link
+      href={`/blog/0e6c2d9d-48e2-4b63-b4a7-58089a62b72b`}
+      className="flex flex-col flex-shrink-0 w-full max-w-96"
+    >
       <Image
         src={article.thumbnail}
         alt="thumbnail"
@@ -52,6 +56,6 @@ export default function Article() {
           <BlogRedButton id={1} />
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

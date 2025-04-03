@@ -1,3 +1,4 @@
+import AdminSignoutButton from "@/components/admin/login/AdminSignoutButton";
 import AdminSideBarNav from "./AdminSideBarNav";
 
 export default function AdminSideBar() {
@@ -11,6 +12,7 @@ export default function AdminSideBar() {
       </p>
       <div className="px-10 border-b border-neutral-300 w-[85%] my-8"></div>
       <AdminSideBarNav />
+      <AdminSignoutButton />
     </div>
   );
 }

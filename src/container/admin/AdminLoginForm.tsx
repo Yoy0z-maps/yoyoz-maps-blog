@@ -4,8 +4,10 @@ import AdminLoginInputField from "@/components/admin/login/AdminLoginInputField"
 import AdminLoginButton from "@/components/admin/login/AdminLoginButton";
 import { API_SERVER_ADDRESS } from "@/constant/api_address";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AdminLoginForm() {
+  const router = useRouter();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -19,9 +21,17 @@ export default function AdminLoginForm() {
       body: JSON.stringify({ username: username, password: password }),
     });
     const data = await response.json();
-    console.log(data);
-    // 이거를 이제 클라이언트랑 서버 컴포넌트에서 가져올 수 있게 처리해야함
-    // getUserClient(), getUserServer() 이렇게 만들어서
+
+    // 나중에 HttpOnly로 보안 강화해야함
+    if (response.ok) {
+      const token = data.token;
+      document.cookie = `token=${token}; path=/; max-age=86400`;
+      router.push("/admin");
+    } else {
+      alert(
+        "로그인 실패. 아이디나 비밀번호 혹은 네트워크 상태를 확인해주세요."
+      );
+    }
   };
 
   return (

@@ -2,23 +2,40 @@
 
 import { useCurrentEditor } from "@tiptap/react";
 import TagSelector from "./TagSelector";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { API_SERVER_ADDRESS, API_TOKEN } from "@/constant/api_address";
 import LoadingSpinner from "@/components/LoadingSpinner";
+
+type PostData = {
+  id: string;
+  title: string;
+  body: string;
+  tags: string[];
+  category: string;
+  image: string;
+};
 
 export default function TipTapEditorContent({
   title,
   category,
   thumbnail,
+  postData,
 }: {
   title: string;
   category: string;
   thumbnail: File | null;
+  postData: PostData | null;
 }) {
   const { editor } = useCurrentEditor();
   const [isSaving, setIsSaving] = useState(false);
   const [tags, setTags] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (postData) {
+      setTags(JSON.parse(postData.tags[0]));
+    }
+  }, [postData]);
 
   // 저장 버튼 클릭 시 실행
   const handleSaveDraft = async () => {
@@ -29,6 +46,44 @@ export default function TipTapEditorContent({
   };
 
   const router = useRouter();
+
+  const handleEdit = async () => {
+    if (!editor) return;
+
+    setIsSaving(true); // 저장 중 시작
+    try {
+      const content = editor.getJSON();
+
+      const formData = new FormData();
+      formData.append("title", title);
+      formData.append("tags", JSON.stringify(tags));
+      formData.append("category", category);
+      formData.append("body", JSON.stringify(content));
+
+      const response = await fetch(
+        `${API_SERVER_ADDRESS}/posts/${postData?.id}/`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Token ${API_TOKEN}`,
+          },
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        alert("수정 완료");
+        router.push("/admin/blog");
+      } else {
+        alert("수정 실패");
+      }
+    } catch (err) {
+      console.error("저장 중 에러", err);
+      alert("에러 발생");
+    } finally {
+      setIsSaving(false); // 저장 끝
+    }
+  };
 
   const handleSave = async () => {
     if (!thumbnail) {
@@ -89,9 +144,9 @@ export default function TipTapEditorContent({
         </button>
         <button
           className="text-base font-pretendard text-center bg-blue-600 text-white rounded-md cursor-pointer hover:bg-blue-500 py-2 px-5"
-          onClick={handleSave}
+          onClick={postData ? handleEdit : handleSave}
         >
-          포스팅
+          {postData ? "수정" : "포스팅"}
         </button>
       </div>
     </>
