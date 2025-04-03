@@ -1,11 +1,10 @@
 import NavHighlighter from "@/components/NavHighlighter";
-import TipTapEditor from "@/components/admin/blog/TipTapEditor";
 
-export default function Page() {
+export default function Page({ params }: { params: { id: string } }) {
   return (
     <div className="w-full bg-admin-bg overflow-y-auto">
       <NavHighlighter path="/admin/blog" />
-      <TipTapEditor />
+      params.id
     </div>
   );
 }

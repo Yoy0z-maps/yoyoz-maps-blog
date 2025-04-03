@@ -9,7 +9,7 @@ import { API_SERVER_ADDRESS, API_TOKEN } from "@/constant/api_address";
 interface Post {
   count: number;
   results: {
-    id: number;
+    id: string;
     title: string;
     image: string;
   }[];
@@ -47,7 +47,11 @@ export default function Page() {
 
   const [sidebarWidth, setSidebarWidth] = useState(0);
 
-  const handleDelete = async (id: number) => {
+  const handleEdit = async (id: string) => {
+    router.push(`/admin/blog/edit/${id}`);
+  };
+
+  const handleDelete = async (id: string) => {
     const res = await fetch(`${API_SERVER_ADDRESS}/posts/${id}/`, {
       method: "DELETE",
       headers: {
@@ -64,7 +68,7 @@ export default function Page() {
   return (
     <div
       style={{ paddingLeft: `${sidebarWidth}px` }}
-      className="flex flex-col gap-4 w-full h-screen bg-admin-bg"
+      className="flex flex-col gap-4 w-full h-full bg-admin-bg"
     >
       <NavHighlighter path="/admin/blog" />
       <div className="flex flex-col gap-4  mt-9 mr-9">
@@ -103,7 +107,10 @@ export default function Page() {
                     {post.title}
                   </p>
                   <div className="flex gap-x-2 items-center justify-end">
-                    <p className="text-sm border-solid hover:border-orange-500 hover:text-orange-500 transition-all duration-300 border-gray-200 border-[1px] rounded-md px-2 py-1 text-gray-500 font-pretendard">
+                    <p
+                      onClick={() => handleEdit(post.id)}
+                      className="text-sm border-solid hover:border-orange-500 hover:text-orange-500 transition-all duration-300 border-gray-200 border-[1px] rounded-md px-2 py-1 text-gray-500 font-pretendard"
+                    >
                       수정
                     </p>
                     <p
