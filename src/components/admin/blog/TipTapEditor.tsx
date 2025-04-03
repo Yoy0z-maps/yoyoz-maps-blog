@@ -17,12 +17,25 @@ import TipTapEditorMenuBar from "./TipTapEditorMenuBar";
 import TipTapEditorContent from "./TipTapEditorContent";
 import ThumbnailSelector from "./ThumbnailSelector";
 
-export default function TipTapEditor() {
+type PostData = {
+  id: string;
+  title: string;
+  body: string;
+  tags: string[];
+  category: string;
+  image: string;
+};
+
+export default function TipTapEditor({
+  postData,
+}: {
+  postData: PostData | null;
+}) {
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [thumbnail, setThumbnail] = useState<File | null>(null);
 
-  const content = "";
+  const content = postData ? JSON.parse(postData.body) : "";
 
   const [sidebarWidth, setSidebarWidth] = useState(0);
 
@@ -30,6 +43,12 @@ export default function TipTapEditor() {
     const sidebar = document.getElementById("admin-sidebar")?.offsetWidth;
     if (sidebar) {
       setSidebarWidth(sidebar + 36);
+    }
+
+    if (postData) {
+      setTitle(postData.title);
+      setCategory(postData.category);
+      //setThumbnail(postData.image);
     }
   }, []);
 
@@ -52,6 +71,7 @@ export default function TipTapEditor() {
             title={title}
             category={category}
             thumbnail={thumbnail}
+            postData={postData}
           />
         </EditorProvider>
       </div>

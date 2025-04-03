@@ -5,6 +5,7 @@ import { IoIosAdd } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { API_SERVER_ADDRESS, API_TOKEN } from "@/constant/api_address";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 interface Post {
   count: number;
@@ -85,8 +86,8 @@ export default function Page() {
           </div>
         </div>
         {isLoading ? (
-          <div className="bg-white rounded-md h-full min-h-[800px]">
-            로딩중...
+          <div className="bg-white flex rounded-md h-full items-center justify-center min-h-[800px]">
+            <LoadingSpinner />
           </div>
         ) : (
           <div className="bg-white rounded-md h-full flex flex-wrap gap-x-6 p-6">
@@ -103,7 +104,7 @@ export default function Page() {
                     alt={post.title}
                     className="w-[250px] h-[200px] object-cover"
                   />
-                  <p className="text-lg font-semibold font-pretendard">
+                  <p className="text-lg font-semibold font-pretendard text-black">
                     {post.title}
                   </p>
                   <div className="flex gap-x-2 items-center justify-end">

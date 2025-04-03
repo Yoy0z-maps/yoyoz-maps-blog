@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <div className="w-full bg-admin-bg overflow-y-auto">
       <NavHighlighter path="/admin/blog" />
-      <TipTapEditor />
+      <TipTapEditor postData={null} />
     </div>
   );
 }
