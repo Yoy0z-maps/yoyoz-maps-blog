@@ -19,6 +19,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import Divider from "@/components/Divider";
 import LoveShareButtonContainer from "./LoveShareButtonContainer";
 import CommentContainer from "@/container/blog/id/CommentContainer";
+import CodeBlockShiki from "tiptap-extension-code-block-shiki";
 
 interface Data {
   tags: string[];
@@ -85,7 +86,7 @@ export default function TipTapViewer() {
   }, [editor, params.id]);
 
   return (
-    <div className="w-screen flex items-center justify-center overflow-y-auto pt-24">
+    <div className="w-screen flex items-center justify-center overflow-y-auto pt-24 bg-light-bg dark:bg-dark-bg text-theme-light dark:text-theme-dark">
       {isLoading ? (
         <div className="w-full flex flex-col items-center justify-center h-screen">
           <div className="w-full h-full flex items-center justify-center">
@@ -119,16 +120,20 @@ export default function TipTapViewer() {
 }
 
 const extensions = [
+  StarterKit.configure({
+    orderedList: {
+      keepMarks: true,
+      keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+    },
+    codeBlock: false,
+  }),
+  CodeBlockShiki.configure({
+    defaultTheme: "github-dark-default",
+  }),
   Image,
   CodeBlock,
   BulletList,
   Blockquote,
   Color.configure({ types: [TextStyle.name, ListItem.name] }),
   TextStyle,
-  StarterKit.configure({
-    orderedList: {
-      keepMarks: true,
-      keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
-    },
-  }),
 ];

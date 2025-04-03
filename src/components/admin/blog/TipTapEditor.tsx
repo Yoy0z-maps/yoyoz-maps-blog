@@ -16,6 +16,7 @@ import TitleInput from "./TitleInput";
 import TipTapEditorMenuBar from "./TipTapEditorMenuBar";
 import TipTapEditorContent from "./TipTapEditorContent";
 import ThumbnailSelector from "./ThumbnailSelector";
+import CodeBlockShiki from "tiptap-extension-code-block-shiki";
 
 type PostData = {
   id: string;
@@ -80,16 +81,20 @@ export default function TipTapEditor({
 }
 
 const extensions = [
+  StarterKit.configure({
+    orderedList: {
+      keepMarks: true,
+      keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+    },
+    codeBlock: false,
+  }),
+  CodeBlockShiki.configure({
+    defaultTheme: "github-dark-default",
+  }),
   Image,
   CodeBlock,
   BulletList,
   Blockquote,
   Color.configure({ types: [TextStyle.name, ListItem.name] }),
   TextStyle,
-  StarterKit.configure({
-    orderedList: {
-      keepMarks: true,
-      keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
-    },
-  }),
 ];
