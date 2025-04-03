@@ -16,7 +16,6 @@ export default function TipTapEditorMenuBar() {
       formData.append("image", file);
 
       try {
-        console.log(API_SERVER_ADDRESS);
         const res = await fetch(`${API_SERVER_ADDRESS}/upload-image/`, {
           method: "POST",
           body: formData,

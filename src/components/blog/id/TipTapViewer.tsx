@@ -71,10 +71,8 @@ export default function TipTapViewer() {
           image: data.image,
         });
         try {
-          const parsedContent = JSON.parse(data.body); // ✅ 문자열 → JSON 변환
-          // ✅ 에디터가 초기화된 후 데이터 반영
+          const parsedContent = JSON.parse(data.body);
           if (editor) {
-            console.log(parsedContent);
             editor.commands.setContent(parsedContent);
           }
         } catch (error) {

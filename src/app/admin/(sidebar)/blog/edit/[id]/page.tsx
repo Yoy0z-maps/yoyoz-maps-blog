@@ -10,7 +10,6 @@ const getPostData = async (id: string) => {
 
 export default async function Page({ params }: { params: { id: string } }) {
   const postData = await getPostData(params.id);
-  console.log(postData);
 
   return (
     <div className="w-full bg-admin-bg overflow-y-auto">
