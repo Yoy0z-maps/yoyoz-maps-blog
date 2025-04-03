@@ -28,6 +28,12 @@ body {
   font-family: "Pretendard";
 }
 
+pre {
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #353535;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

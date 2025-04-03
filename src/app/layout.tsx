@@ -12,6 +12,9 @@ const pretendard = localFont({
 export const metadata: Metadata = {
   title: "John Han's Blog",
   description: "Welcome to John Han's Blog",
+  icons: {
+    icon: "/assets/images/favicon.ico",
+  },
 };
 
 export default function RootLayout({

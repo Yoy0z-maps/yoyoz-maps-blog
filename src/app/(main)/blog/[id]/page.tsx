@@ -18,6 +18,9 @@ export async function generateMetadata({
       title: postData.title,
       images: [postData.image],
     },
+    icons: {
+      icon: "/assets/images/favicon.ico",
+    },
   };
 }
 
