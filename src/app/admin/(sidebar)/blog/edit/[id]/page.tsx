@@ -3,7 +3,9 @@ import NavHighlighter from "@/components/NavHighlighter";
 import { API_SERVER_ADDRESS } from "@/constant/api_address";
 
 const getPostData = async (id: string) => {
-  const response = await fetch(`${API_SERVER_ADDRESS}/posts/${id}`);
+  const response = await fetch(`${API_SERVER_ADDRESS}/posts/${id}`, {
+    cache: "no-store",
+  });
   const data = await response.json();
   return data;
 };
