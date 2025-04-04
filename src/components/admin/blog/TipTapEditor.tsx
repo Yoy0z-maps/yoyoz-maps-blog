@@ -2,7 +2,7 @@
 import "../../../style/styles.scss";
 
 import { useEffect, useState } from "react";
-import { EditorProvider } from "@tiptap/react";
+import { EditorProvider, JSONContent } from "@tiptap/react";
 import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import StarterKit from "@tiptap/starter-kit";
@@ -17,6 +17,7 @@ import TipTapEditorMenuBar from "./TipTapEditorMenuBar";
 import TipTapEditorContent from "./TipTapEditorContent";
 import ThumbnailSelector from "./ThumbnailSelector";
 import CodeBlockShiki from "tiptap-extension-code-block-shiki";
+import logDebug from "@/utils/debugLog";
 
 type PostData = {
   id: string;
@@ -36,9 +37,8 @@ export default function TipTapEditor({
   const [category, setCategory] = useState("");
   const [thumbnail, setThumbnail] = useState<File | null>(null);
 
-  const content = postData ? JSON.parse(postData.body) : "";
-
   const [sidebarWidth, setSidebarWidth] = useState(0);
+  const [editorContent, setEditorContent] = useState<JSONContent | null>(null);
 
   useEffect(() => {
     const sidebar = document.getElementById("admin-sidebar")?.offsetWidth;
@@ -50,8 +50,16 @@ export default function TipTapEditor({
       setTitle(postData.title);
       setCategory(postData.category);
       //setThumbnail(postData.image);
+      try {
+        console.log(postData.body);
+        const content = JSON.parse(postData.body);
+        setEditorContent(content);
+      } catch (e) {
+        logDebug("본문 파싱 실패", e);
+        setEditorContent(null);
+      }
     }
-  }, []);
+  }, [postData]);
 
   return (
     <div
@@ -63,10 +71,11 @@ export default function TipTapEditor({
       <CategorySelector category={category} setCategory={setCategory} />
       <div className="w-full bg-white rounded-md py-4 px-6 flex flex-col h-screen overflow-y-auto">
         <EditorProvider
+          key={JSON.stringify(editorContent)}
           immediatelyRender={false}
           slotBefore={<TipTapEditorMenuBar />}
           extensions={extensions}
-          content={content}
+          content={editorContent}
         >
           <TipTapEditorContent
             title={title}
