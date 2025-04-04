@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
+import Head from "next/head";
 
 const pretendard = localFont({
   src: "../../public/fonts/pretendard-variable.woff2",
@@ -24,6 +25,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${pretendard.variable}`}>
+      <Head>
+        <meta
+          name="naver-site-verification"
+          content="669d6adfabfa0c933abf0072ff0e1b77bb9f01f3"
+        />
+      </Head>
       <body className={`${pretendard.variable} antialiased`}>{children}</body>
     </html>
   );
