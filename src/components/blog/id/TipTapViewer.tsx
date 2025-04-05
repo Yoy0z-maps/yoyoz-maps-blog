@@ -6,7 +6,6 @@ import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import { Color } from "@tiptap/extension-color";
 import Image from "@tiptap/extension-image";
-import CodeBlock from "@tiptap/extension-code-block";
 import BulletList from "@tiptap/extension-bullet-list";
 import Blockquote from "@tiptap/extension-blockquote";
 import StarterKit from "@tiptap/starter-kit";
