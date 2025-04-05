@@ -54,12 +54,13 @@ export default function Experience() {
               </div>
               <div className="block flex-wrap dark:hidden">
                 {experience.technologies.map((tech, index) => (
-                  <span
-                    className="font-pretendard mr-2 mt-4 rounded px-2 py-1 text-sm font-medium text-logo-light"
+                  <div
+                    className="inline-flex items-center font-pretendard mr-2 mt-4 rounded px-2 py-1 text-sm font-medium"
                     key={index}
                   >
-                    <span className="text-red-500">+</span> {tech}
-                  </span>
+                    <span className="text-red-500">+</span>{" "}
+                    <span className="text-logo-light">{tech}</span>
+                  </div>
                 ))}
               </div>
             </motion.div>
