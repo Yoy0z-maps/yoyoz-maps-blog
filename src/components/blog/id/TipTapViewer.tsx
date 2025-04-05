@@ -32,6 +32,7 @@ interface Data {
   };
   publishedAt: string;
   image: string;
+  likeCount: number;
 }
 
 export default function TipTapViewer() {
@@ -47,6 +48,7 @@ export default function TipTapViewer() {
     },
     publishedAt: "",
     image: "",
+    likeCount: 0,
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -70,6 +72,7 @@ export default function TipTapViewer() {
           profile: data.profile,
           publishedAt: new Date(data.published_date).toLocaleDateString(),
           image: data.image,
+          likeCount: data.likes,
         });
         try {
           const parsedContent = JSON.parse(data.body);
@@ -111,7 +114,10 @@ export default function TipTapViewer() {
             profile={data.profile}
           />
           <Divider />
-          <LoveShareButtonContainer />
+          <LoveShareButtonContainer
+            postId={params.id as string}
+            likeCount={data.likeCount}
+          />
           <CommentContainer />
         </div>
       )}
