@@ -8,8 +8,7 @@ export default function CommentContainer() {
             <span className="text-xs text-gray-500">2시간 전 · 삭제</span>
           </div>
           <p className="mt-2 text-sm text-gray-800">
-            찾아주셔서 감사합니당. 댓글 달기 기능과 좋아요 및 공유하기 기능은
-            추후 추가 예정입니다.
+            찾아주셔서 감사합니당. 댓글 달기 기능은 추후 추가 예정입니다.
           </p>
           <button className="mt-2 text-xs text-blue-500 hover:underline">
             답글 달기
@@ -32,18 +31,13 @@ export default function CommentContainer() {
                 <input
                   type="text"
                   placeholder="닉네임"
-                  className="flex-1 border rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <input
-                  type="password"
-                  placeholder="비밀번호"
-                  className="flex-1 border rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                  className="border w-40 rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
               <textarea
-                rows={2}
+                rows={3}
                 placeholder="답글을 입력하세요..."
-                className="w-full border rounded-md px-2 py-1 text-sm resize-none outline-none"
+                className="w-full border rounded-md px-2 py-2 text-sm resize-none outline-none"
               />
               <div className="flex justify-end">
                 <button className="bg-blue-500 text-white px-3 py-1 rounded-md text-sm">
@@ -54,20 +48,15 @@ export default function CommentContainer() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-6 p-4 border rounded-md shadow-sm bg-white mb-24 font-pretendard">
+      <div className="flex flex-col gap-2 p-4 border rounded-md shadow-sm bg-white mb-24 font-pretendard">
         <div className="flex items-center justify-between gap-4">
           <input
             type="text"
             placeholder="닉네임"
-            className="flex-1 border rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="password"
-            placeholder="비밀번호"
-            className="flex-1 border rounded-md px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500"
+            className="border rounded-md px-3 w-40 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        <div>
+        <div className="mb-1">
           <textarea
             rows={4}
             placeholder="댓글을 입력하세요..."

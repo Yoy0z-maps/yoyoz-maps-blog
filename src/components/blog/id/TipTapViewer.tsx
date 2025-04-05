@@ -137,7 +137,6 @@ const extensions = [
     defaultTheme: "github-dark-default",
   }),
   Image,
-  CodeBlock,
   BulletList,
   Blockquote,
   Color.configure({ types: [TextStyle.name, ListItem.name] }),
