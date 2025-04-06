@@ -104,7 +104,7 @@ export default function Page() {
                     alt={post.title}
                     className="w-[250px] h-[200px] object-cover"
                   />
-                  <p className="text-lg font-semibold font-pretendard text-black">
+                  <p className="text-lg line-clamp-2 font-semibold font-pretendard text-black">
                     {post.title}
                   </p>
                   <div className="flex gap-x-2 items-center justify-end">

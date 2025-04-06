@@ -6,7 +6,6 @@ const navigationItems = [
   { href: "/", text: "HOME" },
   { href: "/projects", text: "PROJECTS" },
   { href: "/blog", text: "BLOG" },
-  { href: "/guest", text: "GUEST" },
 ];
 
 export default function MainHeader() {
@@ -18,7 +17,7 @@ export default function MainHeader() {
           Yoy0z-maps.
         </p>
       </div>
-      <nav className="hidden sm:flex items-center justify-center gap-x-7">
+      <nav className="hidden sm:flex items-center justify-center gap-x-10">
         {navigationItems.map((item) => (
           <MainHeaderNavigationItem
             key={item.href}

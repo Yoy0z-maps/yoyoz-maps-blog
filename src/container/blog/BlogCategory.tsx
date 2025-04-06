@@ -9,8 +9,7 @@ export default function BlogCategory() {
     { text: "All", id: 0 },
     { text: "Technology", id: 1 },
     { text: "Design", id: 2 },
-    { text: "Business", id: 3 },
-    { text: "Lifestyle", id: 4 },
+    { text: "Lifestyle", id: 3 },
   ];
 
   return (
