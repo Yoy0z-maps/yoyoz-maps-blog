@@ -2,8 +2,9 @@
 
 import { LuArrowDownRight } from "react-icons/lu";
 import { useRouter } from "next/navigation";
+import { Post } from "@/types/post";
 
-export default function BlogRedButton({ id }: { id: number }) {
+export default function BlogRedButton({ id }: { id: Post["id"] }) {
   const router = useRouter();
 
   return (

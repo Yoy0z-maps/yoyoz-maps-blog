@@ -6,20 +6,12 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { API_SERVER_ADDRESS, API_TOKEN } from "@/constant/api_address";
 import LoadingSpinner from "@/components/LoadingSpinner";
-
-interface Post {
-  count: number;
-  results: {
-    id: string;
-    title: string;
-    image: string;
-  }[];
-}
+import { PostResponse } from "@/types/post";
 
 export default function Page() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [posts, setPosts] = useState<Post>({
+  const [posts, setPosts] = useState<PostResponse>({
     count: 0,
     results: [],
   });
