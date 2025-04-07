@@ -117,7 +117,7 @@ export default function TipTapViewer() {
             postId={params.id as string}
             likeCount={data.likeCount}
           />
-          <CommentContainer />
+          <CommentContainer postId={params.id as string} />
         </div>
       )}
     </div>
