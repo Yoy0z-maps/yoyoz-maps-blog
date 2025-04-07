@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const container = (delay: number) => ({
   hidden: { x: -100, opacity: 0 },
@@ -12,6 +14,14 @@ const container = (delay: number) => ({
 });
 
 export default function Hero() {
+  const [imgLoaded, setImgLoaded] = useState(false);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = "/assets/images/johnhan.jpg";
+    img.decode?.().then(() => setImgLoaded(true));
+  }, []);
+
   return (
     <div className="border-b border-neutral-900 pb-4 lg:mb-35">
       <div className="flex flex-wrap">
@@ -38,7 +48,7 @@ export default function Hero() {
               variants={container(1)}
               initial="hidden"
               animate="visible"
-              className="font-pretendard text- dark:text-white font-light py-6 my-2 max-w-xl tracking-tighter"
+              className="font-pretendard dark:text-white font-light py-6 my-2 max-w-xl tracking-tighter"
             >
               Welcome to the blog of a maker who strives for beauty and
               innovation! I believe that things with ‘beauty’ have the power to
@@ -52,7 +62,7 @@ export default function Hero() {
           <div className="flex justify-center aspect-square relative">
             <motion.img
               initial={{ x: 100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
+              animate={imgLoaded ? { x: 0, opacity: 1 } : {}}
               transition={{ duration: 1, delay: 0 }}
               src="/assets/images/johnhan.jpg"
               alt="John Han"

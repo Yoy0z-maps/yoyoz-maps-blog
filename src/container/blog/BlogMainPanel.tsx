@@ -19,7 +19,6 @@ export default function BlogMainPanel({ contents }: { contents: Post[] }) {
       const img = new Image();
       img.src = posts[nextIndex].image;
 
-      // decode가 되면 safe하게 전환
       img
         .decode?.()
         .then(() => {
