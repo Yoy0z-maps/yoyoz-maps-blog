@@ -1,3 +1,5 @@
+import CommentEditor from "@/components/blog/id/CommentEditor";
+
 export default function CommentContainer({ postId }: { postId: string }) {
   return (
     <>
@@ -48,27 +50,7 @@ export default function CommentContainer({ postId }: { postId: string }) {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-2 p-4 border rounded-md shadow-sm bg-white mb-24 font-pretendard dark:bg-neutral-800">
-        <div className="flex items-center justify-between gap-4">
-          <input
-            type="text"
-            placeholder="닉네임"
-            className="border rounded-md px-3 w-40 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-800 dark:text-neutral-200"
-          />
-        </div>
-        <div className="mb-1">
-          <textarea
-            rows={4}
-            placeholder="댓글을 입력하세요..."
-            className="w-full border rounded-md px-3 py-2 text-sm resize-none outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-800 dark:text-neutral-200"
-          />
-        </div>
-        <div className="flex justify-end">
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500 text-sm">
-            올리기
-          </button>
-        </div>
-      </div>
+      <CommentEditor postId={postId} />
     </>
   );
 }
