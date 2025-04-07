@@ -53,7 +53,7 @@ export default function Hero() {
             <motion.img
               initial={{ x: 100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 1, delay: 1.2 }}
+              transition={{ duration: 1, delay: 0 }}
               src="/assets/images/johnhan.jpg"
               alt="John Han"
               className="rounded-md overflow-hidden object-cover w-full h-full"
