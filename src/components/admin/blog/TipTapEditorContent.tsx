@@ -70,8 +70,8 @@ export default function TipTapEditorContent({
       } else {
         alert("수정 실패");
       }
-    } catch (_) {
-      alert("에러 발생");
+    } catch (e) {
+      alert(`에러 발생: ${e}`);
     } finally {
       setIsSaving(false); // 저장 끝
     }
