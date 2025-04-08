@@ -23,7 +23,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="border-b border-neutral-900 pb-4 lg:mb-35">
+    <div className="border-b border-neutral-800 pb-4 lg:mb-35">
       <div className="flex flex-wrap">
         <div className="w-full lg:w-1/2">
           <div className="flex flex-col items-center lg:items-start">
@@ -38,7 +38,7 @@ export default function Hero() {
             <motion.span
               variants={container(0.5)}
               initial="hidden"
-              animate="visible"
+              animate={imgLoaded ? "visible" : {}}
               className="font-pretendard text-red-500 text-3xl tracking-tight"
               /* className="font-pretendard text-transparent bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 bg-clip-text text-3xl tracking-tight" */
             >
@@ -47,7 +47,7 @@ export default function Hero() {
             <motion.p
               variants={container(1)}
               initial="hidden"
-              animate="visible"
+              animate={imgLoaded ? "visible" : {}}
               className="font-pretendard dark:text-white font-light py-6 my-2 max-w-xl tracking-tighter"
             >
               Welcome to the blog of a maker who strives for beauty and

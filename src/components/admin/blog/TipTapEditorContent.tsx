@@ -4,7 +4,6 @@ import { useCurrentEditor } from "@tiptap/react";
 import TagSelector from "./TagSelector";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { API_SERVER_ADDRESS, API_TOKEN } from "@/constant/api_address";
 import LoadingSpinner from "@/components/LoadingSpinner";
 
 type PostData = {
@@ -60,16 +59,10 @@ export default function TipTapEditorContent({
       formData.append("category", category);
       formData.append("body", JSON.stringify(content));
 
-      const response = await fetch(
-        `${API_SERVER_ADDRESS}/posts/${postData?.id}/`,
-        {
-          method: "PATCH",
-          headers: {
-            Authorization: `Token ${API_TOKEN}`,
-          },
-          body: formData,
-        }
-      );
+      const response = await fetch(`/api/posts/${postData?.id}`, {
+        method: "PATCH",
+        body: formData,
+      });
 
       if (response.ok) {
         alert("수정 완료");
@@ -77,9 +70,8 @@ export default function TipTapEditorContent({
       } else {
         alert("수정 실패");
       }
-    } catch (err) {
-      console.error("저장 중 에러", err);
-      alert("에러 발생");
+    } catch (e) {
+      alert(`에러 발생: ${e}`);
     } finally {
       setIsSaving(false); // 저장 끝
     }
@@ -104,11 +96,8 @@ export default function TipTapEditorContent({
       formData.append("body", JSON.stringify(content));
       formData.append("image", thumbnail);
 
-      const response = await fetch(`${API_SERVER_ADDRESS}/posts/`, {
+      const response = await fetch(`/api/posts`, {
         method: "POST",
-        headers: {
-          Authorization: `Token ${API_TOKEN}`,
-        },
         body: formData,
       });
 

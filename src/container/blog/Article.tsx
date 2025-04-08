@@ -10,7 +10,7 @@ export default function Article({ item }: { item: Post }) {
   return (
     <Link
       href={`/blog/${item.id}`}
-      className="flex flex-col flex-shrink-0 w-full max-w-96"
+      className="flex flex-col flex-shrink-0 w-full max-w-80"
     >
       <Image
         src={item.image}
