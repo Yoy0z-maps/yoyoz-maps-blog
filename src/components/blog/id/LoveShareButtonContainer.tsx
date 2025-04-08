@@ -32,15 +32,9 @@ export default function LoveShareButtonContainer({
 
   const handleLove = async ({ postId }: { postId: string }) => {
     if (isLiked) return;
-
-    console.log("clicked");
-    console.log(postId);
-
     const result = await fetch(`${API_SERVER_ADDRESS}/posts/${postId}/like/`, {
       method: "POST",
     });
-
-    console.log(result);
 
     if (result.ok) {
       setIsLiked(true);

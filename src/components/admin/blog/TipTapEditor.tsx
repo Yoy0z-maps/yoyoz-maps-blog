@@ -51,7 +51,6 @@ export default function TipTapEditor({
       setCategory(postData.category);
       //setThumbnail(postData.image);
       try {
-        console.log(postData.body);
         const content = JSON.parse(postData.body);
         setEditorContent(content);
       } catch (e) {

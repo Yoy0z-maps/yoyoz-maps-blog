@@ -3,7 +3,6 @@
 import { Comment } from "@/types/post";
 import CommentBox from "./CommentBox";
 import { useEffect, useState } from "react";
-import { API_SERVER_ADDRESS } from "@/constant/api_address";
 
 export default function CommentViewer({
   postId,
@@ -16,9 +15,11 @@ export default function CommentViewer({
 
   useEffect(() => {
     const fetchComments = async () => {
-      const response = await fetch(`${API_SERVER_ADDRESS}/posts/${postId}/`, {
+      const response = await fetch(`/api/posts/${postId}`, {
+        method: "GET",
         cache: "no-cache",
       });
+
       const data = await response.json();
       setComments(data.comments);
     };
@@ -42,7 +43,6 @@ export default function CommentViewer({
               대댓글 기능은 추후 추가 예정입니다!
             </p>
           </div>
-
           <div className="flex flex-col gap-2">
             <div className="flex items-center justify-between gap-4">
               <input
@@ -53,7 +53,7 @@ export default function CommentViewer({
             </div>
             <textarea
               rows={3}
-              placeholder="답글을 입력하세요..."
+              placeholder="답글을 입력하세요... (대댓글 기능은 추후 추가 예정)"
               className="w-full border rounded-md px-2 py-2 text-sm resize-none outline-none dark:bg-neutral-800 dark:text-neutral-200"
             />
             <div className="flex justify-end">

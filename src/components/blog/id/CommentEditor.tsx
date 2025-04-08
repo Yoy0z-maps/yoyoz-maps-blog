@@ -1,4 +1,5 @@
-import { API_SERVER_ADDRESS } from "@/constant/api_address";
+"use client";
+
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -42,7 +43,7 @@ export default function CommentEditor({
     }
     formData.append("text", comment);
 
-    fetch(`${API_SERVER_ADDRESS}/comments/`, {
+    fetch(`/api/comments`, {
       method: "POST",
       body: formData,
     })
