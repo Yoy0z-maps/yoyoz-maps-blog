@@ -10,7 +10,15 @@ const PLACEHOLDER = {
   5: "오이먹는 기니피그",
 };
 
-export default function CommentEditor({ postId }: { postId: string }) {
+export default function CommentEditor({
+  postId,
+  setIsCommentUpdated,
+  isCommentUpdated,
+}: {
+  postId: string;
+  setIsCommentUpdated: (isCommentUpdated: number) => void;
+  isCommentUpdated: number;
+}) {
   const [placeholder, setPlaceholder] = useState("");
   const [nickname, setNickname] = useState("");
   const [comment, setComment] = useState("");
@@ -41,6 +49,7 @@ export default function CommentEditor({ postId }: { postId: string }) {
       .then((res) => {
         if (res.ok) {
           toast.success("댓글이 등록되었습니다.");
+          setIsCommentUpdated(isCommentUpdated + 1);
         } else {
           toast.error("댓글 등록에 실패했습니다.");
         }

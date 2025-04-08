@@ -1,6 +1,8 @@
 import TipTapViewer from "@/components/blog/id/TipTapViewer";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import NavHighlighter from "@/components/NavHighlighter";
 import { API_SERVER_ADDRESS } from "@/constant/api_address";
+import { Post } from "@/types/post";
 import { Metadata } from "next";
 
 export async function generateMetadata({
@@ -24,11 +26,24 @@ export async function generateMetadata({
   };
 }
 
-export default function Page() {
+export default async function Page({ params }: { params: { id: string } }) {
+  const post = await fetch(`${API_SERVER_ADDRESS}/posts/${params.id}/`);
+  const postData = await post.json();
+
+  if (!postData) {
+    return (
+      <div className="w-full flex flex-col items-center justify-center h-screen">
+        <div className="w-full h-full flex items-center justify-center">
+          <LoadingSpinner />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <NavHighlighter path="/blog" />
-      <TipTapViewer />
+      <TipTapViewer post={postData as Post} />
     </>
   );
 }

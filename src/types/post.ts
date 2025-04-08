@@ -13,6 +13,14 @@ export interface Post {
   category: string;
   tags: string; // 실제론 string 배열 형태
   summary: string;
+  comments: Comment[];
+}
+
+export interface Comment {
+  id: string;
+  text: string;
+  nickname: string;
+  post: string;
 }
 
 export interface PostResponse {
