@@ -45,13 +45,14 @@ export default function TipTapViewer({ post }: { post: Post }) {
 
   const editor = useEditor({
     extensions: extensions,
-    editable: false, // ✅ 읽기 전용 모드
+    editable: false,
     immediatelyRender: false,
   });
 
   useEffect(() => {
+    if (!post || !Array.isArray(post.comments)) return;
     setIsCommentUpdated(post.comments.length);
-  }, [post.comments]);
+  }, [post]);
 
   useEffect(() => {
     try {

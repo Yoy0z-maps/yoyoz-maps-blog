@@ -18,7 +18,7 @@ export default function BlogLastestArticlesPanel({
         <BlogCategory />
         <BlogArticleSearchBar />
       </div>
-      <div className="grid grid-cols-2 xl:grid-cols-3 gap-y-6 lg:gap-x-4 2xl:gap-x-8 pt-16">
+      <div className="grid grid-cols-2 xl:grid-cols-3 gap-y-6 lg:gap-x-28 xl:gap-x-28  2xl:gap-x-52 pt-16">
         {contents.results.map((item) => (
           <Article key={item.id} item={item} />
         ))}
