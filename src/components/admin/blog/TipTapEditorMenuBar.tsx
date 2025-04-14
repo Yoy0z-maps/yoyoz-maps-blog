@@ -22,7 +22,6 @@ export default function TipTapEditorMenuBar() {
 
         const data = await res.json();
         const imageUrl = data.url;
-
         editor.chain().focus().setImage({ src: imageUrl }).run();
       } catch (error) {
         console.error("이미지 업로드 실패", error);
@@ -154,12 +153,17 @@ export default function TipTapEditorMenuBar() {
           label={color.label}
         />
       ))}
-      <input
-        type="file"
-        accept="image/*"
-        className={`bg-gray-100 rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-blue-500 hover:text-white font-pretendard }`}
-        onChange={handleImageUpload}
-      />
+      <label className="cursor-pointer">
+        <p className="bg-gray-100 rounded-md px-2 py-1 text-sm text-gray-500 hover:bg-blue-500 hover:text-white font-pretendard">
+          Image
+        </p>
+        <input
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={handleImageUpload}
+        />
+      </label>
     </div>
   );
 }
