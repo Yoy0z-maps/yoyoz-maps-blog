@@ -22,7 +22,6 @@ export default function TipTapEditorMenuBar() {
 
         const data = await res.json();
         const imageUrl = data.url;
-
         editor.chain().focus().setImage({ src: imageUrl }).run();
       } catch (error) {
         console.error("이미지 업로드 실패", error);
