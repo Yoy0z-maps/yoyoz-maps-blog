@@ -10,9 +10,11 @@ export default function AdminLoginForm() {
   const router = useRouter();
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
+    setIsLoading(true);
     const response = await fetch(`${API_SERVER_ADDRESS}/users/login/`, {
       method: "POST",
       headers: {
@@ -32,6 +34,7 @@ export default function AdminLoginForm() {
         "로그인 실패. 아이디나 비밀번호 혹은 네트워크 상태를 확인해주세요."
       );
     }
+    setIsLoading(false);
   };
 
   return (
@@ -46,7 +49,11 @@ export default function AdminLoginForm() {
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <AdminLoginButton text="Login" onClick={handleSubmit} />
+      <AdminLoginButton
+        text="Login"
+        onClick={handleSubmit}
+        isLoading={isLoading}
+      />
     </form>
   );
 }
