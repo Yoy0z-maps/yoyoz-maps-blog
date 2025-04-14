@@ -18,7 +18,9 @@ const fetchBucketPosts = async () => {
 };
 
 const fetchAllPosts = async () => {
-  const res = await fetch(`${API_SERVER_ADDRESS}/posts`);
+  const res = await fetch(`${API_SERVER_ADDRESS}/posts`, {
+    cache: "no-cache",
+  });
   return res.json();
 };
 

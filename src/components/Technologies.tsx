@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { BiLogoDjango, BiLogoTypescript } from "react-icons/bi";
 import { RiReactjsLine, RiTailwindCssFill } from "react-icons/ri";
+import { FaAws } from "react-icons/fa";
 import { TbBrandNextjs } from "react-icons/tb";
 
 const iconVariants = (duration: number) => ({
@@ -75,6 +76,14 @@ export default function Technologies() {
           className="rounded-2xl border-4 dark:border-neutral-800 border-gray-200 p-4"
         >
           <RiTailwindCssFill className="text-7xl text-cyan-400" />
+        </motion.div>
+        <motion.div
+          variants={iconVariants(5.5)}
+          initial="initial"
+          animate="animate"
+          className="rounded-2xl border-4 dark:border-neutral-800 border-gray-200 p-4"
+        >
+          <FaAws className="text-7xl text-orange-500" />
         </motion.div>
       </motion.div>
     </div>
