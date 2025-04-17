@@ -10,7 +10,11 @@ export async function generateMetadata({
 }: {
   params: { id: string };
 }): Promise<Metadata> {
-  const post = await fetch(`${API_SERVER_ADDRESS}/posts/${params.id}/`);
+  const post = await fetch(`${API_SERVER_ADDRESS}/posts/${params.id}/`, {
+    next: {
+      revalidate: 60,
+    },
+  });
   const postData = await post.json();
 
   return {
