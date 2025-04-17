@@ -7,7 +7,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "my-blog-yoy0z-maps-bucket.s3.amazonaws.com",
+        hostname: "yoy0z-maps-blog-bucket.s3.ap-northeast-2.amazonaws.com",
         pathname: "/**", // 모든 경로 허용 (필요에 따라 제한 가능)
       },
     ],
