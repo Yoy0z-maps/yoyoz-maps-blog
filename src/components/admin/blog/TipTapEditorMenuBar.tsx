@@ -2,6 +2,7 @@ import { useCurrentEditor } from "@tiptap/react";
 import { useCallback } from "react";
 import EditorTextStyleButton from "./EditorTextStyleButton";
 import EditorTextColorButton from "./EditorTextColorButton";
+import { API_SERVER_ADDRESS } from "@/constant/api_address";
 
 export default function TipTapEditorMenuBar() {
   const { editor } = useCurrentEditor();
@@ -15,7 +16,7 @@ export default function TipTapEditorMenuBar() {
       formData.append("image", file);
 
       try {
-        const res = await fetch(`/api/image`, {
+        const res = await fetch(`${API_SERVER_ADDRESS}/upload-image/`, {
           method: "POST",
           body: formData,
         });
