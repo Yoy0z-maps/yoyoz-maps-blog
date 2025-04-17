@@ -5,9 +5,14 @@ import { motion } from "motion/react";
 export default function About() {
   return (
     <div className="border-b border-neutral-900 pb-4">
-      <h1 className="font-pretendard my-20 text-center text-4xl text-theme-light dark:text-theme-dark">
+      <motion.h1
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -100 }}
+        transition={{ duration: 1.5 }}
+        className="font-pretendard my-20 text-center text-4xl text-theme-light dark:text-theme-dark"
+      >
         About Me
-      </h1>
+      </motion.h1>
       <div className="flex flex-wrap">
         <motion.div
           whileInView={{ opacity: 1, x: 0 }}
