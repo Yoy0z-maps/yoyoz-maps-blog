@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+
+# Host
+Host: https://yoy0z-maps.com
+
+# Sitemaps
+Sitemap: https://yoy0z-maps.com/sitemap.xml
