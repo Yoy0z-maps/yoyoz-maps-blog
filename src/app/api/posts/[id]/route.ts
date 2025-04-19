@@ -49,6 +49,12 @@ export async function DELETE(
       Authorization: `Token ${API_TOKEN}`,
     },
   });
+
+  // HTTP 204 No Content 처리 (API 호출은 성공했지만 본문 없음 따라서 res.json() 불가능)
+  if (res.status === 204) {
+    return new NextResponse(null, { status: 204 });
+  }
+
   const result = await res.json();
   return NextResponse.json(result);
 }

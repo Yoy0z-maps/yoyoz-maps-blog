@@ -4,7 +4,13 @@ import { Post } from "@/types/post";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
-export default function BlogItem({ post }: { post: Post }) {
+export default function BlogItem({
+  post,
+  onDelete,
+}: {
+  post: Post;
+  onDelete: () => void;
+}) {
   const router = useRouter();
 
   const handleEdit = async (id: string) => {
@@ -15,11 +21,9 @@ export default function BlogItem({ post }: { post: Post }) {
     const res = await fetch(`/api/posts/${id}`, {
       method: "DELETE",
     });
-    const result = await res.json();
-    if (result.success) {
-      toast.success("삭제 완료");
-      router.push("/admin/blog");
-      router.refresh();
+    if (res.status === 204) {
+      console.log("삭제 완료");
+      onDelete();
     } else {
       toast.error("삭제 실패");
     }

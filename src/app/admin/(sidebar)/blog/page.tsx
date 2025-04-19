@@ -16,12 +16,14 @@ export default function Page() {
     count: 0,
     results: [],
   });
+  const [isDelete, setIsDelete] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       const res = await fetch(`/api/posts`, {
         method: "GET",
+        cache: "no-store",
       });
       if (res.ok) {
         const data = await res.json();
@@ -32,15 +34,17 @@ export default function Page() {
       setIsLoading(false);
     };
     fetchData();
+  }, [isDelete]);
 
+  const [sidebarWidth, setSidebarWidth] = useState(0);
+
+  useEffect(() => {
     const sidebar = document.getElementById("admin-sidebar")?.offsetWidth;
 
     if (sidebar) {
       setSidebarWidth(sidebar + 36);
     }
   }, []);
-
-  const [sidebarWidth, setSidebarWidth] = useState(0);
 
   return (
     <div
@@ -71,7 +75,11 @@ export default function Page() {
               <p>Oooop... There is no post</p>
             ) : (
               posts.results.map((post) => (
-                <BlogItem key={post.id} post={post} />
+                <BlogItem
+                  key={post.id}
+                  post={post}
+                  onDelete={() => setIsDelete((prev) => !prev)}
+                />
               ))
             )}
           </div>
