@@ -8,6 +8,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import { PostResponse } from "@/types/post";
 import BlogItem from "@/components/admin/blog/BlogItem";
 import { toast } from "react-toastify";
+import useSidebarWidth from "@/hook/useSidebarWidth";
 
 export default function Page() {
   const router = useRouter();
@@ -36,20 +37,12 @@ export default function Page() {
     fetchData();
   }, [isDelete]);
 
-  const [sidebarWidth, setSidebarWidth] = useState(0);
-
-  useEffect(() => {
-    const sidebar = document.getElementById("admin-sidebar")?.offsetWidth;
-
-    if (sidebar) {
-      setSidebarWidth(sidebar + 36);
-    }
-  }, []);
+  const sidebarWidth = useSidebarWidth();
 
   return (
     <div
       style={{ paddingLeft: `${sidebarWidth}px` }}
-      className="flex flex-col gap-4 w-full h-full bg-admin-bg"
+      className="flex flex-col gap-4 w-full h-screen bg-admin-bg"
     >
       <NavHighlighter path="/admin/blog" />
       <div className="flex flex-col gap-4  mt-9 mr-9">
