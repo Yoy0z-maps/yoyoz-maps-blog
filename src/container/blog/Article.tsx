@@ -41,7 +41,11 @@ export default function Article({ item }: { item: Post }) {
           {item.summary}
         </p>
         <div className="flex text-gray-500 font-pretendard items-end justify-between mt-3">
-          <ArticleCouter />
+          <ArticleCouter
+            like={item.likes}
+            comment={item.comments.length}
+            view={312}
+          />
           <BlogRedButton id={item.id} />
         </div>
       </div>
