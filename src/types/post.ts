@@ -14,6 +14,7 @@ export interface Post {
   tags: string; // 실제론 string 배열 형태
   summary: string;
   comments: Comment[];
+  views: number;
 }
 
 export interface Comment {

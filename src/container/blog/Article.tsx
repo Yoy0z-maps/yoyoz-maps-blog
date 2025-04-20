@@ -44,7 +44,7 @@ export default function Article({ item }: { item: Post }) {
           <ArticleCouter
             like={item.likes}
             comment={item.comments.length}
-            view={312}
+            view={item.views}
           />
           <BlogRedButton id={item.id} />
         </div>
