@@ -1,6 +1,6 @@
 "use client";
 
-import About from "@/components/About";
+// import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Designs from "@/components/Designs";
 import Experience from "@/components/Experience";
@@ -54,7 +54,7 @@ export default function Home() {
     >
       <NavHighlighter path="/" />
       <Hero />
-      <About />
+      {/* <About /> */}
       <Technologies />
       <Designs />
       <Experience />

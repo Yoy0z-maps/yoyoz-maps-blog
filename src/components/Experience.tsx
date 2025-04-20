@@ -2,8 +2,11 @@
 
 import { EXPERIENCES } from "@/constant/experiences";
 import { motion } from "motion/react";
+import useLangStore from "@/hook/useLang";
 
 export default function Experience() {
+  const { lang } = useLangStore();
+
   return (
     <div className="border-b border-neutral-900 pb-4">
       <motion.h1
@@ -40,7 +43,9 @@ export default function Experience() {
                 </span>
               </h6>
               <p className="mb-4 text-neutral-400 font-pretendard">
-                {experience.description}
+                {lang === "ko"
+                  ? experience.description_ko
+                  : experience.description_en}
               </p>
               <div className="hidden flex-wrap dark:block">
                 {experience.technologies.map((tech, index) => (
