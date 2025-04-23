@@ -21,6 +21,12 @@ import { Post } from "@/types/post";
 import CommentViewer from "./CommentViewer";
 import CommentEditor from "./CommentEditor";
 
+// 이 부분 오류 나중에 수정해야함...
+const defaultTheme =
+  localStorage.getItem("theme") === "dark"
+    ? "github-dark-default"
+    : "github-light-default";
+
 const extensions = [
   StarterKit.configure({
     orderedList: {
@@ -30,7 +36,7 @@ const extensions = [
     codeBlock: false,
   }),
   CodeBlockShiki.configure({
-    defaultTheme: "github-dark-default",
+    defaultTheme: defaultTheme,
   }),
   Image,
   BulletList,

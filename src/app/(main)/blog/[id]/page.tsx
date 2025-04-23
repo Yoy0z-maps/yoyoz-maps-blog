@@ -31,7 +31,11 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const post = await fetch(`${API_SERVER_ADDRESS}/posts/${params.id}/`);
+  const post = await fetch(`${API_SERVER_ADDRESS}/posts/${params.id}/`, {
+    next: {
+      revalidate: 60,
+    },
+  });
   const postData = await post.json();
 
   if (!postData) {

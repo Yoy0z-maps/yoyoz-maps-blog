@@ -9,10 +9,25 @@ export default function ThemeToggleButton() {
     const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
     if (savedTheme) {
       document.documentElement.classList.add(savedTheme);
+      if (savedTheme === "dark") {
+        document.documentElement.style.setProperty(
+          "--code-background",
+          "#353535"
+        );
+      } else {
+        document.documentElement.style.setProperty(
+          "--code-background",
+          "#f9fafb"
+        );
+      }
       setTheme(savedTheme);
       setIsChecked(savedTheme === "dark");
     } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       document.documentElement.classList.add("dark");
+      document.documentElement.style.setProperty(
+        "--code-background",
+        "#353535"
+      );
       setTheme("dark");
       setIsChecked(true);
     }
@@ -22,6 +37,17 @@ export default function ThemeToggleButton() {
     const newTheme = theme === "dark" ? "light" : "dark";
     document.documentElement.classList.remove(theme);
     document.documentElement.classList.add(newTheme);
+    if (newTheme === "dark") {
+      document.documentElement.style.setProperty(
+        "--code-background",
+        "#353535"
+      );
+    } else {
+      document.documentElement.style.setProperty(
+        "--code-background",
+        "#f9fafb"
+      );
+    }
     localStorage.setItem("theme", newTheme);
     setTheme(newTheme);
     setIsChecked(newTheme === "dark");
