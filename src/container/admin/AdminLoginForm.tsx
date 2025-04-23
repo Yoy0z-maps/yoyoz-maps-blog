@@ -21,13 +21,10 @@ export default function AdminLoginForm() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username: username, password: password }),
+      credentials: "include",
     });
-    const data = await response.json();
-
-    // 나중에 HttpOnly로 보안 강화해야함
+    console.log(response);
     if (response.ok) {
-      const token = data.token;
-      document.cookie = `token=${token}; path=/; max-age=86400`;
       router.push("/admin");
     } else {
       alert(
