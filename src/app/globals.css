@@ -70,9 +70,20 @@ body {
 
   pre {
     border-radius: 1rem;
-    padding: 1rem;
+    padding-left: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     background-color: #353535;
     overflow-x: auto;
+    white-space: pre;
+    word-wrap: normal;
+    max-width: 100%;
+  }
+
+  pre code {
+    display: inline-block;
+    min-width: 100%;
+    white-space: pre;
   }
 
   ul,
