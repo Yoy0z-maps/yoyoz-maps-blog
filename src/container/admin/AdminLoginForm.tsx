@@ -23,7 +23,7 @@ export default function AdminLoginForm() {
       body: JSON.stringify({ username: username, password: password }),
       credentials: "include",
     });
-    console.log(response);
+
     if (response.ok) {
       router.push("/admin");
     } else {

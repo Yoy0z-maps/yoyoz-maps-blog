@@ -2,6 +2,9 @@ import AdminLoginPanel from "@/container/admin/AdminLoginPanel";
 import AdminLoginFooter from "@/components/admin/login/AdminLoginFooter";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+
+export const dynamic = "force-dynamic";
+
 export default function Page() {
   const cookieStore = cookies();
   const token = cookieStore.get("token");
