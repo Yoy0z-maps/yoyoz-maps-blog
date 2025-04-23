@@ -59,7 +59,7 @@ export default function BlogMainPanel({ contents }: { contents: Post[] }) {
                 {currentPost.published_date.split("T")[0]}
               </p>
             </div>
-            <h1 className="font-pretendard text-theme-light text-5xl font-semibold line-clamp-3 mt-4 dark:text-theme-dark">
+            <h1 className="font-pretendard text-theme-light text-5xl font-semibold line-clamp-2 mt-4 dark:text-theme-dark">
               {`${currentPost.title}`}
             </h1>
             <div className="flex items-center justify-center gap-x-8 mt-8">

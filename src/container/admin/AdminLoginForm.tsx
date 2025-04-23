@@ -15,6 +15,7 @@ export default function AdminLoginForm() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setIsLoading(true);
+
     const response = await fetch(`${API_SERVER_ADDRESS}/users/login/`, {
       method: "POST",
       headers: {
