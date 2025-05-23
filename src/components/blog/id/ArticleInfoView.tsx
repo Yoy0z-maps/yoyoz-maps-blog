@@ -13,12 +13,14 @@ export default function ArticleInfoView({
     image: string;
   };
 }) {
+  const datePart = date.split("T")[0];
+
   return (
-    <div className="flex justify-between items-center mt-4">
-      <div className="flex gap-2 font-pretendard">
+    <div className="flex w-full justify-between items-center mt-4">
+      <div className="flex gap-y-3 gap-x-4 font-pretendard flex-wrap">
         {tags.map((tag, index) => (
           <p
-            className="text-gray-400 px-3 py-1 border border-gray-200 rounded-full"
+            className="text-gray-400 px-3 py-1 border text-sm border-gray-200 rounded-full text-nowrap"
             key={index}
           >
             {tag}
@@ -33,13 +35,13 @@ export default function ArticleInfoView({
           width={37}
           height={37}
         />
-        <div className="flex flex-col justify-center items-start font-pretendard">
+        <div className="flex flex-col w-full justify-center items-start font-pretendard">
           <div className="flex gap-1 justify-center items-center">
-            <p className="text-lg">{profile.nickname}</p>
+            <p className="text-lg text-nowrap">{profile.nickname}</p>
             {" · "}
             <p className="text-sm text-gray-500">{profile.position}</p>
           </div>
-          <p className="text-gray-400 text-sm">{date} POSTED</p>
+          <p className="text-gray-400 text-sm">{datePart} POSTED</p>
         </div>
       </div>
     </div>
