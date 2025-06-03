@@ -174,6 +174,14 @@ export default function PrivacyPage() {
         us.
       </p>
       <br />
+      <strong>Account Deletion</strong>
+      <p>
+        If you wish to delete your account and the data associated with it, you
+        can do so directly within the Application. Go to the &quot;My Page&quot;
+        section and tap the &quot;Delete Account&quot; button. This will
+        permanently remove your account and all related data from our servers.
+      </p>
+      <br />
       <strong>Contact Us</strong>
       <p>
         If you have any questions regarding privacy while using the Application,
