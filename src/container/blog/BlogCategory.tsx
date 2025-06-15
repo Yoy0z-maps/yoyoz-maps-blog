@@ -1,23 +1,22 @@
 "use client";
 
 import BlogCategoryText from "@/components/blog/BlogCategoryText";
-import { useState } from "react";
-export default function BlogCategory() {
-  const [activeItem, setActiveItem] = useState(0);
+import { CATEGORIES } from "@/constant/categories";
+import { Category } from "@/types/category";
 
-  const categories = [
-    { text: "All", id: 0 },
-    { text: "Technology", id: 1 },
-    { text: "Design", id: 2 },
-    { text: "Lifestyle", id: 3 },
-  ];
-
+export default function BlogCategory({
+  activeCategory,
+  setActiveCategory,
+}: {
+  activeCategory: Category;
+  setActiveCategory: (category: Category) => void;
+}) {
   return (
     <div className="flex gap-x-8">
-      {categories.map((category) => (
+      {CATEGORIES.map((category) => (
         <BlogCategoryText
-          onClick={() => setActiveItem(category.id)}
-          active={activeItem === category.id}
+          onClick={() => setActiveCategory(category.value as Category)}
+          active={activeCategory === category.value}
           key={category.id}
           text={category.text}
         />
