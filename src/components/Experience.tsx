@@ -50,7 +50,7 @@ export default function Experience() {
               <div className="hidden flex-wrap dark:block">
                 {experience.technologies.map((tech, index) => (
                   <span
-                    className="font-pretendard mr-2 mt-4 rounded dark:bg-neutral-900 px-2 py-1 text-sm font-medium text-blue-800"
+                    className="font-pretendard mr-2 mt-4 rounded dark:bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-800"
                     key={index}
                   >
                     {tech}
