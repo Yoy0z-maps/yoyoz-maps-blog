@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 
 import { SiAdobeaftereffects, SiAdobeillustrator } from "react-icons/si";
 import { SiAdobephotoshop } from "react-icons/si";
-import { IoLogoFigma } from "react-icons/io5";
 
 import React from "react";
 
@@ -44,7 +43,11 @@ export default function Designs() {
           animate="animate"
           className="rounded-2xl border-4 dark:border-neutral-800 border-gray-200 p-4"
         >
-          <IoLogoFigma className="text-7xl text-red-400" />
+          <img
+            src="/assets/images/figma.svg"
+            alt="Figma"
+            className="w-[72px] h-[72px] object-contain"
+          />
         </motion.div>
         <motion.div
           variants={iconVariants(4)}
