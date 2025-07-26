@@ -1,20 +1,24 @@
 export default function PrivacyPage() {
   return (
-    <>
-      <strong>Privacy Policy</strong>
+    <div className="max-w-xl mx-auto px-4 py-8 bg-white rounded-lg shadow-sm text-gray-800">
+      <strong className="block text-2xl font-bold mb-4 text-gray-900">
+        Privacy Policy
+      </strong>
       <p>
         This privacy policy applies to the ROVOCA app (hereby referred to as
         &quot;Application&quot;) for mobile devices that was created by
         Yoy0z-maps (hereby referred to as &quot;Service Provider&quot;) as an Ad
         Supported service. This service is intended for use &quot;AS IS&quot;.
       </p>
-      <br />
-      <strong>Information Collection and Use</strong>
+      <div className="my-4" />
+      <strong className="block text-xl font-semibold mb-2 text-gray-900">
+        Information Collection and Use
+      </strong>
       <p>
         The Application collects information when you download and use it. This
         information may include information such as:
       </p>
-      <ul>
+      <ul className="list-disc pl-6 my-2 space-y-1">
         <li>Your device&apos;s Internet Protocol address (e.g. IP address)</li>
         <li>
           The pages of the Application that you visit, the time and date of your
@@ -32,7 +36,7 @@ export default function PrivacyPage() {
         from time to time to provide you with important information, required
         notices and marketing promotions.
       </p>
-      <br />
+      <div className="my-4" />
       <p>
         For a better experience, while using the Application, the Service
         Provider may require you to provide us with certain personally
@@ -40,8 +44,10 @@ export default function PrivacyPage() {
         The information that the Service Provider request will be retained by
         them and used as described in this privacy policy.
       </p>
-      <br />
-      <strong>Third Party Access</strong>
+      <div className="my-4" />
+      <strong className="block text-xl font-semibold mb-2 text-gray-900">
+        Third Party Access
+      </strong>
       <p>
         Only aggregated, anonymized data is periodically transmitted to external
         services to aid the Service Provider in improving the Application and
@@ -54,7 +60,7 @@ export default function PrivacyPage() {
         Privacy Policy of the third-party service providers used by the
         Application:
       </p>
-      <ul>
+      <ul className="list-disc pl-6 my-2 space-y-1">
         <li>
           <a
             href="https://www.google.com/policies/privacy/"
@@ -113,16 +119,20 @@ export default function PrivacyPage() {
           statement.
         </li>
       </ul>
-      <br />
-      <strong>Opt-Out Rights</strong>
+      <div className="my-4" />
+      <strong className="block text-xl font-semibold mb-2 text-gray-900">
+        Opt-Out Rights
+      </strong>
       <p>
         You can stop all collection of information by the Application easily by
         uninstalling it. You may use the standard uninstall processes as may be
         available as part of your mobile device or via the mobile application
         marketplace or network.
       </p>
-      <br />
-      <strong>Data Retention Policy</strong>
+      <div className="my-4" />
+      <strong className="block text-xl font-semibold mb-2 text-gray-900">
+        Data Retention Policy
+      </strong>
       <p>
         The Service Provider will retain User Provided data for as long as you
         use the Application and for a reasonable time thereafter. If you&apos;d
@@ -130,8 +140,10 @@ export default function PrivacyPage() {
         Application, please contact them at work.johnhan@gmail.com and they will
         respond in a reasonable time.
       </p>
-      <br />
-      <strong>Children</strong>
+      <div className="my-4" />
+      <strong className="block text-xl font-semibold mb-2 text-gray-900">
+        Children
+      </strong>
       <p>
         The Service Provider does not use the Application to knowingly solicit
         data from or market to children under the age of 13.
@@ -147,16 +159,20 @@ export default function PrivacyPage() {
         (work.johnhan@gmail.com) so that they will be able to take the necessary
         actions.
       </p>
-      <br />
-      <strong>Security</strong>
+      <div className="my-4" />
+      <strong className="block text-xl font-semibold mb-2 text-gray-900">
+        Security
+      </strong>
       <p>
         The Service Provider is concerned about safeguarding the confidentiality
         of your information. The Service Provider provides physical, electronic,
         and procedural safeguards to protect information the Service Provider
         processes and maintains.
       </p>
-      <br />
-      <strong>Changes</strong>
+      <div className="my-4" />
+      <strong className="block text-xl font-semibold mb-2 text-gray-900">
+        Changes
+      </strong>
       <p>
         This Privacy Policy may be updated from time to time for any reason. The
         Service Provider will notify you of any changes to the Privacy Policy by
@@ -164,41 +180,50 @@ export default function PrivacyPage() {
         consult this Privacy Policy regularly for any changes, as continued use
         is deemed approval of all changes.
       </p>
-      <br />
-      <p>This privacy policy is effective as of 2025-06-03</p>
-      <br />
-      <strong>Your Consent</strong>
+      <div className="my-4" />
+      <p className="text-sm text-gray-500">
+        This privacy policy is effective as of 2025-06-03
+      </p>
+      <div className="my-4" />
+      <strong className="block text-xl font-semibold mb-2 text-gray-900">
+        Your Consent
+      </strong>
       <p>
         By using the Application, you are consenting to the processing of your
         information as set forth in this Privacy Policy now and as amended by
         us.
       </p>
-      <br />
-      <strong>Account Deletion</strong>
+      <div className="my-4" />
+      <strong className="block text-xl font-semibold mb-2 text-gray-900">
+        Account Deletion
+      </strong>
       <p>
         If you wish to delete your account and the data associated with it, you
         can do so directly within the Application. Go to the &quot;My Page&quot;
         section and tap the &quot;Delete Account&quot; button. This will
         permanently remove your account and all related data from our servers.
       </p>
-      <br />
-      <strong>Contact Us</strong>
+      <div className="my-4" />
+      <strong className="block text-xl font-semibold mb-2 text-gray-900">
+        Contact Us
+      </strong>
       <p>
         If you have any questions regarding privacy while using the Application,
         or have questions about the practices, please contact the Service
         Provider via email at work.johnhan@gmail.com.
       </p>
-      <hr />
-      <p>
+      <hr className="my-6 border-gray-300" />
+      <p className="text-sm text-gray-500">
         This privacy policy page was generated by{" "}
         <a
           href="https://app-privacy-policy-generator.nisrulz.com/"
           target="_blank"
           rel="noopener noreferrer"
+          className="underline text-blue-600"
         >
           App Privacy Policy Generator
         </a>
       </p>
-    </>
+    </div>
   );
 }
