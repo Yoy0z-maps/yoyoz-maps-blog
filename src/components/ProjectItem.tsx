@@ -55,9 +55,13 @@ export default function ProjectItem({
           ))}
         </div>
       </div>
-      <div className="w-[280px] h-[180px] absolute right-0 bottom-10 shadow-xl">
+      <div className="w-[280px] h-[180px] absolute right-0 bottom-10 shadow-xl overflow-hidden rounded-sm">
         <div className="absolute top-0 left-0 w-full h-full bg-black/10 dark:bg-black/20"></div>
-        <img src={project.image} alt={project.title} />
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover"
+        />
       </div>
     </motion.div>
   );
