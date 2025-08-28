@@ -50,7 +50,7 @@ export default function Hero() {
               variants={container(1)}
               initial="hidden"
               animate={imgLoaded ? "visible" : {}}
-              className="font-pretendard tracking-wide dark:text-white font-light py-6 my-2 max-w-xl"
+              className="font-pretendard tracking-wide text-theme-light dark:text-white font-light py-6 my-2 max-w-xl"
             >
               {lang === "ko" ? (
                 <>

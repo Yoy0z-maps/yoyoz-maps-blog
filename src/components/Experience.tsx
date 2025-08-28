@@ -42,7 +42,7 @@ export default function Experience() {
                   {` ${experience.company} `}
                 </span>
               </h6>
-              <p className="mb-4 text-neutral-400 font-pretendard">
+              <p className="mb-4 text-neutral-500 dark:text-neutral-400 font-pretendard">
                 {lang === "ko"
                   ? experience.description_ko
                   : experience.description_en}
@@ -60,7 +60,7 @@ export default function Experience() {
               <div className="block flex-wrap dark:hidden">
                 {experience.technologies.map((tech, index) => (
                   <div
-                    className="inline-flex items-center font-pretendard mr-2 mt-4 rounded px-2 py-1 text-sm font-medium"
+                    className="inline-flex items-center font-pretendard mr-2 mt-1 rounded px-2 py-1 text-sm font-medium"
                     key={index}
                   >
                     <span className="text-red-500">+</span>{" "}
