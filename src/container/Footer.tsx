@@ -1,4 +1,4 @@
-import { FaInstagram, FaYoutube, FaGithub } from "react-icons/fa";
+import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
 
 import FooterSocialLink from "../components/FooterSocialLink";
 
@@ -16,9 +16,9 @@ export default function Footer() {
         altText="Instagram"
       />
       <FooterSocialLink
-        href="https://www.youtube.com/channel/UC8-_5555555555555555"
-        icon={<FaYoutube size={25} />}
-        altText="Youtube"
+        href="https://www.linkedin.com/in/john-han-3b1b2b349/"
+        icon={<FaLinkedin size={25} />}
+        altText="Linkedin"
       />
     </div>
   );
