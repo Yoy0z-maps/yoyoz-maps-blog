@@ -1,13 +1,11 @@
 "use client";
 
-// import MobileNavButton from "@/components/mobile/MobileNavButton";
-// import MobileNavModal from "@/container/MobileNavModal";
 import { useState } from "react";
 import { FaBloggerB } from "react-icons/fa";
 import { FaProjectDiagram } from "react-icons/fa";
 
 import { MdHome } from "react-icons/md";
-import { motion, AnimatePresence } from "framer-motion";
+import { LazyMotion, m, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 
 export const MOBILENAV = [
@@ -15,6 +13,8 @@ export const MOBILENAV = [
   { id: 1, href: "/projects", icon: <FaProjectDiagram size={18} /> },
   { id: 2, href: "/blog", icon: <FaBloggerB size={18} /> },
 ];
+
+const loadFeatures = () => import("framer-motion").then((m) => m.domAnimation);
 
 export default function MobileNav() {
   // 기존 좌측하단 네비게이션 버튼
@@ -53,20 +53,22 @@ export default function MobileNav() {
                   aria-current={isActive ? "page" : undefined}
                 >
                   {/* 활성 탭의 배경 '알약'을 해당 셀 내부에 렌더링 */}
-                  <AnimatePresence initial={false}>
-                    {isActive && (
-                      <motion.div
-                        layoutId="mobile-nav-pill"
-                        className="absolute inset-0 rounded-full bg-white/90 shadow-md dark:bg-white/20 dark:shadow-lg"
-                        transition={{
-                          type: "spring",
-                          stiffness: 500,
-                          damping: 40,
-                          mass: 0.5,
-                        }}
-                      />
-                    )}
-                  </AnimatePresence>
+                  <LazyMotion features={loadFeatures} strict>
+                    <AnimatePresence initial={false}>
+                      {isActive && (
+                        <m.div
+                          layoutId="mobile-nav-pill"
+                          className="absolute inset-0 rounded-full bg-white/90 shadow-md dark:bg-white/20 dark:shadow-lg"
+                          transition={{
+                            type: "spring",
+                            stiffness: 500,
+                            damping: 40,
+                            mass: 0.5,
+                          }}
+                        />
+                      )}
+                    </AnimatePresence>
+                  </LazyMotion>
 
                   {/* 아이콘 레이어 */}
                   <span

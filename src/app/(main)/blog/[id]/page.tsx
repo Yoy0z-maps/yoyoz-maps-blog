@@ -1,9 +1,9 @@
-import TipTapViewer from "@/components/blog/id/TipTapViewer";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import NavHighlighter from "@/components/NavHighlighter";
 import { API_SERVER_ADDRESS } from "@/constant/api_address";
 import { Post } from "@/types/post";
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 
 export async function generateMetadata({
   params,
@@ -29,6 +29,18 @@ export async function generateMetadata({
     },
   };
 }
+
+const TipTapViewer = dynamic(
+  () => import("@/components/blog/id/TipTapViewer"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full flex items-center justify-center h-screen">
+        <LoadingSpinner />
+      </div>
+    ),
+  }
+);
 
 export default async function Page({ params }: { params: { id: string } }) {
   const post = await fetch(`${API_SERVER_ADDRESS}/posts/${params.id}/`, {

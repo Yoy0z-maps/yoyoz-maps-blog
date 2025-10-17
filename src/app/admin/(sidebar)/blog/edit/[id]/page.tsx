@@ -1,6 +1,19 @@
-import TipTapEditor from "@/components/admin/blog/TipTapEditor";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import NavHighlighter from "@/components/NavHighlighter";
 import { API_SERVER_ADDRESS } from "@/constant/api_address";
+import dynamic from "next/dynamic";
+
+const TipTapEditor = dynamic(
+  () => import("@/components/admin/blog/TipTapEditor"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full flex items-center justify-center h-screen">
+        <LoadingSpinner />
+      </div>
+    ),
+  }
+);
 
 const getPostData = async (id: string) => {
   const response = await fetch(`${API_SERVER_ADDRESS}/posts/${id}`, {
