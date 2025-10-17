@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://yoy0z-maps.com/projects</loc><lastmod>2025-06-15T06:35:08.083Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yoy0z-maps.com</loc><lastmod>2025-06-15T06:35:08.083Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yoy0z-maps.com/rovoca/privacy</loc><lastmod>2025-06-15T06:35:08.083Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yoy0z-maps.com</loc><lastmod>2025-10-17T02:37:13.813Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yoy0z-maps.com/projects</loc><lastmod>2025-10-17T02:37:13.814Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yoy0z-maps.com/rovoca/privacy</loc><lastmod>2025-10-17T02:37:13.814Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>https://yoy0z-maps.com/project</loc></url>
 <url><loc>https://yoy0z-maps.com/blog</loc></url>
+<url><loc>https://yoy0z-maps.com/blog/b1085e19-f8df-4fb0-99e8-4776897b88e1</loc><lastmod>2025-09-08T05:47:01.086Z</lastmod></url>
 <url><loc>https://yoy0z-maps.com/blog/0ed8ba6a-7cb0-408a-90e1-99f9c46cf992</loc><lastmod>2025-06-13T08:26:24.058Z</lastmod></url>
 <url><loc>https://yoy0z-maps.com/blog/dc8c6d0c-4769-45f9-a603-cb7a13a72d94</loc><lastmod>2025-05-22T10:03:13.931Z</lastmod></url>
 <url><loc>https://yoy0z-maps.com/blog/1a56de6d-63c5-4251-ae7f-a64f882661f1</loc><lastmod>2025-04-23T04:03:21.311Z</lastmod></url>
