@@ -26,6 +26,7 @@
     "@tiptap/extension-text-style": "^2.11.5",
     "@tiptap/react": "^2.11.5",
     "@tiptap/starter-kit": "^2.11.5",
+    "@yoy0z-maps/react-liquid-glass": "^1.0.0",
     "dotenv": "^16.5.0",
     "lowlight": "^3.3.0",
     "motion": "^12.4.3",
