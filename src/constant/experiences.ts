@@ -1,10 +1,25 @@
 export const EXPERIENCES = [
   {
-    year: "2024.05 - Present",
+    year: "2025.09 - 2025.12",
+    role: "Fullstack Developer",
+    company: "TACO (China)",
+    description_en: `I developed a desktop application using Electron. I was responsible for data visualization using nodes and edges with d3-force, implementing LLM-powered agent features, and managing a local database with Dexie.js. On the backend, I handled real-time chat functionality using Server-Sent Events (SSE) as well as user management features.`,
+    description_ko: `Electron을 사용하여 데스크탑 애플리케이션을 구현했습니다. 3d-force를 사용하여 노드, 엣지를 통한 데이터 시각화, LLM을 통한 Agent 기능 및 dexie를 통해 로컬 DB 관리 기능을 담당했습니다. 백엔드에서는 SSE를 통한 채팅 기능, 유저 관리 기능을 담당했습니다.`,
+    technologies: [
+      "TypeScript",
+      "React",
+      "Electron",
+      "IndexedDB",
+      "Express.js",
+      "MongoDB",
+    ],
+  },
+  {
+    year: "2024.05 - 2025.06",
     role: "Frontend Developer",
     company: "iStay (China)",
     description_en: `I was responsible for the development and maintenance of front-end for both web and mobile applications using TypeScript. Additionally, I continuously worked on improving the user experience (UX) and performed various tasks such as developing plugins and publishing components to npm for modifying iOS and Android native code.`,
-    description_ko: `타입스크립트를 기반으로 Next.js와 React.js를 사용하여 웹 및 모바일 애플리케이션의 개발 및 유지 보수를 담당했습니다. 또한, 사용자 경험(UX)을 개선하고 다양한 작업을 수행하여 iOS 및 Android 네이티브 코드를 수정하기 위한 npm 플러그인 개발 및 게시판 구성 요소를 개발했습니다.`,
+    description_ko: `타입스크립트를 기반으로 Next.js와 React를 사용하여 웹 및 모바일 애플리케이션의 개발 및 유지 보수를 담당했습니다. 또한, 사용자 경험(UX)을 개선하고 다양한 작업을 수행하여 iOS 및 Android 네이티브 코드를 수정하기 위한 npm 플러그인 개발 및 게시판 구성 요소를 개발했습니다.`,
     technologies: [
       "TypeScript",
       "React",
@@ -15,7 +30,7 @@ export const EXPERIENCES = [
     ],
   },
   {
-    year: "2025.07 - 2024.08",
+    year: "2025.07 - 2025.08",
     role: "Learner",
     company: "POSTECH@Apple Academy Foundation Program",
     description_en: `Responsible for backend architecture design and implementation, server deployment, and served as team leader overseeing frontend code reviews and project management.`,
