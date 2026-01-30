@@ -1,158 +1,171 @@
+import React from "react";
+
 export default function PrivacyPage() {
-  const lastUpdated = "2026-01-28";
+  const lastUpdated = "2026-01-30";
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-12 bg-white text-gray-800 leading-relaxed">
+    <div className="max-w-4xl mx-auto px-6 py-12 bg-white text-gray-800 leading-relaxed font-sans">
       {/* Header */}
       <header className="border-b pb-8 mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <h1 className="text-4xl font-extrabold text-gray-900 mb-4">
           Privacy Policy
         </h1>
-        <p className="text-sm text-gray-500">Effective Date: {lastUpdated}</p>
+        <p className="text-sm text-gray-500 font-medium">
+          Effective Date: {lastUpdated}
+        </p>
       </header>
 
-      <section className="space-y-8">
+      <section className="space-y-10">
         {/* Introduction */}
-        {/* 텍스트 부분을 아래와 같이 {` `}로 감싸주세요 */}
         <div>
-          <p>
+          <p className="text-lg">
             {`This privacy policy applies to the `}
-            <span className="font-semibold text-primary">
-              Fine Studio (Guitar Tuner, Metronome, Chord Dictonary)
+            <span className="font-bold text-blue-600">
+              Fine Studio (Guitar Tuner, Metronome, Chord Dictionary)
             </span>
-            {` app (hereby referred to as "Application") for mobile devices that was created by `}
-            <span className="font-semibold">YOHAN HAN</span>
-            {` (hereby referred to as "Service Provider") as an Ad Supported service. This service is intended for use "AS IS".`}
+            {` application (hereby referred to as "Application") for mobile devices created by `}
+            <span className="font-bold text-gray-900">YOHAN HAN</span>
+            {` (hereby referred to as "Service Provider"). This service is provided as an Ad Supported service and is intended for use "AS IS".`}
           </p>
         </div>
 
-        {/* Information Collection and Use */}
+        {/* Information Collection and Use (Google Login Data Added) */}
         <div>
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-3">
             Information Collection and Use
           </h2>
           <p className="mb-4">
-            The Application collects information when you download and use it.
-            This information may include:
+            The Application collects certain information to provide a better
+            user experience, especially when using features like Google Sign-in:
           </p>
-          <ul className="list-disc pl-6 space-y-2 text-gray-700">
-            <li>{`Your device's Internet Protocol address (e.g. IP address)`}</li>
+          <ul className="list-disc pl-6 space-y-3 text-gray-700">
             <li>
-              The pages of the Application that you visit, the time and date of
-              your visit, the time spent on those pages
+              <span className="font-semibold text-gray-900">
+                Personal Information:
+              </span>
+              {` When you use Google Sign-in, we collect your `}
+              <span className="underline decoration-blue-300">
+                Name, Email Address, and unique User ID
+              </span>
+              {` to provide account-based features and synchronization.`}
             </li>
-            <li>The total time spent on the Application</li>
-            <li>The operating system you use on your mobile device</li>
+            <li>
+              <span className="font-semibold text-gray-900">Usage Data:</span>
+              {` Information about how you use the Application, such as pages visited and time spent on the Application.`}
+            </li>
+            <li>
+              <span className="font-semibold text-gray-900">
+                Device Information:
+              </span>
+              {` Operating system version and basic device identifiers.`}
+            </li>
           </ul>
-          <p className="mt-4 italic text-sm text-gray-600">
-            * The Application does not gather precise information about the
-            location of your mobile device.
+        </div>
+
+        {/* User Data Deletion Rights (Crucial for Google Play) */}
+        <div className="p-6 bg-red-50 rounded-2xl border border-red-100">
+          <h2 className="text-2xl font-bold text-red-900 mb-4">
+            User Data Deletion Rights
+          </h2>
+          <p className="mb-4 text-red-800">
+            {`We value your privacy and provide clear ways for you to delete your data:`}
           </p>
+          <ul className="list-disc pl-6 space-y-3 text-red-800">
+            <li>
+              <strong>In-App Deletion:</strong>{" "}
+              {`You can delete your account and all associated data (Name, Email, Usage records) by navigating to the `}
+              <span className="font-bold underline">
+                Settings &gt; Delete Account
+              </span>
+              {` menu within the Application.`}
+            </li>
+            <li>
+              <strong>Request via Email:</strong>{" "}
+              {`You may also request data deletion by contacting us at `}
+              <a
+                href="mailto:work.johnhan@gmail.com"
+                className="font-bold underline"
+              >
+                work.johnhan@gmail.com
+              </a>
+              {`. We will verify your identity and delete all your personal information from our servers within 7 business days.`}
+            </li>
+          </ul>
         </div>
 
         {/* Third Party Access */}
-        <div className="p-6 bg-gray-50 rounded-xl border border-gray-100">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
+        <div className="p-6 bg-gray-50 rounded-2xl border border-gray-100">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
             Third Party Access
           </h2>
           <p className="mb-4">
-            Only aggregated, anonymized data is periodically transmitted to
-            external services to aid the Service Provider in improving the
-            Application and their service. The Application utilizes third-party
-            services that have their own Privacy Policy:
+            The Application utilizes third-party services that have their own
+            Privacy Policies to monitor usage and display advertisements:
           </p>
-          <a
-            href="https://support.google.com/admob/answer/6128543?hl=en"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline font-medium inline-flex items-center"
-          >
-            AdMob Privacy Policy &rarr;
-          </a>
-        </div>
-
-        {/* Opt-Out Rights */}
-        <div>
-          <h2 className="text-xl font-bold text-gray-900 mb-2">
-            Opt-Out Rights
-          </h2>
-          <p>
-            You can stop all collection of information by the Application easily
-            by uninstalling it. You may use the standard uninstall processes as
-            may be available as part of your mobile device or via the mobile
-            application marketplace or network.
-          </p>
+          <div className="flex items-center space-x-4">
+            <a
+              href="https://support.google.com/admob/answer/6128543?hl=ko"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-blue-600 hover:bg-blue-50 transition-colors shadow-sm"
+            >
+              AdMob Privacy Policy &rarr;
+            </a>
+          </div>
         </div>
 
         {/* Data Retention */}
         <div>
-          <h2 className="text-xl font-bold text-gray-900 mb-2">
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">
             Data Retention Policy
           </h2>
           <p>
-            {`The Service Provider will retain User Provided data for as long as
-            you use the Application and for a reasonable time thereafter. If
-            you'd like them to delete User Provided Data, please contact us at:`}
-            <a
-              href="mailto:work.johnhan@gmail.com"
-              className="text-blue-600 ml-1"
-            >
-              work.johnhan@gmail.com
-            </a>
+            {`The Service Provider will retain User Provided data for as long as you use the Application. Once an account is deleted via the app or by request, the data is purged immediately from our active databases, except for information we are legally required to retain.`}
           </p>
         </div>
 
-        {/* Children */}
+        {/* Children's Privacy */}
         <div>
-          <h2 className="text-xl font-bold text-gray-900 mb-2">Children</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Children</h2>
           <p>
-            The Service Provider does not use the Application to knowingly
-            solicit data from or market to children under the age of 13. In the
-            case we discover a child under 13 has provided personal information,
-            we will immediately delete this from our servers.
+            The Service Provider does not knowingly collect data from children
+            under the age of 13. If we discover that a child under 13 has
+            provided personal information, we will immediately delete it from
+            our servers.
           </p>
         </div>
 
         {/* Security */}
         <div>
-          <h2 className="text-xl font-bold text-gray-900 mb-2">Security</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Security</h2>
           <p>
-            The Service Provider is concerned about safeguarding the
-            confidentiality of your information. We provide physical,
-            electronic, and procedural safeguards to protect information we
-            process and maintain.
-          </p>
-        </div>
-
-        {/* Changes */}
-        <div>
-          <h2 className="text-xl font-bold text-gray-900 mb-2">Changes</h2>
-          <p>
-            This Privacy Policy may be updated from time to time for any reason.
-            You are advised to consult this Privacy Policy regularly for any
-            changes, as continued use is deemed approval of all changes.
+            We provide physical, electronic, and procedural safeguards to
+            protect the information we process. For instance, all data
+            transmitted between the Application and servers is encrypted using
+            industry-standard protocols (HTTPS/TLS).
           </p>
         </div>
 
         {/* Contact Us */}
-        <div className="pt-8 border-t border-gray-100">
-          <h2 className="text-xl font-bold text-gray-900 mb-2">Contact Us</h2>
-          <p className="mb-2">
-            If you have any questions regarding privacy while using the
-            Application, please contact the Service Provider via email:
+        <div className="pt-10 border-t border-gray-200">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Us</h2>
+          <p className="text-lg mb-4">
+            If you have any questions or suggestions about this Privacy Policy,
+            please contact:
           </p>
           <a
             href="mailto:work.johnhan@gmail.com"
-            className="text-lg font-semibold text-blue-600 hover:text-blue-800"
+            className="text-2xl font-bold text-blue-600 hover:text-blue-800 underline decoration-2 underline-offset-4"
           >
             work.johnhan@gmail.com
           </a>
         </div>
       </section>
 
-      <footer className="mt-12 text-center text-xs text-gray-400">
-        <p>
-          This privacy policy page was generated by App Privacy Policy Generator
+      <footer className="mt-20 pt-8 border-t border-gray-100 text-center text-sm text-gray-400">
+        <p>© 2026 YOHAN HAN. All rights reserved.</p>
+        <p className="mt-2">
+          This privacy policy was generated for Fine Studio.
         </p>
       </footer>
     </div>
