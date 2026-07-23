@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import MobileBlockOverlay from "@/components/MobileBlockOverlay";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -19,7 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <MobileBlockOverlay />
+      </body>
     </html>
   );
 }
