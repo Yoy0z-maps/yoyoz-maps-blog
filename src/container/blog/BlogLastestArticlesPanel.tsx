@@ -4,30 +4,63 @@ import Article from "@/container/blog/Article";
 
 import BlogCategory from "./BlogCategory";
 import BlogArticleSearchBar from "@/components/blog/BlogArticleSearchBar";
-import { Post } from "@/types/post";
-import { useEffect, useState } from "react";
+import { BlogPost } from "@/types/post";
+import { useMemo, useState } from "react";
 import { Category } from "@/types/category";
+
+const DESIGN_TAGS = new Set([
+  "UI/UX",
+  "Figma",
+  "Web Design",
+  "Design System",
+  "Interaction Design",
+  "Typography",
+  "Animation",
+]);
+
+const LIFE_TAGS = new Set([
+  "Career",
+  "Internship",
+  "Portfolio",
+  "Retrospective",
+  "Productivity",
+]);
+
+function matchesCategory(post: BlogPost, category: Category) {
+  if (category === "ALL") return true;
+  if (category === "DESIGN") {
+    return post.tags.some((tag) => DESIGN_TAGS.has(tag));
+  }
+  if (category === "LIFE") {
+    return post.tags.some((tag) => LIFE_TAGS.has(tag));
+  }
+
+  return (
+    !post.tags.some((tag) => DESIGN_TAGS.has(tag)) &&
+    !post.tags.some((tag) => LIFE_TAGS.has(tag))
+  );
+}
 
 export default function BlogLastestArticlesPanel({
   contents,
 }: {
-  contents: { results: Post[]; count: number };
+  contents: BlogPost[];
 }) {
   const [activeCategory, setActiveCategory] = useState<Category>("ALL");
-  const [filteredContents, setFilteredContents] = useState<Post[]>(
-    contents.results
-  );
+  const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    console.log(activeCategory);
-    if (activeCategory === "ALL") {
-      setFilteredContents(contents.results);
-    } else {
-      setFilteredContents(
-        contents.results.filter((item) => item.category === activeCategory)
+  const filteredContents = useMemo(() => {
+    const normalizedSearchTerm = searchTerm.trim().toLocaleLowerCase();
+
+    return contents.filter((post) => {
+      if (!matchesCategory(post, activeCategory)) return false;
+      if (!normalizedSearchTerm) return true;
+
+      return [post.title, post.description, ...post.tags].some((value) =>
+        value.toLocaleLowerCase().includes(normalizedSearchTerm),
       );
-    }
-  }, [activeCategory, contents]);
+    });
+  }, [activeCategory, contents, searchTerm]);
 
   return (
     <div className="mt-16 flex flex-col items-center">
@@ -39,11 +72,14 @@ export default function BlogLastestArticlesPanel({
           activeCategory={activeCategory}
           setActiveCategory={setActiveCategory}
         />
-        <BlogArticleSearchBar />
+        <BlogArticleSearchBar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+        />
       </div>
       <div className="grid grid-cols-2 xl:grid-cols-3 gap-y-6 lg:gap-x-28 xl:gap-x-28  2xl:gap-x-52 pt-16">
         {filteredContents.map((item) => (
-          <Article key={item.id} item={item} />
+          <Article key={item.link} item={item} />
         ))}
       </div>
     </div>

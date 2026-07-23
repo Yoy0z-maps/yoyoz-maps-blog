@@ -1,32 +1,50 @@
 import LoadingSpinner from "@/components/LoadingSpinner";
 import NavHighlighter from "@/components/NavHighlighter";
-import { API_SERVER_ADDRESS } from "@/constant/api_address";
-import { BLOG_BUCKET } from "@/constant/blog_bucket";
+import { DEFAULT_BLOG_THUMBNAIL } from "@/constant/blog";
 import BlogLastestArticlesPanel from "@/container/blog/BlogLastestArticlesPanel";
 import BlogMainPanel from "@/container/blog/BlogMainPanel";
-import { Post } from "@/types/post";
+import { BlogPost } from "@/types/post";
 
-const fetchBucketPosts = async () => {
-  const res = await Promise.all(
-    BLOG_BUCKET.map((item) =>
-      fetch(`${API_SERVER_ADDRESS}/posts/${item.target}/`).then((res) =>
-        res.json()
-      )
-    )
-  );
-  return res as unknown as Post[];
-};
+import fs from "node:fs/promises";
+import path from "node:path";
 
-const fetchAllPosts = async () => {
-  const res = await fetch(`${API_SERVER_ADDRESS}/posts`, {
-    cache: "no-cache",
+export const dynamic = "force-dynamic";
+
+async function getPosts(): Promise<BlogPost[]> {
+  const filePath = path.join(process.cwd(), "public", "posts.json");
+  const file = await fs.readFile(filePath, "utf-8");
+  const posts = JSON.parse(file) as Array<
+    Omit<BlogPost, "thumbnail"> & {
+      thumbnail?: string;
+      image?: string;
+    }
+  >;
+
+  return posts.map(({ image, ...post }) => {
+    return {
+      ...post,
+      thumbnail: post.thumbnail || image || DEFAULT_BLOG_THUMBNAIL,
+    };
   });
-  return res.json();
-};
+}
+
+function pickRandomPosts(posts: BlogPost[], count: number) {
+  const shuffledPosts = [...posts];
+
+  for (let index = shuffledPosts.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffledPosts[index], shuffledPosts[randomIndex]] = [
+      shuffledPosts[randomIndex],
+      shuffledPosts[index],
+    ];
+  }
+
+  return shuffledPosts.slice(0, count);
+}
 
 export default async function Page() {
-  const bucket_posts = await fetchBucketPosts();
-  const posts = await fetchAllPosts();
+  const posts = await getPosts();
+  const featuredPosts = pickRandomPosts(posts, 4);
 
   return (
     <div
@@ -39,7 +57,7 @@ export default async function Page() {
         </div>
       ) : (
         <>
-          <BlogMainPanel contents={bucket_posts} />
+          <BlogMainPanel contents={featuredPosts} />
           <BlogLastestArticlesPanel contents={posts} />
         </>
       )}

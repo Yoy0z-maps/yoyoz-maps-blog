@@ -12,10 +12,15 @@ const nextConfig = {
         hostname: "yoy0z-maps-blog-bucket.s3.ap-northeast-2.amazonaws.com",
         pathname: "/**", // 모든 경로 허용 (필요에 따라 제한 가능)
       },
+      {
+        protocol: "https",
+        hostname: "velog.velcdn.com",
+        pathname: "/images/**",
+      },
     ],
   },
 };
 
 export default withBundleAnalyzer({ enabled: process.env.ANALYZE === "true" })(
-  nextConfig
+  nextConfig,
 );

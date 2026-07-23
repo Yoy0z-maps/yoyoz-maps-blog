@@ -1,3 +1,19 @@
+export type BlogPost = {
+  title: string;
+  link: string;
+  pubDate: string;
+  isoDate: string;
+  description: string;
+  tags: string[];
+  thumbnail: string;
+};
+
+export type PostForTagging = {
+  id: string;
+  title: string;
+  description: string;
+};
+
 export interface Post {
   id: string;
   title: string;
