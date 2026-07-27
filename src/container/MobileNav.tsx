@@ -1,17 +1,17 @@
 "use client";
 
-import { useState } from "react";
 import { FaBloggerB } from "react-icons/fa";
 import { FaProjectDiagram } from "react-icons/fa";
-
 import { MdHome } from "react-icons/md";
+import { MdTravelExplore } from "react-icons/md";
 import { LazyMotion, m, AnimatePresence } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export const MOBILENAV = [
   { id: 0, href: "/", icon: <MdHome size={18} /> },
-  { id: 1, href: "/projects", icon: <FaProjectDiagram size={18} /> },
-  { id: 2, href: "/blog", icon: <FaBloggerB size={18} /> },
+  { id: 1, href: "/trip", icon: <MdTravelExplore size={18} /> },
+  { id: 2, href: "/projects", icon: <FaProjectDiagram size={18} /> },
+  { id: 3, href: "/blog", icon: <FaBloggerB size={18} /> },
 ];
 
 const loadFeatures = () => import("framer-motion").then((m) => m.domAnimation);
@@ -26,12 +26,11 @@ export default function MobileNav() {
   //   setIsOpen((prevIsOpen) => !prevIsOpen);
   // };
 
-  const [navIndex, setNavIndex] = useState(0);
   const router = useRouter();
+  const pathname = usePathname();
 
-  function handleNavigationButtonClick(index: number) {
-    setNavIndex(index);
-    router.push(MOBILENAV[index].href);
+  function handleNavigationButtonClick(href: string) {
+    router.push(href);
   }
 
   return (
@@ -41,14 +40,19 @@ export default function MobileNav() {
       <div className="fixed bottom-16 w-full z-50 flex justify-center items-center md:hidden">
         <div className="relative flex w-[90%] items-center justify-center rounded-full bg-white/20 border border-white/30 p-1 shadow-lg backdrop-blur-md dark:bg-gray-800/40 dark:border-gray-600/30 dark:shadow-lg dark:backdrop-blur-md">
           {/* 그리드로 각 아이템을 같은 너비로 배치 */}
-          <div className="grid w-full grid-cols-3 gap-1 relative">
-            {MOBILENAV.map((nav, index) => {
-              const isActive = navIndex === index;
+          <div
+            className="relative grid w-full gap-1"
+            style={{
+              gridTemplateColumns: `repeat(${MOBILENAV.length}, minmax(0, 1fr))`,
+            }}
+          >
+            {MOBILENAV.map((nav) => {
+              const isActive = pathname === nav.href;
               return (
                 <button
                   key={nav.id}
                   type="button"
-                  onClick={() => handleNavigationButtonClick(index)}
+                  onClick={() => handleNavigationButtonClick(nav.href)}
                   className="relative h-10 w-full rounded-full focus:outline-none"
                   aria-current={isActive ? "page" : undefined}
                 >

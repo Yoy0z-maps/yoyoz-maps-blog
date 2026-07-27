@@ -4,9 +4,9 @@
 
 @font-face {
   font-family: "Pretendard";
-  src: url("/fonts/pretendard-variable.woff2") format("woff2-variations");
-  font-weight: 100 900;
+  src: url("/fonts/pretendard-variable.woff2") format("woff2");
   font-style: normal;
+  font-weight: 100 900;
   font-display: swap;
 }
 
@@ -27,7 +27,175 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: "Pretendard";
+  font-family: "Pretendard", sans-serif;
+}
+
+.trip-page {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.72),
+      rgba(255, 255, 255, 0.94)
+    ),
+    #f5ede4;
+}
+
+.dark .trip-page {
+  background:
+    linear-gradient(180deg, rgba(3, 3, 3, 0.7), rgba(3, 3, 3, 0.94)), #050505;
+}
+
+.trip-page-glow {
+  background: radial-gradient(
+    circle at center,
+    rgba(253, 97, 98, 0.12),
+    transparent 58%
+  );
+}
+
+.dark .trip-page-glow {
+  background: radial-gradient(
+    circle at center,
+    rgba(253, 97, 98, 0.16),
+    transparent 58%
+  );
+}
+
+.trip-map {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trip-map svg {
+  width: 100%;
+  height: 100%;
+}
+
+.trip-map circle {
+  fill: #df7274;
+  cursor: default;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    fill 0.45s ease,
+    filter 0.45s ease,
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+.dark .trip-map circle {
+  fill: #fd6162;
+}
+
+.trip-map circle.trip-highlight:hover {
+  fill: #ffffff;
+  transform: scale(1.55);
+}
+
+.trip-map circle.trip-highlight {
+  fill: #ffffff;
+  cursor: pointer;
+  filter: drop-shadow(0 0 9px rgba(250, 115, 115, 0.5));
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dark .trip-map circle.trip-highlight {
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.85));
+}
+
+.trip-map circle.trip-highlight:focus {
+  outline: none;
+}
+
+.trip-map circle.trip-highlight:focus-visible {
+  fill: #ffffff;
+  filter: drop-shadow(0 0 10px rgba(250, 115, 115, 0.65));
+  outline: none;
+  transform: scale(1.55);
+}
+
+.dark .trip-map circle.trip-highlight:focus-visible {
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.95));
+}
+
+.trip-map circle.trip-selected {
+  fill: #ffffff;
+  filter: drop-shadow(0 0 12px rgba(250, 115, 115, 0.62));
+  transform: scale(1.85);
+}
+
+.dark .trip-map circle.trip-selected {
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.95));
+}
+
+.trip-ticket {
+  --trip-ticket-notch-size: 12px;
+  --trip-ticket-border-color: rgba(15, 23, 42, 0.1);
+  animation: tripTicketPop 0.28s ease-out;
+  border: 1px solid var(--trip-ticket-border-color);
+  filter: drop-shadow(0 18px 60px rgba(166, 109, 87, 0.18));
+  /* 티켓 양측 사이드 반원 구멍 */
+  /*
+  -webkit-mask: mask의 웹킷 전용 버전 (Safari 일부 웹킷 계열 브라우저 호환을 위해 사용)
+  mask: 표준 CSS 속성 (투명한 부분은 요소를 숨기고, 불투명한 부분은 요소를 보이게 만든다)
+  radial-gradient: 원형/타원형 그라디언트 이미지 만드는 함수
+  (우측 중앙에 반지금 12px, 원 안쪽은 투명하고 원 바깥은 불투명한 이미지)
+  (마스크를 우측 중앙에 배치, 마스크 레이어는 가로 51% 세로 100% => 반원 만들기)
+  */
+  -webkit-mask:
+    radial-gradient(
+        circle var(--trip-ticket-notch-size) at left center,
+        transparent 98%,
+        #000 100%
+      )
+      left center / 51% 100% no-repeat,
+    radial-gradient(
+        circle var(--trip-ticket-notch-size) at right center,
+        transparent 98%,
+        #000 100%
+      )
+      right center / 51% 100% no-repeat;
+  mask:
+    radial-gradient(
+        circle var(--trip-ticket-notch-size) at left center,
+        transparent 98%,
+        #000 100%
+      )
+      left center / 51% 100% no-repeat,
+    radial-gradient(
+        circle var(--trip-ticket-notch-size) at right center,
+        transparent 98%,
+        #000 100%
+      )
+      right center / 51% 100% no-repeat;
+}
+
+.trip-ticket::before,
+.trip-ticket::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: calc(var(--trip-ticket-notch-size) * 2);
+  height: calc(var(--trip-ticket-notch-size) * 2);
+  border: 1px solid var(--trip-ticket-border-color);
+  border-radius: 9999px;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+.trip-ticket::before {
+  left: calc(var(--trip-ticket-notch-size) * -1);
+}
+
+.trip-ticket::after {
+  right: calc(var(--trip-ticket-notch-size) * -1);
+}
+
+.dark .trip-ticket {
+  --trip-ticket-border-color: rgba(255, 255, 255, 0.15);
+  filter: drop-shadow(0 24px 90px rgba(0, 0, 0, 0.45));
 }
 
 .tiptap {
@@ -126,6 +294,17 @@ body {
   100% {
     opacity: 0;
     transform: translateY(-30px) scale(0.8);
+  }
+}
+
+@keyframes tripTicketPop {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 

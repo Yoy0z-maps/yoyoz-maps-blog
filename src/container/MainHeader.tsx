@@ -4,6 +4,7 @@ import LanguageSelector from "@/components/header/LanguageSelector";
 
 const navigationItems = [
   { href: "/", text: "HOME" },
+  { href: "/trip", text: "TRIP" },
   { href: "/projects", text: "PROJECTS" },
   { href: "/blog", text: "BLOG" },
 ];
