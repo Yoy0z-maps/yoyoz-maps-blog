@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://yoy0z-maps.com/fine-studio/terms-of-use</loc><lastmod>2026-07-23T05:26:03.833Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yoy0z-maps.com/fine-studio/privacy</loc><lastmod>2026-07-23T05:26:03.834Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yoy0z-maps.com/rovoca/privacy</loc><lastmod>2026-07-23T05:26:03.834Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yoy0z-maps.com/npm/liquid-glass</loc><lastmod>2026-07-23T05:26:03.834Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yoy0z-maps.com/trip</loc><lastmod>2026-07-23T05:26:03.834Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yoy0z-maps.com/projects</loc><lastmod>2026-07-23T05:26:03.834Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://yoy0z-maps.com</loc><lastmod>2026-07-23T05:26:03.834Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yoy0z-maps.com/fine-studio/privacy</loc><lastmod>2026-07-28T13:28:54.093Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yoy0z-maps.com/fine-studio/terms-of-use</loc><lastmod>2026-07-28T13:28:54.094Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yoy0z-maps.com/rovoca/privacy</loc><lastmod>2026-07-28T13:28:54.094Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yoy0z-maps.com/trip</loc><lastmod>2026-07-28T13:28:54.094Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yoy0z-maps.com/npm/liquid-glass</loc><lastmod>2026-07-28T13:28:54.094Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yoy0z-maps.com/trip/upload</loc><lastmod>2026-07-28T13:28:54.094Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yoy0z-maps.com/projects</loc><lastmod>2026-07-28T13:28:54.094Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://yoy0z-maps.com</loc><lastmod>2026-07-28T13:28:54.094Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 <url><loc>https://yoy0z-maps.com/project</loc></url>
 <url><loc>https://yoy0z-maps.com/blog</loc></url>
 </urlset>

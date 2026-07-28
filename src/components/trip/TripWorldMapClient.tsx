@@ -2,135 +2,25 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import TripAirportTicket from "@/components/trip/TripAirportTicket";
-
-type HighlightAirport = {
-  airport: string;
-  city: string;
-  code: string;
-  country: string;
-  cx: number;
-  cy: number;
-};
+import {
+  decorateTripMapSvg,
+  TRIP_REGIONS_BY_KEY,
+  type TripRegion,
+} from "@/constant/tripRegions";
 
 type ActiveTicket = {
-  airport: HighlightAirport;
+  airport: TripRegion;
   circleKey: string;
   left: number;
   top: number;
 };
 
-const HIGHLIGHT_AIRPORTS: HighlightAirport[] = [
-  {
-    airport: "Incheon International Airport",
-    city: "Incheon",
-    code: "ICN",
-    country: "South Korea",
-    cx: 690.5,
-    cy: 198.5,
-  },
-  {
-    airport: "Narita International Airport",
-    city: "Narita",
-    code: "NRT",
-    country: "Japan",
-    cx: 710.8,
-    cy: 205.3,
-  },
-  {
-    airport: "Beijing Capital International Airport",
-    city: "Beijing",
-    code: "PEK",
-    country: "China",
-    cx: 656.6,
-    cy: 191.7,
-  },
-  {
-    airport: "Heathrow Airport",
-    city: "London",
-    code: "LHR",
-    country: "United Kingdom",
-    cx: 392.1,
-    cy: 151,
-  },
-  {
-    airport: "Charles de Gaulle Airport",
-    city: "Paris",
-    code: "CDG",
-    country: "France",
-    cx: 405.6,
-    cy: 171.3,
-  },
-  {
-    airport: "Leonardo da Vinci–Fiumicino Airport",
-    city: "Rome",
-    code: "FCO",
-    country: "Italy",
-    cx: 432.8,
-    cy: 191.7,
-  },
-  {
-    airport: "Zurich Airport",
-    city: "Zurich",
-    code: "ZRH",
-    country: "Switzerland",
-    cx: 426,
-    cy: 171.3,
-  },
-  {
-    airport: "Vienna International Airport",
-    city: "Vienna",
-    code: "VIE",
-    country: "Austria",
-    cx: 439.5,
-    cy: 171.3,
-  },
-  {
-    airport: "Budapest Ferenc Liszt International Airport",
-    city: "Budapest",
-    code: "BUD",
-    country: "Hungary",
-    cx: 453.1,
-    cy: 171.3,
-  },
-];
-
 const TICKET_HEIGHT = 198;
 const TICKET_OFFSET = 20;
 const TICKET_WIDTH = 292;
 
-// 새로운 Map객체 생성 (검색용 인덱스)
-// decorateTripMapSvg()가 SVG의 모든 circle을 다 검사하는데 이때마다 확인해서 (배열이면 시간복잡도가 높음)
-const HIGHLIGHT_AIRPORTS_BY_KEY = new Map(
-  HIGHLIGHT_AIRPORTS.map((airport) => [
-    `${airport.cx.toFixed(1)},${airport.cy.toFixed(1)}`,
-    airport,
-  ]),
-);
-
 function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
-}
-
-function getCoordinateKey(cx: number, cy: number) {
-  return `${cx.toFixed(1)},${cy.toFixed(1)}`;
-}
-
-// SVG에서 HIGHLIGHT_AIRPORT에서 지정한 좌표에 해당하는 circle만 trip-highlight로 변경
-function decorateTripMapSvg(svgMarkup: string) {
-  return svgMarkup.replace(
-    /<circle class="([^"]+)" cx="([0-9.]+)" cy="([0-9.]+)" r="([0-9.]+)"\/>/g,
-    (match, className: string, cxValue: string, cyValue: string) => {
-      const cx = Number(cxValue);
-      const cy = Number(cyValue);
-      const key = getCoordinateKey(cx, cy);
-
-      if (!HIGHLIGHT_AIRPORTS_BY_KEY.has(key)) {
-        return match;
-      }
-
-      return `<circle class="${className} trip-highlight" data-airport-key="${key}" cx="${cxValue}" cy="${cyValue}" r="1.9"/>`;
-    },
-  );
 }
 
 export default function TripWorldMapClient({
@@ -168,7 +58,7 @@ export default function TripWorldMapClient({
         return;
       }
 
-      const airport = HIGHLIGHT_AIRPORTS_BY_KEY.get(circleKey);
+      const airport = TRIP_REGIONS_BY_KEY.get(circleKey);
       const cx = Number(circle.getAttribute("cx"));
       const cy = Number(circle.getAttribute("cy"));
 
@@ -240,7 +130,7 @@ export default function TripWorldMapClient({
     highlightedCircles.forEach((circle) => {
       const circleKey = circle.getAttribute("data-airport-key");
       const airport = circleKey
-        ? HIGHLIGHT_AIRPORTS_BY_KEY.get(circleKey)
+        ? TRIP_REGIONS_BY_KEY.get(circleKey)
         : null;
 
       if (!airport) return;
