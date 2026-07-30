@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { MdClose, MdFlightTakeoff } from "react-icons/md";
+import TripPhotoJourneyModal from "@/components/trip/TripPhotoJourneyModal";
 
 type TripAirportTicketProps = {
   airport: {
@@ -30,17 +31,26 @@ const PHOTO_LAYER_STYLES = [
   "left-6 top-3 -rotate-[6deg]",
 ] as const;
 
-function generateBarcodeModules() {
+function generateBarcodeModules(seed: string) {
   const modules: Array<{ type: "bar" | "space"; width: number }> = [];
+  let seedValue = Array.from(seed).reduce(
+    (total, character) => total + character.charCodeAt(0),
+    0,
+  );
+
+  function seededRandom() {
+    seedValue = (seedValue * 9301 + 49297) % 233280;
+    return seedValue / 233280;
+  }
 
   for (let index = 0; index < 30; index += 1) {
     modules.push({
       type: "bar",
-      width: Math.random() < 0.2 ? 1 : Math.floor(Math.random() * 4) + 1,
+      width: seededRandom() < 0.2 ? 1 : Math.floor(seededRandom() * 4) + 1,
     });
     modules.push({
       type: "space",
-      width: Math.floor(Math.random() * 2) + 1,
+      width: Math.floor(seededRandom() * 2) + 1,
     });
   }
 
@@ -53,9 +63,11 @@ export default function TripAirportTicket({
   top,
   onClose,
 }: TripAirportTicketProps) {
+  const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);
+  const [initialPhotoIndex, setInitialPhotoIndex] = useState(0);
   const status = useMemo(
     () =>
-      Math.random() < 0.8
+      airport.code.charCodeAt(0) % 5 !== 0
         ? {
             label: "Boarding",
             className: "text-emerald-600 dark:text-emerald-400",
@@ -68,120 +80,142 @@ export default function TripAirportTicket({
   );
 
   const barcodeModules = useMemo(
-    () => generateBarcodeModules(),
+    () => generateBarcodeModules(airport.code),
     [airport.code],
   );
 
   return (
-    <div className="pointer-events-none absolute inset-0 z-20">
-      <div
-        className="trip-ticket pointer-events-auto absolute w-[292px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-[28px] bg-white/95 text-slate-900 dark:bg-[#131313]/94 dark:text-white"
-        style={{
-          left,
-          top,
-        }}
-      >
-        <div className="flex items-start justify-between px-5 pb-4 pt-5">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.35em] text-slate-400 dark:text-neutral-500">
-              Trip Ticket
-            </p>
-            <div className="mt-2 flex items-center gap-3">
-              <p className="text-4xl font-black tracking-[0.18em] text-slate-950">
-                {airport.code}
-              </p>
-              <div className="h-px w-10 border-t border-dashed border-slate-300 dark:border-neutral-700" />
-              <MdFlightTakeoff className="text-[#fd6162]" size={24} />
-            </div>
-          </div>
-
-          <button
-            aria-label="Close airport ticket"
-            className="rounded-full bg-slate-100 p-1 text-slate-500 transition-colors duration-300 hover:bg-slate-200 hover:text-slate-900 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
-            onClick={onClose}
-            type="button"
-          >
-            <MdClose size={18} />
-          </button>
-        </div>
-
-        <div className="border-y border-dashed border-slate-200 px-5 py-4 dark:border-neutral-800">
-          <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+    <>
+      <div className="pointer-events-none absolute inset-0 z-20">
+        <div
+          className="trip-ticket pointer-events-auto absolute w-[292px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-[28px] bg-white/95 text-slate-900 dark:bg-[#131313]/94 dark:text-white"
+          style={{
+            left,
+            top,
+          }}
+        >
+          <div className="flex items-start justify-between px-5 pb-4 pt-5">
             <div>
-              <p className="text-[10px] uppercase tracking-[0.25em] text-slate-400 dark:text-neutral-500">
-                Airport
+              <p className="text-[10px] uppercase tracking-[0.35em] text-slate-400 dark:text-neutral-500">
+                Trip Ticket
               </p>
-              <p className="mt-1 text-sm font-semibold leading-5 text-slate-900">
-                {airport.airport}
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.25em] text-slate-400 dark:text-neutral-500">
-                Country
-              </p>
-              <p className="mt-1 text-sm font-semibold text-slate-900">
-                {airport.country}
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.25em] text-slate-400 dark:text-neutral-500">
-                City
-              </p>
-              <p className="mt-1 text-sm font-semibold text-slate-900">
-                {airport.city}
-              </p>
-            </div>
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.25em] text-slate-400 dark:text-neutral-500">
-                Status
-              </p>
-              <p className={`mt-1 text-sm font-semibold ${status.className}`}>
-                {status.label}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex items-end gap-4 px-5 py-4">
-          <div className="relative h-[64px] w-[68px] shrink-0">
-            {TICKET_PHOTOS.map((photo, index) => (
-              <div
-                key={photo}
-                className={`absolute h-11 w-11 overflow-hidden rounded-[12px] border border-white/80 bg-slate-200 shadow-[0_8px_18px_rgba(15,23,42,0.16)] transition-transform duration-300 ease-out hover:z-20 hover:-translate-y-1.5 hover:scale-[1.04] hover:shadow-[0_14px_28px_rgba(15,23,42,0.22)] dark:border-white/20 dark:bg-neutral-800 ${PHOTO_LAYER_STYLES[index]}`}
-              >
-                <Image
-                  alt={`${airport.city} trip snapshot ${index + 1}`}
-                  className="h-full w-full object-cover"
-                  fill
-                  sizes="44px"
-                  src={photo}
-                />
+              <div className="mt-2 flex items-center gap-3">
+                <p className="text-4xl font-black tracking-[0.18em] text-slate-950">
+                  {airport.code}
+                </p>
+                <div className="h-px w-10 border-t border-dashed border-slate-300 dark:border-neutral-700" />
+                <MdFlightTakeoff className="text-[#fd6162]" size={24} />
               </div>
-            ))}
+            </div>
+
+            <button
+              aria-label="Close airport ticket"
+              className="rounded-full bg-slate-100 p-1 text-slate-500 transition-colors duration-300 hover:bg-slate-200 hover:text-slate-900 dark:bg-neutral-800 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:hover:text-white"
+              onClick={onClose}
+              type="button"
+            >
+              <MdClose size={18} />
+            </button>
           </div>
 
-          <div className="min-w-0 flex-1">
-            <div className="flex h-[64px] items-end rounded-[12px] bg-white/70 px-2 py-2 text-slate-900 dark:bg-white/88">
-              <div
-                aria-hidden="true"
-                className="flex h-full w-full items-stretch overflow-hidden"
-              >
-                {barcodeModules.map((module, index) => (
-                  <span
-                    key={`${module.type}-${index}-${module.width}`}
-                    className={
-                      module.type === "bar" ? "shrink-0 bg-current" : "shrink-0"
-                    }
-                    style={{
-                      flex: `${module.width} 0 0px`,
-                    }}
+          <div className="border-y border-dashed border-slate-200 px-5 py-4 dark:border-neutral-800">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-3">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.25em] text-slate-400 dark:text-neutral-500">
+                  Airport
+                </p>
+                <p className="mt-1 text-sm font-semibold leading-5 text-slate-900">
+                  {airport.airport}
+                </p>
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.25em] text-slate-400 dark:text-neutral-500">
+                  Country
+                </p>
+                <p className="mt-1 text-sm font-semibold text-slate-900">
+                  {airport.country}
+                </p>
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.25em] text-slate-400 dark:text-neutral-500">
+                  City
+                </p>
+                <p className="mt-1 text-sm font-semibold text-slate-900">
+                  {airport.city}
+                </p>
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.25em] text-slate-400 dark:text-neutral-500">
+                  Status
+                </p>
+                <p className={`mt-1 text-sm font-semibold ${status.className}`}>
+                  {status.label}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-end gap-4 px-5 py-4">
+            <div
+              aria-label={`${airport.city} 여행 사진 열기`}
+              className="relative h-[64px] w-[68px] shrink-0"
+              role="group"
+            >
+              {TICKET_PHOTOS.map((photo, index) => (
+                <button
+                  aria-label={`${airport.city} 여행 사진 ${index + 1} 보기`}
+                  className={`group absolute h-11 w-11 overflow-hidden rounded-[12px] border border-white/80 bg-slate-200 shadow-[0_8px_18px_rgba(15,23,42,0.16)] transition-transform duration-300 ease-out hover:z-20 hover:-translate-y-1.5 hover:scale-[1.08] hover:shadow-[0_14px_28px_rgba(15,23,42,0.22)] focus-visible:z-20 focus-visible:-translate-y-1.5 focus-visible:scale-[1.08] dark:border-white/20 dark:bg-neutral-800 ${PHOTO_LAYER_STYLES[index]}`}
+                  key={photo}
+                  onClick={() => {
+                    setInitialPhotoIndex(index);
+                    setIsPhotoModalOpen(true);
+                  }}
+                  type="button"
+                >
+                  <Image
+                    alt=""
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    fill
+                    sizes="44px"
+                    src={photo}
                   />
-                ))}
+                </button>
+              ))}
+            </div>
+
+            <div className="min-w-0 flex-1">
+              <div className="flex h-[64px] items-end rounded-[12px] bg-white/70 px-2 py-2 text-slate-900 dark:bg-white/88">
+                <div
+                  aria-hidden="true"
+                  className="flex h-full w-full items-stretch overflow-hidden"
+                >
+                  {barcodeModules.map((module, index) => (
+                    <span
+                      key={`${module.type}-${index}-${module.width}`}
+                      className={
+                        module.type === "bar"
+                          ? "shrink-0 bg-current"
+                          : "shrink-0"
+                      }
+                      style={{
+                        flex: `${module.width} 0 0px`,
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {isPhotoModalOpen ? (
+        <TripPhotoJourneyModal
+          airport={airport}
+          initialPhotoIndex={initialPhotoIndex}
+          onClose={() => setIsPhotoModalOpen(false)}
+        />
+      ) : null}
+    </>
   );
 }
