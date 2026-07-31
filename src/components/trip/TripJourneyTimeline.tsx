@@ -1,12 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { MdFlight, MdFlightLand, MdFlightTakeoff } from "react-icons/md";
+import { motion, useAnimationControls } from "motion/react";
 
+import TripMorphingPlaneIcon, {
+  TRIP_PLANE_MORPH_DURATION_SECONDS,
+} from "@/components/trip/TripMorphingPlaneIcon";
 import { TRIP_JOURNEY_MOMENTS } from "@/constant/tripPhotoJourney";
 
 type FlightPhase = "landing" | "parked" | "takeoff";
+
+const FLIGHT_DURATION_SECONDS = 1.15;
+const FLIGHT_DURATION_MS = FLIGHT_DURATION_SECONDS * 1000;
+const LANDING_PHASE_AT_MS = 820;
+const PLANE_MORPH_DURATION_MS = TRIP_PLANE_MORPH_DURATION_SECONDS * 1000;
 
 type TripJourneyTimelineProps = {
   activeMomentIndex: number;
@@ -23,6 +30,7 @@ export default function TripJourneyTimeline({
   onMomentSelect,
   prefersReducedMotion,
 }: TripJourneyTimelineProps) {
+  const flightPathControls = useAnimationControls();
   const flightPhaseTimeoutsRef = useRef<number[]>([]);
   const [flight, setFlight] = useState({ from: 0, id: 0, to: 0 });
   const [flightPhase, setFlightPhase] = useState<FlightPhase>("parked");
@@ -55,10 +63,27 @@ export default function TripJourneyTimeline({
     } else {
       setFlightPhase("takeoff");
       flightPhaseTimeoutsRef.current = [
-        window.setTimeout(() => setFlightPhase("landing"), 820),
-        window.setTimeout(() => setFlightPhase("parked"), 1150),
+        window.setTimeout(
+          () => setFlightPhase("landing"),
+          PLANE_MORPH_DURATION_MS + LANDING_PHASE_AT_MS,
+        ),
+        window.setTimeout(
+          () => setFlightPhase("parked"),
+          PLANE_MORPH_DURATION_MS + FLIGHT_DURATION_MS,
+        ),
       ];
     }
+
+    void flightPathControls.start({
+      rotate: prefersReducedMotion ? 0 : [0, -8, 0, 8, 0],
+      scale: prefersReducedMotion ? 1 : [1, 1.08, 1.1, 1.04, 1],
+      transition: {
+        delay: prefersReducedMotion ? 0 : TRIP_PLANE_MORPH_DURATION_SECONDS,
+        duration: prefersReducedMotion ? 0.2 : FLIGHT_DURATION_SECONDS,
+        ease: [0.45, 0, 0.2, 1],
+      },
+      y: prefersReducedMotion ? 0 : [0, -30, -36, -18, 0],
+    });
 
     onMomentSelect(nextIndex);
   }
@@ -70,9 +95,15 @@ export default function TripJourneyTimeline({
         animate={{ width: getTimelinePosition(flight.to) }}
         className="absolute left-0 top-1/2 z-10 h-[2px] -translate-y-1/2 bg-[repeating-linear-gradient(90deg,#fd6162_0_10px,transparent_10px_17px)] drop-shadow-[0_0_5px_rgba(253,97,98,0.55)]"
         initial={{ width: getTimelinePosition(flight.from) }}
-        key={`route-${flight.id}`}
         transition={{
-          duration: prefersReducedMotion || flight.id === 0 ? 0.2 : 1.15,
+          delay:
+            prefersReducedMotion || flight.id === 0
+              ? 0
+              : TRIP_PLANE_MORPH_DURATION_SECONDS,
+          duration:
+            prefersReducedMotion || flight.id === 0
+              ? 0.2
+              : FLIGHT_DURATION_SECONDS,
           ease: [0.45, 0, 0.2, 1],
         }}
       />
@@ -115,60 +146,35 @@ export default function TripJourneyTimeline({
       <motion.div
         animate={{
           left: getTimelinePosition(flight.to),
-          rotate:
-            prefersReducedMotion || flight.id === 0 ? 0 : [0, -8, 0, 8, 0],
-          scale:
-            prefersReducedMotion || flight.id === 0
-              ? 1
-              : [1, 1.08, 1.1, 1.04, 1],
-          y:
-            prefersReducedMotion || flight.id === 0 ? 0 : [0, -30, -36, -18, 0],
         }}
         className="pointer-events-none absolute top-1/2 z-30"
         initial={{
           left: getTimelinePosition(flight.from),
-          rotate: 0,
-          scale: 1,
-          y: 0,
         }}
-        key={flight.id}
         transition={{
-          duration: prefersReducedMotion || flight.id === 0 ? 0.2 : 1.15,
+          delay:
+            prefersReducedMotion || flight.id === 0
+              ? 0
+              : TRIP_PLANE_MORPH_DURATION_SECONDS,
+          duration:
+            prefersReducedMotion || flight.id === 0
+              ? 0.2
+              : FLIGHT_DURATION_SECONDS,
           ease: [0.45, 0, 0.2, 1],
         }}
       >
-        <span className="relative flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#fd6162] shadow-[0_8px_22px_rgba(253,97,98,0.35)] ring-1 ring-[#fd6162]/15 dark:bg-neutral-900">
-          <AnimatePresence initial={false} mode="popLayout">
-            <motion.span
-              animate={{ opacity: 1, rotate: 0, scale: 1 }}
-              className="absolute inset-0 flex items-center justify-center"
-              exit={{ opacity: 0, rotate: 24, scale: 0.55 }}
-              initial={{ opacity: 0, rotate: -24, scale: 0.55 }}
-              key={flightPhase}
-              transition={{
-                duration: prefersReducedMotion ? 0.05 : 0.2,
-                ease: "easeOut",
-              }}
-            >
-              {flightPhase === "takeoff" ? (
-                <MdFlightTakeoff
-                  className={isFlyingBackward ? "-scale-x-100" : ""}
-                  size={21}
-                />
-              ) : flightPhase === "landing" ? (
-                <MdFlightLand
-                  className={isFlyingBackward ? "-scale-x-100" : ""}
-                  size={21}
-                />
-              ) : (
-                <MdFlight
-                  className={isFlyingBackward ? "-rotate-90" : "rotate-90"}
-                  size={19}
-                />
-              )}
-            </motion.span>
-          </AnimatePresence>
-        </span>
+        <motion.div
+          animate={flightPathControls}
+          initial={{ rotate: 0, scale: 1, y: 0 }}
+        >
+          <span className="relative flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#fd6162] shadow-[0_8px_22px_rgba(253,97,98,0.35)] ring-1 ring-[#fd6162]/15 dark:bg-neutral-900">
+            <TripMorphingPlaneIcon
+              isFlyingBackward={isFlyingBackward}
+              isParked={flightPhase === "parked"}
+              prefersReducedMotion={prefersReducedMotion}
+            />
+          </span>
+        </motion.div>
       </motion.div>
     </div>
   );
