@@ -20,7 +20,10 @@ export default function ProjectItem({
   index: number;
 }) {
   return (
-    <motion.div
+    <motion.a
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
       whileHover={{
         scale: 1.1,
         transition: { duration: 0, type: "tween", ease: "easeIn" },
@@ -31,7 +34,7 @@ export default function ProjectItem({
         transition: { duration: project.delay },
       }}
       initial={{ opacity: 0, y: -50 }}
-      className="w-[310px] h-[560px] flex-shrink-0 relative transition-all duration-500"
+      className="w-[310px] h-[560px] flex-shrink-0 relative transition-all duration-500 cursor-pointer block"
       key={index}
     >
       <div className="w-[280px] h-[560px] dark:bg-project-dark border-2 border-gray-300 dark:border-0 absolute left-0 px-4 pt-12 shadow-xl">
@@ -63,6 +66,6 @@ export default function ProjectItem({
           className="w-full h-full object-cover"
         />
       </div>
-    </motion.div>
+    </motion.a>
   );
 }
