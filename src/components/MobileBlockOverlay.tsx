@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 const messages = [
   {
@@ -27,10 +28,19 @@ const messages = [
 
 function isMobileOrTablet(): boolean {
   const ua = navigator.userAgent;
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet/i.test(ua);
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet/i.test(
+    ua,
+  );
 }
 
 export default function MobileBlockOverlay() {
+  const pathname = usePathname();
+  const isAppPage = [
+    "/apps",
+    "/rovoca",
+    "/daily-english-sentence",
+    "/fine-studio",
+  ].some((path) => pathname === path || pathname.startsWith(`${path}/`));
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
 
@@ -46,7 +56,7 @@ export default function MobileBlockOverlay() {
     return () => clearInterval(interval);
   }, [visible]);
 
-  if (!visible) return null;
+  if (!visible || isAppPage) return null;
 
   const msg = messages[index];
 
@@ -149,7 +159,9 @@ export default function MobileBlockOverlay() {
               height: "6px",
               borderRadius: "3px",
               backgroundColor:
-                i === index ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.25)",
+                i === index
+                  ? "rgba(255,255,255,0.9)"
+                  : "rgba(255,255,255,0.25)",
               transition: "all 0.4s ease",
             }}
           />

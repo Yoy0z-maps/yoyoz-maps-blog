@@ -6,6 +6,7 @@ const navigationItems = [
   { href: "/", text: "HOME" },
   { href: "/trip", text: "TRIP" },
   { href: "/projects", text: "PROJECTS" },
+  { href: "/apps", text: "APPS" },
   { href: "/blog", text: "BLOG" },
 ];
 
