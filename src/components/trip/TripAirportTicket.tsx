@@ -1,6 +1,7 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/trip/TripStoredImage";
+import type { TripPhoto } from "@/lib/trip/photos";
 import { useMemo, useState } from "react";
 import { MdClose, MdFlightTakeoff } from "react-icons/md";
 import TripPhotoJourneyModal from "@/components/trip/TripPhotoJourneyModal";
@@ -12,17 +13,14 @@ type TripAirportTicketProps = {
     code: string;
     country: string;
   };
+  photos: TripPhoto[];
+  loading: boolean;
+  error: string;
+  reload: () => void;
   left: number;
   top: number;
   onClose: () => void;
 };
-
-const TICKET_PHOTOS = [
-  "/assets/images/test/49e9a5eadafaf0b1c2ac4a4b07471ffcc74b35cadb5066f9eeba42eb1de25ff8.webp",
-  "/assets/images/test/X-g_0AeDF8JemoX-4ALKitt2I4AY2hdKoFK00K_Zl9M4ceNjgUh_qb3CfMEDF2gnJ474_XMMdi0tIuQgFPT36w.webp",
-  "/assets/images/test/c17d30c797ef18b59534bf4e88b3e2e90f2e2b25bbf2a05d00fa231fa07b11b2.webp",
-  "/assets/images/test/channels4_profile.jpg",
-] as const;
 
 const PHOTO_LAYER_STYLES = [
   "left-0 top-4 -rotate-[11deg]",
@@ -59,12 +57,16 @@ function generateBarcodeModules(seed: string) {
 
 export default function TripAirportTicket({
   airport,
+  photos,
+  loading,
+  error,
+  reload,
   left,
   top,
   onClose,
 }: TripAirportTicketProps) {
   const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);
-  const [initialPhotoIndex, setInitialPhotoIndex] = useState(0);
+  const [initialPhotoPath, setInitialPhotoPath] = useState("");
   const status = useMemo(
     () =>
       airport.code.charCodeAt(0) % 5 !== 0
@@ -161,13 +163,13 @@ export default function TripAirportTicket({
               className="relative h-[64px] w-[68px] shrink-0"
               role="group"
             >
-              {TICKET_PHOTOS.map((photo, index) => (
+              {loading ? <span className="text-xs text-slate-500">불러오는 중…</span> : error ? <button type="button" onClick={reload} className="text-xs text-rose-500">조회 실패 · 재시도</button> : photos.length === 0 ? <span className="flex h-14 w-16 items-center justify-center rounded-xl border border-dashed border-slate-300 text-center text-[10px] text-slate-500">사진이<br />없어요</span> : photos.slice(0, 4).map((photo, index) => (
                 <button
                   aria-label={`${airport.city} 여행 사진 ${index + 1} 보기`}
                   className={`group absolute h-11 w-11 overflow-hidden rounded-[12px] border border-white/80 bg-slate-200 shadow-[0_8px_18px_rgba(15,23,42,0.16)] transition-transform duration-300 ease-out hover:z-20 hover:-translate-y-1.5 hover:scale-[1.08] hover:shadow-[0_14px_28px_rgba(15,23,42,0.22)] focus-visible:z-20 focus-visible:-translate-y-1.5 focus-visible:scale-[1.08] dark:border-white/20 dark:bg-neutral-800 ${PHOTO_LAYER_STYLES[index]}`}
-                  key={photo}
+                  key={photo.path}
                   onClick={() => {
-                    setInitialPhotoIndex(index);
+                    setInitialPhotoPath(photo.path);
                     setIsPhotoModalOpen(true);
                   }}
                   type="button"
@@ -177,7 +179,7 @@ export default function TripAirportTicket({
                     className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                     fill
                     sizes="44px"
-                    src={photo}
+                    src={photo.src}
                   />
                 </button>
               ))}
@@ -212,7 +214,8 @@ export default function TripAirportTicket({
       {isPhotoModalOpen ? (
         <TripPhotoJourneyModal
           airport={airport}
-          initialPhotoIndex={initialPhotoIndex}
+          initialPhotoPath={initialPhotoPath}
+          photos={photos}
           onClose={() => setIsPhotoModalOpen(false)}
         />
       ) : null}

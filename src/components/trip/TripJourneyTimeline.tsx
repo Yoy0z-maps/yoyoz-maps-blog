@@ -6,7 +6,7 @@ import { motion, useAnimationControls } from "motion/react";
 import TripMorphingPlaneIcon, {
   TRIP_PLANE_MORPH_DURATION_SECONDS,
 } from "@/components/trip/TripMorphingPlaneIcon";
-import { TRIP_JOURNEY_MOMENTS } from "@/constant/tripPhotoJourney";
+import type { JourneyMoment } from "@/constant/tripPhotoJourney";
 
 type FlightPhase = "landing" | "parked" | "takeoff";
 
@@ -16,23 +16,25 @@ const LANDING_PHASE_AT_MS = 820;
 const PLANE_MORPH_DURATION_MS = TRIP_PLANE_MORPH_DURATION_SECONDS * 1000;
 
 type TripJourneyTimelineProps = {
+  moments: JourneyMoment[];
   activeMomentIndex: number;
   onMomentSelect: (index: number) => void;
   prefersReducedMotion: boolean | null;
 };
 
-function getTimelinePosition(index: number) {
-  return `${(index / (TRIP_JOURNEY_MOMENTS.length - 1)) * 100}%`;
+function getTimelinePosition(index: number, count: number) {
+  return `${count <= 1 ? 50 : (index / (count - 1)) * 100}%`;
 }
 
 export default function TripJourneyTimeline({
+  moments,
   activeMomentIndex,
   onMomentSelect,
   prefersReducedMotion,
 }: TripJourneyTimelineProps) {
   const flightPathControls = useAnimationControls();
   const flightPhaseTimeoutsRef = useRef<number[]>([]);
-  const [flight, setFlight] = useState({ from: 0, id: 0, to: 0 });
+  const [flight, setFlight] = useState({ from: activeMomentIndex, id: 0, to: activeMomentIndex });
   const [flightPhase, setFlightPhase] = useState<FlightPhase>("parked");
   const isFlyingBackward = flight.to < flight.from;
 
@@ -92,9 +94,9 @@ export default function TripJourneyTimeline({
     <div className="relative mx-8 h-[92px] shrink-0 sm:mx-14">
       <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-[repeating-linear-gradient(90deg,rgba(148,163,184,0.55)_0_10px,transparent_10px_17px)] dark:bg-[repeating-linear-gradient(90deg,rgba(115,115,115,0.65)_0_10px,transparent_10px_17px)]" />
       <motion.div
-        animate={{ width: getTimelinePosition(flight.to) }}
+        animate={{ width: getTimelinePosition(flight.to, moments.length) }}
         className="absolute left-0 top-1/2 z-10 h-[2px] -translate-y-1/2 bg-[repeating-linear-gradient(90deg,#fd6162_0_10px,transparent_10px_17px)] drop-shadow-[0_0_5px_rgba(253,97,98,0.55)]"
-        initial={{ width: getTimelinePosition(flight.from) }}
+        initial={{ width: getTimelinePosition(flight.from, moments.length) }}
         transition={{
           delay:
             prefersReducedMotion || flight.id === 0
@@ -108,12 +110,12 @@ export default function TripJourneyTimeline({
         }}
       />
 
-      {TRIP_JOURNEY_MOMENTS.map((moment, index) => {
+      {moments.map((moment, index) => {
         const isActive = index === activeMomentIndex;
         const tooltipPosition =
           index === 0
             ? "left-1/2"
-            : index === TRIP_JOURNEY_MOMENTS.length - 1
+            : index === moments.length - 1
               ? "right-1/2"
               : "left-1/2 -translate-x-1/2";
 
@@ -124,7 +126,7 @@ export default function TripJourneyTimeline({
             className="group absolute top-1/2 z-20 h-12 w-12 -translate-x-1/2 -translate-y-1/2 outline-none"
             key={moment.date}
             onClick={() => selectMoment(index)}
-            style={{ left: getTimelinePosition(index) }}
+            style={{ left: getTimelinePosition(index, moments.length) }}
             type="button"
           >
             <span
@@ -132,6 +134,7 @@ export default function TripJourneyTimeline({
             >
               {moment.date}
             </span>
+            <span className="absolute left-1/2 top-10 -translate-x-1/2 whitespace-nowrap text-xs text-slate-500">{Number(moment.date.slice(5))}월</span>
             <span
               className={`absolute left-1/2 top-1/2 block -translate-x-1/2 -translate-y-1/2 rounded-full border transition-all duration-300 ${
                 isActive
@@ -145,11 +148,11 @@ export default function TripJourneyTimeline({
 
       <motion.div
         animate={{
-          left: getTimelinePosition(flight.to),
+          left: getTimelinePosition(flight.to, moments.length),
         }}
         className="pointer-events-none absolute top-1/2 z-30"
         initial={{
-          left: getTimelinePosition(flight.from),
+          left: getTimelinePosition(flight.from, moments.length),
         }}
         transition={{
           delay:

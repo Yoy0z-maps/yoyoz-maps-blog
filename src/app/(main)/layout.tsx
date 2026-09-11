@@ -1,4 +1,5 @@
 import "../globals.css";
+import TripPageChrome from "@/components/trip/TripPageChrome";
 import MainHeader from "@/container/MainHeader";
 import Footer from "@/container/Footer";
 import { ToastContainer } from "react-toastify";
@@ -16,11 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <MainHeader />
+      <TripPageChrome><MainHeader /></TripPageChrome>
       <ToastContainer />
       {children}
-      <MobileNav />
-      <Footer />
+      <TripPageChrome><MobileNav /><Footer /></TripPageChrome>
     </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTripPhotos } from "@/hook/useTripPhotos";
 import TripAirportTicket from "@/components/trip/TripAirportTicket";
 import {
   decorateTripMapSvg,
@@ -28,6 +29,36 @@ export default function TripWorldMapClient({
 }: {
   svgMarkup: string;
 }) {
+  const { photos, loading, error, reload } = useTripPhotos();
+
+  useEffect(() => {
+    // Warm the same signed image URLs that ticket thumbnails will render.
+    // Only the four newest photos per region are downloaded in the background.
+    const counts = new Map<string, number>();
+    const previews = photos.filter(photo => {
+      const count = counts.get(photo.region) || 0;
+      counts.set(photo.region, count + 1);
+      return count < 4;
+    });
+    let cancelled = false;
+    let nextIndex = 0;
+    async function preload() {
+      while (!cancelled && nextIndex < previews.length) {
+        const photo = previews[nextIndex++];
+        const image = new window.Image();
+        image.decoding = "async";
+        image.fetchPriority = "low";
+        image.src = photo.src;
+        // A failed preview must not prevent the remaining regions from loading.
+        await image.decode().catch(() => undefined);
+      }
+    }
+    // Keep concurrent downloads low so the map remains responsive.
+    void preload();
+    void preload();
+    return () => { cancelled = true; };
+  }, [photos]);
+
   const mapRef = useRef<HTMLDivElement>(null);
   const [activeTicket, setActiveTicket] = useState<ActiveTicket | null>(null);
 
@@ -223,6 +254,11 @@ export default function TripWorldMapClient({
 
       {activeTicket ? (
         <TripAirportTicket
+          key={activeTicket.airport.code}
+          photos={photos.filter(photo => photo.region === activeTicket.airport.code)}
+          loading={loading}
+          error={error}
+          reload={reload}
           airport={activeTicket.airport}
           left={activeTicket.left}
           onClose={closeActiveTicket}

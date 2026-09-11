@@ -28,6 +28,7 @@ const messages = [
 
 function isMobileOrTablet(): boolean {
   const ua = navigator.userAgent;
+  if (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) return true;
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet/i.test(
     ua,
   );
@@ -35,12 +36,7 @@ function isMobileOrTablet(): boolean {
 
 export default function MobileBlockOverlay() {
   const pathname = usePathname();
-  const isAppPage = [
-    "/apps",
-    "/rovoca",
-    "/daily-english-sentence",
-    "/fine-studio",
-  ].some((path) => pathname === path || pathname.startsWith(`${path}/`));
+  const isUploadPage = pathname === "/trip/upload";
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
 
@@ -56,7 +52,7 @@ export default function MobileBlockOverlay() {
     return () => clearInterval(interval);
   }, [visible]);
 
-  if (!visible || isAppPage) return null;
+  if (!visible || isUploadPage) return null;
 
   const msg = messages[index];
 

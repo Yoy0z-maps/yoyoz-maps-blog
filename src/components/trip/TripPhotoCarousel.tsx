@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image from "@/components/trip/TripStoredImage";
 import { AnimatePresence, motion } from "motion/react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
@@ -34,12 +34,12 @@ export default function TripPhotoCarousel({
   return (
     <motion.div
       animate={{ opacity: 1, y: 0 }}
-      className="grid h-full min-h-0 grid-rows-[minmax(0,1fr)_auto] gap-4"
+      className="flex min-h-full min-w-0 flex-col items-center justify-center gap-4"
       initial={{ opacity: 0, y: 14 }}
       key={`carousel-${activeMomentIndex}`}
       transition={{ duration: prefersReducedMotion ? 0.1 : 0.42 }}
     >
-      <div className="group relative min-h-[340px] overflow-hidden rounded-[26px] bg-slate-950">
+      <div className="group relative aspect-square w-[min(100%,max(240px,calc(92svh-360px)))] max-w-[680px] shrink-0 overflow-hidden rounded-[26px] bg-slate-950">
         <AnimatePresence initial={false} mode="wait">
           <motion.div
             animate={{ opacity: 1, scale: 1 }}
@@ -54,7 +54,7 @@ export default function TripPhotoCarousel({
               className="object-cover"
               draggable={false}
               fill
-              sizes="(max-width: 1200px) 90vw, 1100px"
+              sizes="(max-height: 620px) 240px, (max-height: 1130px) calc(92svh - 360px), 680px"
               src={activePhoto.src}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-black/15" />
@@ -96,13 +96,13 @@ export default function TripPhotoCarousel({
               {activePhoto.caption}
             </p>
           </div>
-          <p className="hidden shrink-0 text-xs font-semibold text-white/55 sm:block">
+          <p className="hidden shrink-0 text-xs font-semibold text-white/55">
             ← → 키로 넘겨보기
           </p>
         </div>
       </div>
 
-      <div className="flex items-center justify-center gap-2 overflow-x-auto px-1 pb-1">
+      <div className="flex w-full min-w-0 items-center gap-2 overflow-x-auto px-1 pb-1 [&>button:first-child]:ml-auto [&>button:last-child]:mr-auto">
         {moment.photos.map((photo, index) => {
           const isActive = index === activePhotoIndex;
 
