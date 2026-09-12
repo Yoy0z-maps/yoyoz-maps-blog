@@ -37,6 +37,7 @@ function isMobileOrTablet(): boolean {
 export default function MobileBlockOverlay() {
   const pathname = usePathname();
   const isUploadPage = pathname === "/trip/upload";
+  const isAppPage = pathname === "/apps" || pathname.startsWith("/apps/");
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
 
@@ -52,7 +53,7 @@ export default function MobileBlockOverlay() {
     return () => clearInterval(interval);
   }, [visible]);
 
-  if (!visible || isUploadPage) return null;
+  if (!visible || isUploadPage || isAppPage) return null;
 
   const msg = messages[index];
 

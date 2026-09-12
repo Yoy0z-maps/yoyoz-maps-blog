@@ -8,6 +8,7 @@ export type AppInfo = {
   soft: string;
   icon: string;
   storeUrl: string | null;
+  playStoreUrl?: string;
   screens: string[];
   screenLabels: string[];
   features: string[][];
@@ -120,14 +121,14 @@ export const apps: AppInfo[] = [
         "앱의 설정에서 회원탈퇴하기를 선택하세요. 삭제 전 필요한 학습 기록을 확인하고, 처리가 실패하면 연결 상태를 확인한 뒤 지원 이메일로 문의해 주세요.",
       ],
     ],
-    privacy: null,
+    privacy: "/apps/daily-english-sentence/privacy",
     screenLabels: [
       "오늘의 표현",
       "저장한 문장 라이브러리",
       "홈 화면과 잠금 화면 위젯",
     ],
     icon: "/assets/apps/daily-english-sentence/icon.png",
-    storeUrl: null,
+    storeUrl: "https://apps.apple.com/kr/app/id6809145944",
     screens: [
       "/assets/apps/daily-english-sentence/home.png",
       "/assets/apps/daily-english-sentence/saved.png",
@@ -136,6 +137,8 @@ export const apps: AppInfo[] = [
   },
   {
     slug: "fine-studio",
+    playStoreUrl:
+      "https://play.google.com/store/apps/details?id=com.yoy0zmaps.finestudio&hl=ko",
     name: "Fine Studio",
     eyebrow: "FIND YOUR TONE",
     headline: "좋은 연습의 시작,\n당신의 손끝에서.",
@@ -160,7 +163,7 @@ export const apps: AppInfo[] = [
     faqs: [
       [
         "튜너가 소리를 인식하지 못해요.",
-        "iPhone 설정에서 Fine Studio의 마이크 접근을 허용해 주세요. 주변 소음을 줄이고 한 번에 한 줄씩 연주하면 음정을 확인하기 좋습니다.",
+        "기기 설정에서 Fine Studio의 마이크 접근을 허용해 주세요. 주변 소음을 줄이고 한 번에 한 줄씩 연주하면 음정을 확인하기 좋습니다.",
       ],
       [
         "스탠다드와 크로매틱 모드는 무엇이 다른가요?",

@@ -120,6 +120,11 @@
   gap: 25px;
   flex-wrap: wrap;
 }
+.downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 .download {
   display: inline-flex;
   align-items: center;
@@ -564,5 +569,101 @@
 @media (prefers-reduced-motion: reduce) {
   .screenTrack a {
     transition: none;
+  }
+}
+
+.privacyIntro {
+  padding: 52px 0 38px;
+  border-bottom: 1px solid #e1e5de;
+}
+.privacyIntro > a {
+  color: var(--app-accent);
+}
+.privacyIntro .appIdentity {
+  margin: 36px 0 24px;
+}
+.privacyIntro h1 {
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 750;
+  letter-spacing: -1.5px;
+  line-height: 1.3;
+}
+.privacyIntro > p {
+  margin-top: 14px;
+  color: #646b66;
+}
+.privacyDate {
+  display: inline-block;
+  background: var(--app-soft);
+  color: var(--app-accent);
+  padding: 6px 14px;
+  border-radius: 8px;
+  margin-top: 22px;
+  font-size: 13px;
+}
+.privacyLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 64px;
+  padding: 44px 0 72px;
+}
+.privacyContent {
+  min-width: 0;
+  line-height: 1.9;
+  color: #58615a;
+  overflow-wrap: anywhere;
+}
+.privacyContent h2 {
+  font-size: 23px;
+  font-weight: 700;
+  color: #202321;
+  line-height: 1.4;
+  margin: 36px 0 16px;
+  letter-spacing: -0.5px;
+}
+.privacyContent p {
+  margin: 14px 0;
+}
+.privacyContent ul {
+  list-style: disc;
+  padding-left: 24px;
+  margin: 16px 0;
+}
+.privacyContent li {
+  margin: 10px 0;
+}
+.privacyContent a {
+  color: var(--app-accent);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.privacyContent strong {
+  font-weight: 650;
+  color: #202321;
+}
+.privacyContent hr {
+  border-color: #e1e5de;
+  margin: 32px 0;
+}
+.privacyLayout .contact h2 {
+  font-size: 23px;
+  font-weight: 700;
+  margin: 12px 0;
+}
+@media (max-width: 900px) {
+  .privacyLayout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+}
+@media (max-width: 640px) {
+  .privacyIntro {
+    padding-top: 32px;
+  }
+  .privacyLayout {
+    padding: 24px 0 44px;
+  }
+  .privacyContent h2 {
+    font-size: 21px;
   }
 }
